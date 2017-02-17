@@ -1,8 +1,8 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
-#include <GL\glut.h>
-#include <SOIL.h>
+#include "GL\glut.h"
+#include "soil.h"
 #include "IUpdate.h"
 #include "IDraw.h"
 

@@ -1,8 +1,8 @@
 #ifndef GAMEWORLD_H
 #define GAMEWORLD_H
 
-#include <GL\glut.h>
-#include <SOIL.h>
+#include "GL\glut.h"
+#include "soil.h"
 #include <vector>
 
 class DrawHandler;
