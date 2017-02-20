@@ -5,6 +5,7 @@
 #include "Component.h"
 #include "IDraw.h"
 #include "DrawHandler.h"
+#include "Vector2.h"
 
 class SpriteRenderer :
 	public Component, public IDraw
@@ -12,6 +13,7 @@ class SpriteRenderer :
 private:
 	GLuint texture; //Texture holder
 public:
+	Vector2 * Size;
 	std::string GetName();
 	void Draw(DrawHandler * drawHandler);
 

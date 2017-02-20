@@ -62,12 +62,13 @@ void Collider::Draw()
 RectangleF * Collider::CollisionBox()
 {
 	Vector2 * position = t->GetPosition();
+	Vector2 * size = s->Size;
 
 	return new RectangleF(
 		position->X,
 		position->Y,
-		0,	// add width and height to spriterenderer
-		0
+		size->X,	// add width and height to spriterenderer
+		size->Y
 	);
 }
 
