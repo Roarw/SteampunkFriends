@@ -3,7 +3,9 @@
 
 #include "GL\glut.h"
 #include "soil.h"
+#include "GameObject.h"
 #include <vector>
+#include "Vector2.h"
 
 class DrawHandler;
 class GameObject;

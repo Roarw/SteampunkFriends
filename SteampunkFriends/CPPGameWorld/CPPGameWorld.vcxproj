@@ -73,6 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>C:\Users\Kenneth\Source\Repos\SteampunkFriends\SteampunkFriends\packages\freeglut.2.8.1.15\build\native\lib\v100\Win32\Debug\dynamic;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\EBSU\Source\Repos\SteampunkFriends\SteampunkFriends\packages\freeglut.2.8.1.15\build\native\lib\v100\Win32\Debug\dynamic;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -145,17 +146,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="DrawHandler.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Program.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component.h" />
     <ClInclude Include="DrawHandler.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="IDraw.h" />
     <ClInclude Include="IUpdate.h" />
+    <ClInclude Include="SpriteRenderer.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
