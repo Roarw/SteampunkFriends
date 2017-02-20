@@ -67,7 +67,7 @@ RectangleF * Collider::CollisionBox()
 	return new RectangleF(
 		position->X,
 		position->Y,
-		size->X,	// add width and height to spriterenderer
+		size->X,	
 		size->Y
 	);
 }
