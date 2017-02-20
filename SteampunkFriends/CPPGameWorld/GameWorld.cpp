@@ -1,6 +1,5 @@
 #include "GameWorld.h"
 #include "DrawHandler.h"
-#include "GameObject.h"
 
 void GameWorld::Update()
 {

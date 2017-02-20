@@ -5,13 +5,13 @@
 #include "soil.h"
 #include "IUpdate.h"
 #include "IDraw.h"
-
-class DrawHandler;
+#include "SpriteRenderer.h"
+#include "DrawHandler.h"
 
 class GameObject : public IUpdate, public IDraw
 {
 private:
-	GLuint texture; //Texture holder
+	SpriteRenderer * spriter; //Texture holder
 public:
 	void Update();
 	void Draw(DrawHandler * drawHandler);

@@ -3,6 +3,7 @@
 
 #include "GL\glut.h"
 #include "soil.h"
+#include "GameObject.h"
 #include <vector>
 
 class DrawHandler;
