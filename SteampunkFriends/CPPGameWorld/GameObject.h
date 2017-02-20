@@ -19,6 +19,9 @@ private:
 public:
 	void Update();
 	void Draw(DrawHandler * drawHandler);
+	void OnCollisionEnter(GameObject * other);
+	void OnCollisionStay(GameObject * other);
+	void OnCollisionEnd(GameObject * other);
 
 	void AddComponent(Component * component);
 	Component* GetComponent(std::string aName);

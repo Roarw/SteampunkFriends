@@ -164,6 +164,9 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="IDraw.h" />
+    <ClInclude Include="IOnCollisionEnter.h" />
+    <ClInclude Include="IOnCollisionExit.h" />
+    <ClInclude Include="IOnCollisionStay.h" />
     <ClInclude Include="IUpdate.h" />
     <ClInclude Include="RectangleF.h" />
     <ClInclude Include="SpriteRenderer.h" />

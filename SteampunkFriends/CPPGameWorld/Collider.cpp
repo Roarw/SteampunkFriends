@@ -29,12 +29,12 @@ void Collider::CheckCollision()
 			if (find((*collisions).begin(), (*collisions).end(), *it) != (*collisions).end()) // Added *before it here, but not sure if thats bad 
 			{
 				// Collision Stay
-
+				gameObject->OnCollisionStay((*it)->gameObject);
 			}
 			else
 			{
 				// Collision Enter
-
+				gameObject->OnCollisionEnter((*it)->gameObject);
 			}
 		}
 	}
@@ -44,7 +44,7 @@ void Collider::CheckCollision()
 		if (!this->CollisionBox()->Intersects(c->CollisionBox()))
 		{
 			// Collision End
-
+			gameObject->OnCollisionEnd(c->gameObject);
 		}
 	}
 }
