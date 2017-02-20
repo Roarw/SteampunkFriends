@@ -16,15 +16,12 @@ class GameObject : public IUpdate, public IDraw
 {
 private:
 	std::map<std::string, Component*> components;
-	Transform * transform;
-	SpriteRenderer * spriter;
 public:
 	void Update();
 	void Draw(DrawHandler * drawHandler);
 
+	void AddComponent(Component * component);
 	Component* GetComponent(std::string aName);
-	Transform * GetTransform();
-	SpriteRenderer * GetSpriteRenderer();
 
 	GameObject();
 	~GameObject();

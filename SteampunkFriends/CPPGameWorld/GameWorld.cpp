@@ -1,5 +1,6 @@
 #include "GameWorld.h"
 #include "DrawHandler.h"
+#include <iostream>
 
 void GameWorld::Update()
 {
@@ -27,7 +28,13 @@ void GameWorld::Draw()
 ///Creating all objects.
 void GameWorld::CreateWorld()
 {
-	gameObjects.push_back(new GameObject());
+	GameObject * go = new GameObject();
+	go->AddComponent(new Transform(go, new Vector2()));
+	go->AddComponent(new SpriteRenderer(go, ".\\PokeBall.png"));
+	gameObjects.push_back(go);
+
+	std::cout << go->GetComponent("Transform")->GetName() << " has been added.\n";
+	std::cout << go->GetComponent("SpriteRenderer")->GetName() << " has been added.\n";
 }
 
 DrawHandler GameWorld::GetDrawHandler()

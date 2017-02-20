@@ -1,5 +1,6 @@
 #include "SpriteRenderer.h"
 #include "GameObject.h"
+#include "Transform.h"
 
 std::string SpriteRenderer::GetName()
 {
@@ -8,9 +9,11 @@ std::string SpriteRenderer::GetName()
 
 void SpriteRenderer::Draw(DrawHandler * drawHandler)
 {
+	Transform * transform = ((Transform*)gameObject->GetComponent("Transform"));
+
 	drawHandler->DrawTexture(texture, 
-		gameObject->GetTransform()->GetPosition()->X, 
-		gameObject->GetTransform()->GetPosition()->Y, 
+		transform->GetPosition()->X,
+		transform->GetPosition()->Y,
 		0);
 }
 
