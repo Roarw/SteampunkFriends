@@ -4,7 +4,10 @@
 
 void SpriteRenderer::Draw(DrawHandler * drawHandler)
 {
-	drawHandler->DrawTexture(texture, 0, 0, 0);
+	drawHandler->DrawTexture(texture, 
+		gameObject->GetTransform()->GetPosition()->X, 
+		gameObject->GetTransform()->GetPosition()->Y, 
+		0);
 }
 
 SpriteRenderer::SpriteRenderer(GameObject * gameObject, char * texturePath) : Component(gameObject)

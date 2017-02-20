@@ -13,6 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{8e07742f-fc8a-4ac9-af79-f15756054d89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Interfaces">
+      <UniqueIdentifier>{bd39bbaa-b21c-4d9c-80e9-9bf3fd7a12d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helpers">
+      <UniqueIdentifier>{805dea53-60a7-48b9-9a34-cf6659452792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{8c83bda2-1a9d-48fd-8e71-37a77db2bd39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helpers">
+      <UniqueIdentifier>{0c2dcccd-b540-42bd-a15f-460189fd90c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp">
@@ -28,10 +43,16 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="SpriteRenderer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2.cpp">
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,17 +65,23 @@
     <ClInclude Include="GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IUpdate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDraw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="SpriteRenderer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IDraw.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IUpdate.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
