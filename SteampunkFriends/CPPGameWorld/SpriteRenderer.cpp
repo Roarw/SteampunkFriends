@@ -1,6 +1,10 @@
 #include "SpriteRenderer.h"
 #include "GameObject.h"
 
+std::string SpriteRenderer::GetName()
+{
+	return "SpriteRenderer";
+}
 
 void SpriteRenderer::Draw(DrawHandler * drawHandler)
 {

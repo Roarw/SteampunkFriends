@@ -1,6 +1,11 @@
 #include "Component.h"
 #include "GameObject.h"
 
+std::string Component::GetName()
+{
+	return "Component";
+}
+
 GameObject Component::GetGameObject()
 {
 	return * gameObject;

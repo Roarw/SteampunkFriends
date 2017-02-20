@@ -10,6 +10,7 @@ class Transform :
 private:
 	Vector2 * position;
 public:
+	std::string GetName();
 	void Translate(Vector2 translation);
 
 	Vector2 * GetPosition();

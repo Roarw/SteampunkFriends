@@ -12,6 +12,7 @@ class SpriteRenderer :
 private:
 	GLuint texture; //Texture holder
 public:
+	std::string GetName();
 	void Draw(DrawHandler * drawHandler);
 
 	SpriteRenderer(GameObject * gameObject, char * texturePath);

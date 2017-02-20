@@ -1,6 +1,10 @@
 #include "Transform.h"
+#include "GameObject.h"
 
-
+std::string Transform::GetName()
+{
+	return "Transform";
+}
 
 void Transform::Translate(Vector2 translation)
 {
