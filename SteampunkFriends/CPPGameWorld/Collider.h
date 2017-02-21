@@ -20,6 +20,7 @@ public:
 	Collider(GameObject * g);
 	void Update();
 	void Draw();
+	//Return new? Hvor bliver den her nogensinde deleted?
 	RectangleF * CollisionBox();
 	~Collider();
 };
