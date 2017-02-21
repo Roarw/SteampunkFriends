@@ -18,6 +18,8 @@ private:
 	vector<GameObject*> gameObjects;
 	int oldTimeSinceStart;
 	float deltaTime;
+
+	GameWorld();
 public:
 	void Update();
 	void Draw();
@@ -26,7 +28,9 @@ public:
 	DrawHandler GetDrawHandler();
 	float GetDeltaTime();
 
-	GameWorld(int argc, char** argv);
+	static GameWorld& GetInstance();
+	GameWorld(GameWorld const&) = delete;
+	void operator=(GameWorld const&) = delete;
 	~GameWorld();
 };
 #endif // !GAMEWORLD_H
