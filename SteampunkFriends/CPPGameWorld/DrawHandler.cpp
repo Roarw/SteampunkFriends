@@ -78,6 +78,23 @@ void DrawHandler::DrawTexture(GLuint texture, float x, float y, float z)
 	glPopMatrix();
 }
 
+
+void DrawHandler::DrawLine(GLuint texture, float x, float y, float z)
+{
+	glPushMatrix(); //Makes sure only this objects uses the current matrix
+	glTranslatef(x, y, z);
+
+	glBindTexture(GL_TEXTURE_2D, texture); //Bind texture for usage
+	glBegin(GL_TRIANGLE_FAN);
+	// Front Face
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+	glEnd();
+
+	glPopMatrix();
+}
 void DrawHandler::BeginDraw()
 {
 	//Clear color and depth buffer

@@ -85,5 +85,6 @@ GameObject::~GameObject()
 	for (pair<string, Component *> c : components)
 	{
 		delete(c.second);
+		GameWorld::Instance->DeleteObject(this);
 	}
 }

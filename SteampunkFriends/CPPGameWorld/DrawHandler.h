@@ -18,6 +18,7 @@ public:
 	
 	void StartLoop();
 	void DrawTexture(GLuint texture, float x, float y, float z);
+	void DrawLine(GLuint texture, float x, float y, float z);
 	void BeginDraw();
 	void EndDraw();
 

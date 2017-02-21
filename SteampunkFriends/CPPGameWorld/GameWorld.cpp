@@ -44,6 +44,13 @@ void GameWorld::CreateWorld()
 
 	std::cout << go->GetComponent("Transform")->GetName() << " has been added.\n";
 	std::cout << go->GetComponent("SpriteRenderer")->GetName() << " has been added.\n";
+
+	delete(go);
+}
+
+void GameWorld::DeleteObject(GameObject* aObject)
+{
+	delete(find(gameObjects.begin(), gameObjects.end(), aObject));
 }
 
 DrawHandler GameWorld::GetDrawHandler()

@@ -10,6 +10,7 @@
 #include "IDraw.h"
 #include "DrawHandler.h"
 #include "Component.h"
+#include "GameWorld.h"
 
 class GameObject : public IUpdate, public IDraw
 {

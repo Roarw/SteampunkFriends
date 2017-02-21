@@ -22,6 +22,7 @@ public:
 	void Update();
 	void Draw();
 	void CreateWorld();
+	void DeleteObject(GameObject* aObject);
 
 	DrawHandler GetDrawHandler();
 	float GetDeltaTime();
