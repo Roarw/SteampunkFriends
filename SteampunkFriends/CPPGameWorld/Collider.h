@@ -24,7 +24,6 @@ public:
 	Collider(GameObject * g, Transform * transform, SpriteRenderer * spriteRenderer);
 	void Update();
 	void Draw();
-	//Return new? Hvor bliver den her nogensinde deleted?
 	RectangleF * CollisionBox();
 	~Collider();
 };

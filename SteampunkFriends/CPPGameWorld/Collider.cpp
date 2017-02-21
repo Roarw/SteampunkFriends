@@ -40,16 +40,18 @@ void Collider::CheckCollision()
 			{
 				// Collision Enter
 				gameObject->OnCollisionEnter((*it)->gameObject);
+				this->collisions.push_back(*it);
 			}
 		}
 	}
 
-	for (Collider * c : collisions)
+	for (it = (collisions).begin(); it != (collisions).end(); ++it)
 	{
-		if (!this->CollisionBox()->Intersects(c->CollisionBox()))
+		if (!this->CollisionBox()->Intersects((*it)->CollisionBox()))
 		{
 			// Collision End
-			gameObject->OnCollisionEnd(c->gameObject);
+			gameObject->OnCollisionEnd((*it)->gameObject);
+			this->collisions.erase(it);
 		}
 	}
 }
@@ -69,8 +71,7 @@ RectangleF * Collider::CollisionBox()
 	Vector2 position = *transform->GetPosition();
 	Vector2 size = *spriter->Size;
 
-	//Return new? Hvor bliver den her nogensinde deleted?
-	return new RectangleF(
+	return & RectangleF(
 		position.X,
 		position.Y,
 		size.X,	
@@ -80,5 +81,7 @@ RectangleF * Collider::CollisionBox()
 
 Collider::~Collider()
 {
-
+	spriter = nullptr;
+	transform = nullptr;
+	vector<Collider *>().swap(collisions);
 }
