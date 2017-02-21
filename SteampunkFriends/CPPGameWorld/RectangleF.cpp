@@ -10,6 +10,7 @@ RectangleF::RectangleF(float x, float y, float width, float height)
 	this->Right = x + Width;
 	this->Top = y;
 	this->Bottom = y + Height;
+	this->Size = Vector2(width, height);
 }
 
 bool RectangleF::Intersects(RectangleF other)

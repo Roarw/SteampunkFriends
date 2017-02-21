@@ -151,6 +151,7 @@
     <ClCompile Include="DrawHandler.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameWorld.cpp" />
+    <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="RectangleF.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="DrawHandler.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameWorld.h" />
+    <ClInclude Include="Gun.h" />
     <ClInclude Include="IDraw.h" />
     <ClInclude Include="IOnCollisionEnter.h" />
     <ClInclude Include="IOnCollisionExit.h" />

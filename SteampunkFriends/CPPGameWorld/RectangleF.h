@@ -1,4 +1,6 @@
 #pragma once
+#include "Vector2.h"
+
 class RectangleF
 {
 public:
@@ -10,6 +12,7 @@ public:
 	float Right;
 	float Top;
 	float Bottom;
+	Vector2 Size;
 
 	RectangleF();
 	RectangleF(float x, float y, float width, float height);
