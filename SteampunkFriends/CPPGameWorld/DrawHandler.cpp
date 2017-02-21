@@ -94,7 +94,7 @@ DrawHandler::DrawHandler(GameWorld * gameWorld, int argc, char** argv)
 	glutInit(&argc, argv);//Init GLUT
 
 	//Initialize glut display mode with rgb and alpha colors and Depth
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH); 
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
 	glutInitWindowSize(600, 600); //Set window size
 	glutInitWindowPosition(0, 0); //Set window position
 
