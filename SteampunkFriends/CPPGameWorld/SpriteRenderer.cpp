@@ -29,7 +29,7 @@ SpriteRenderer::SpriteRenderer(GameObject * gameObject, Transform * transform, c
 	int miplevel = 0;
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, miplevel, GL_TEXTURE_WIDTH, &w);
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, miplevel, GL_TEXTURE_HEIGHT, &h);
-	Size = new Vector2(w, h);
+	Size = Vector2(w, h);
 }
 
 SpriteRenderer::~SpriteRenderer()

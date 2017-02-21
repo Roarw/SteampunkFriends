@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "SpriteRenderer.h"
 #include "Transform.h"
+#include "RectangleF.h"
 #include <vector>
 
 using namespace std;
@@ -12,9 +13,16 @@ std::string Collider::GetName()
 	return "Collider";
 }
 
+Collider::Collider(GameObject * gameObject, Transform * transform, RectangleF sizeRect) : Component(gameObject)
+{
+	this->Size = sizeRect.Size;
+	this->transform = transform;
+}
+
 Collider::Collider(GameObject * gameObject, Transform * transform, SpriteRenderer * spriteRenderer) : Component(gameObject)
 {
 	this->spriter = spriteRenderer;
+	this->Size = spriter->Size;
 	this->transform = transform;
 }
 
@@ -57,7 +65,10 @@ void Collider::CheckCollision()
 
 void Collider::Update()
 {
-	CheckCollision();
+	if(Enabled)
+	{
+		CheckCollision();
+	}
 }
 
 void Collider::Draw()
@@ -68,17 +79,15 @@ void Collider::Draw()
 RectangleF Collider::CollisionBox()
 {
 	Vector2 position = *transform->GetPosition();
-	Vector2 size = *spriter->Size;
 
 	return RectangleF(
 		position.X,
 		position.Y,
-		size.X,	
-		size.Y
+		Size.X,	
+		Size.Y
 	);
 }
 
 Collider::~Collider()
 {
-	vector<Collider *>().swap(collisions);
 }

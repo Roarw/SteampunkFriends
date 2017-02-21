@@ -17,7 +17,7 @@ private:
 	GLuint texture; //Texture holder
 	Transform * transform;
 public:
-	Vector2 * Size;
+	Vector2 Size;
 	std::string GetName();
 	void Draw(DrawHandler * drawHandler);
 
