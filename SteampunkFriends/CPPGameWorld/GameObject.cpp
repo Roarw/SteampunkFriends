@@ -82,4 +82,8 @@ GameObject::GameObject()
 
 GameObject::~GameObject()
 {
+	for (pair<string, Component *> c : components)
+	{
+		delete(c.second);
+	}
 }

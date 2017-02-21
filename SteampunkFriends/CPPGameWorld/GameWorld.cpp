@@ -56,14 +56,21 @@ float GameWorld::GetDeltaTime()
 	return deltaTime;
 }
 
-GameWorld::GameWorld(int argc, char** argv)
+GameWorld::GameWorld()
 {
 	oldTimeSinceStart = 0;
 
-	drawHandler = new DrawHandler(this, argc, argv);
+	drawHandler = new DrawHandler(this, 0, {});
 
 	CreateWorld();
 	drawHandler->StartLoop();
+}
+
+GameWorld & GameWorld::GetInstance()
+{
+	static GameWorld instance;
+
+	return instance;
 }
 
 GameWorld::~GameWorld()
