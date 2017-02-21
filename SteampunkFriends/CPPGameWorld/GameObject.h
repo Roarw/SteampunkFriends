@@ -15,6 +15,7 @@
 class GameObject : public IUpdate, public IDraw
 {
 private:
+	GameWorld* gameWorld;
 	std::map<std::string, Component*> components;
 public:
 	void Update();
@@ -26,7 +27,7 @@ public:
 	void AddComponent(Component * component);
 	Component* GetComponent(std::string aName);
 
-	GameObject();
+	GameObject(GameWorld* aGameWorld);
 	~GameObject();
 };
 #endif // !GAMEOBJECT_H

@@ -6,6 +6,7 @@
 #include "SpriteRenderer.h"
 #include "Transform.h"
 #include "Collider.h"
+#include "GameObject.h"
 
 void GameWorld::Update()
 {
@@ -33,7 +34,7 @@ void GameWorld::Draw()
 ///Creating all objects.
 void GameWorld::CreateWorld()
 {
-	GameObject * go = new GameObject();
+	GameObject * go = new GameObject(this);
 	Transform * transform = new Transform(go, new Vector2());
 	SpriteRenderer * spriteRenderer = new SpriteRenderer(go, transform, ".\\PokeBall.png");
 	Collider * collider = new Collider(go, transform, spriteRenderer);
@@ -45,12 +46,24 @@ void GameWorld::CreateWorld()
 	std::cout << go->GetComponent("Transform")->GetName() << " has been added.\n";
 	std::cout << go->GetComponent("SpriteRenderer")->GetName() << " has been added.\n";
 
-	delete(go);
+	delete go;
 }
 
 void GameWorld::DeleteObject(GameObject* aObject)
 {
-	delete(find(gameObjects.begin(), gameObjects.end(), aObject));
+	//delete *(find(gameObjects.begin(), gameObjects.end(), aObject));
+
+	auto it = find(gameObjects.begin(), gameObjects.end(), aObject);
+	if (it != gameObjects.end())
+	{
+		//gameObjects.erase(it);
+
+		std::swap(*it, gameObjects.back());
+		gameObjects.pop_back();
+	}
+
+	//std::vector<GameObject*>::iterator itr = 
+	//gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), aObject), gameObjects.end());
 }
 
 DrawHandler GameWorld::GetDrawHandler()
@@ -73,7 +86,7 @@ GameWorld::GameWorld()
 	drawHandler->StartLoop();
 }
 
-GameWorld & GameWorld::GetInstance()
+GameWorld& GameWorld::GetInstance()
 {
 	static GameWorld instance;
 

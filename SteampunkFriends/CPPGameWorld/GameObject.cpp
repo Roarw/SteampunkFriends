@@ -75,16 +75,17 @@ void GameObject::OnCollisionEnd(GameObject * other)
 	}
 }
 
-GameObject::GameObject()
+GameObject::GameObject(GameWorld* aGameWorld)
 {
-	
+	gameWorld = aGameWorld;
 }
 
 GameObject::~GameObject()
 {
-	for (pair<string, Component *> c : components)
+	for (std::map<std::string, Component*>::iterator itr = components.begin(); itr != components.end(); itr++)
 	{
-		delete(c.second);
-		GameWorld::Instance->DeleteObject(this);
+		delete itr->second;
 	}
+
+	gameWorld->DeleteObject(this);
 }
