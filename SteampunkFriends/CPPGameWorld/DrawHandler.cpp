@@ -66,6 +66,10 @@ void DrawHandler::DrawTexture(GLuint texture, float x, float y, float z)
 	glPushMatrix(); //Makes sure only this objects uses the current matrix
 	glTranslatef(x, y, z);
 
+	glEnable(GL_TEXTURE_2D);
+
+	glColor3f(1.0f, 1.0f, 1.0f);
+
 	glBindTexture(GL_TEXTURE_2D, texture); //Bind texture for usage
 	glBegin(GL_TRIANGLE_FAN);
 	// Front Face
@@ -78,23 +82,44 @@ void DrawHandler::DrawTexture(GLuint texture, float x, float y, float z)
 	glPopMatrix();
 }
 
-
-void DrawHandler::DrawLine(GLuint texture, float x, float y, float z)
+void DrawHandler::DrawBox(RectangleF aRect, float R, float G, float B)
 {
 	glPushMatrix(); //Makes sure only this objects uses the current matrix
-	glTranslatef(x, y, z);
+	glTranslatef(aRect.X, aRect.Y, 1.0f);
 
-	glBindTexture(GL_TEXTURE_2D, texture); //Bind texture for usage
-	glBegin(GL_TRIANGLE_FAN);
-	// Front Face
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+	glDisable(GL_TEXTURE_2D);
+
+	glLineWidth(4);
+	glColor3f(R, G, B);
+	glBegin(GL_LINE_LOOP);
+
+	glVertex2f(aRect.X, aRect.Y);
+	glVertex2f(aRect.Width, aRect.Y);
+	glVertex2f(aRect.Width, aRect.Height);
+	glVertex2f(aRect.X, aRect.Height);
+
+	//for (Vector2 v : points)
+	//{
+	//	glVertex2f(v.X, v.Y);
+	//}
+
+	//for (std::vector<Vector2>::iterator itr = points.begin(); itr != points.end(); itr++)
+	//{
+	//	if (itr == points.end())
+	//	{
+	//		glVertex3f(points.begin()->X, points.begin()->Y, 1.0f);
+	//	}
+	//	else
+	//	{
+	//		glVertex3f(itr->X, itr->Y, 1.0f);
+	//	}
+	//}
+
 	glEnd();
 
 	glPopMatrix();
 }
+
 void DrawHandler::BeginDraw()
 {
 	//Clear color and depth buffer

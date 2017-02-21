@@ -3,6 +3,9 @@
 
 #include "GL\glut.h"
 #include "soil.h"
+#include <vector>
+#include "Vector2.h"
+#include "RectangleF.h"
 
 class GameWorld;
 
@@ -18,7 +21,7 @@ public:
 	
 	void StartLoop();
 	void DrawTexture(GLuint texture, float x, float y, float z);
-	void DrawLine(GLuint texture, float x, float y, float z);
+	void DrawBox(RectangleF aRect, float R, float G, float B);
 	void BeginDraw();
 	void EndDraw();
 

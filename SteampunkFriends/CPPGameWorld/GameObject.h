@@ -11,6 +11,7 @@
 #include "DrawHandler.h"
 #include "Component.h"
 #include "GameWorld.h"
+#include "Collider.h"
 
 class GameObject : public IUpdate, public IDraw
 {

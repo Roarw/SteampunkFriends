@@ -71,9 +71,9 @@ void Collider::Update()
 	}
 }
 
-void Collider::Draw()
+void Collider::Draw(DrawHandler* drawHandler)
 {
-
+	drawHandler->DrawBox(CollisionBox(), 1.0f, 0.0f, 0.0f);
 }
 
 RectangleF Collider::CollisionBox()

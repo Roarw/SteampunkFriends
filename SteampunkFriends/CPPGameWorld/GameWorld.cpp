@@ -1,12 +1,14 @@
 #include "GameWorld.h"
 #include "DrawHandler.h"
 #include <iostream>
+#include <vector>
 
 //Temp:
 #include "SpriteRenderer.h"
 #include "Transform.h"
 #include "Collider.h"
 #include "GameObject.h"
+#include "Vector2.h"
 
 void GameWorld::Update()
 {
@@ -46,7 +48,7 @@ void GameWorld::CreateWorld()
 	std::cout << go->GetComponent("Transform")->GetName() << " has been added.\n";
 	std::cout << go->GetComponent("SpriteRenderer")->GetName() << " has been added.\n";
 
-	delete go;
+	//delete go;
 }
 
 void GameWorld::DeleteObject(GameObject* aObject)

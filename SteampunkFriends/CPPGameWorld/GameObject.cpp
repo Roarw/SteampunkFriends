@@ -18,6 +18,7 @@ void GameObject::Update()
 void GameObject::Draw(DrawHandler * drawHandler)
 {
 	((SpriteRenderer*)components["SpriteRenderer"])->Draw(drawHandler);
+	((Collider*)components["Collider"])->Draw(drawHandler);
 }
 
 void GameObject::AddComponent(Component * component)
