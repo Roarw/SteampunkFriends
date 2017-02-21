@@ -63,6 +63,7 @@ RectangleF * Collider::CollisionBox()
 	Vector2 position = *t->GetPosition();
 	Vector2 size = *s->Size;
 
+	//Return new? Hvor bliver den her nogensinde deleted?
 	return new RectangleF(
 		position.X,
 		position.Y,
