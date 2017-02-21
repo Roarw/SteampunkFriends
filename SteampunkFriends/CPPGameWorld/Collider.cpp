@@ -21,7 +21,6 @@ Collider::Collider(GameObject * gameObject, Transform * transform, SpriteRendere
 void Collider::CheckCollision()
 {
 	vector<Collider *> temp;	// Temporary untill game has a real list of colliders
-	vector<Collider *> tempCollisions = this->collisions;
 	vector<Collider *>::iterator it;
 
 	// Loop through collisionboxes 
@@ -31,7 +30,7 @@ void Collider::CheckCollision()
 		if (CollisionBox().Intersects((*it)->CollisionBox()))
 		{
 			// Check for other collider in collisions
-			if (find((tempCollisions).begin(), (collisions).end(), *it) != (tempCollisions).end()) // Added *before it here, but not sure if thats bad 
+			if (find((this->collisions).begin(), (this->collisions).end(), *it) != (this->collisions).end()) // Added *before it here, but not sure if thats bad 
 			{
 				// Collision Stay
 				gameObject->OnCollisionStay((*it)->gameObject);
@@ -45,7 +44,7 @@ void Collider::CheckCollision()
 		}
 	}
 
-	for (it = (tempCollisions).begin(); it != (tempCollisions).end(); ++it)
+	for (it = (this->collisions).begin(); it != (this->collisions).end(); ++it)
 	{
 		if (!CollisionBox().Intersects((*it)->CollisionBox()))
 		{
@@ -81,4 +80,5 @@ RectangleF Collider::CollisionBox()
 
 Collider::~Collider()
 {
+	vector<Collider *>().swap(collisions);
 }
