@@ -10,7 +10,6 @@ class DrawHandler
 {
 private:
 	static GameWorld * gameWorld;
-
 	void InitOpenGL();
 public:
 	static void Reshape(int width, int height);

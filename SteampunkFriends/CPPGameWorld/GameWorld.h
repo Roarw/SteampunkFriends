@@ -8,7 +8,6 @@
 #include "Vector2.h"
 
 class DrawHandler;
-class GameObject;
 
 using namespace std;
 

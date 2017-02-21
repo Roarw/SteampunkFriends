@@ -8,9 +8,8 @@
 #include "soil.h"
 #include "IUpdate.h"
 #include "IDraw.h"
-#include "SpriteRenderer.h"
-#include "Transform.h"
 #include "DrawHandler.h"
+#include "Component.h"
 
 class GameObject : public IUpdate, public IDraw
 {

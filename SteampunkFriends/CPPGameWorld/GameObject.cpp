@@ -3,10 +3,10 @@
 #include <map>
 
 #include "GameObject.h"
-#include "Component.h"
 #include "IOnCollisionEnter.h"
 #include "IOnCollisionExit.h"
 #include "IOnCollisionStay.h"
+#include "SpriteRenderer.h"
 
 using namespace std;
 

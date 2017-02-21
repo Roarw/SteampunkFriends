@@ -2,6 +2,11 @@
 #include "DrawHandler.h"
 #include <iostream>
 
+//Temp:
+#include "SpriteRenderer.h"
+#include "Transform.h"
+#include "Collider.h"
+
 void GameWorld::Update()
 {
 	//Calculate delta time.
@@ -29,8 +34,11 @@ void GameWorld::Draw()
 void GameWorld::CreateWorld()
 {
 	GameObject * go = new GameObject();
-	go->AddComponent(new Transform(go, new Vector2()));
-	go->AddComponent(new SpriteRenderer(go, ".\\PokeBall.png"));
+	Transform * transform = new Transform(go, new Vector2());
+	SpriteRenderer * spriteRenderer = new SpriteRenderer(go, transform, ".\\PokeBall.png");
+	Collider * collider = new Collider(go, transform, spriteRenderer);
+	go->AddComponent(transform);
+	go->AddComponent(spriteRenderer);
 	gameObjects.push_back(go);
 
 	std::cout << go->GetComponent("Transform")->GetName() << " has been added.\n";

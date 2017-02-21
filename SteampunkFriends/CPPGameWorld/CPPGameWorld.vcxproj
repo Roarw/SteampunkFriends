@@ -151,6 +151,7 @@
     <ClCompile Include="DrawHandler.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameWorld.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="RectangleF.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="IOnCollisionExit.h" />
     <ClInclude Include="IOnCollisionStay.h" />
     <ClInclude Include="IUpdate.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="RectangleF.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Transform.h" />

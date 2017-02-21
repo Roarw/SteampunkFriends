@@ -1,15 +1,16 @@
 #pragma once
 #include "Collider.h"
-#include "RectangleF.h"
 #include "GameObject.h"
+#include "SpriteRenderer.h"
+#include "Transform.h"
 #include <vector>
 
 using namespace std;
 
-Collider::Collider(GameObject * g) : Component(g)
+Collider::Collider(GameObject * gameObject, Transform * transform, SpriteRenderer * spriteRenderer) : Component(gameObject)
 {
-	s = (SpriteRenderer*)(gameObject->GetComponent("SpriteRenderer"));
-	t = (Transform*)(gameObject->GetComponent("Transform"));
+	this->spriter = spriteRenderer;
+	this->transform = transform;
 }
 
 void Collider::CheckCollision()
@@ -60,8 +61,8 @@ void Collider::Draw()
 
 RectangleF * Collider::CollisionBox()
 {
-	Vector2 position = *t->GetPosition();
-	Vector2 size = *s->Size;
+	Vector2 position = *transform->GetPosition();
+	Vector2 size = *spriter->Size;
 
 	//Return new? Hvor bliver den her nogensinde deleted?
 	return new RectangleF(
