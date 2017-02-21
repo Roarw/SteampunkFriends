@@ -15,7 +15,7 @@ private:
 	void CheckCollision();
 	SpriteRenderer * s;
 	Transform * t;
-	vector<Collider*> * collisions;
+	vector<Collider*> collisions;
 public:
 	Collider(GameObject * g);
 	void Update();
