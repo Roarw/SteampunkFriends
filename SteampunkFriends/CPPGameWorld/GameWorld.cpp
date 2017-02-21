@@ -39,6 +39,7 @@ void GameWorld::CreateWorld()
 	Collider * collider = new Collider(go, transform, spriteRenderer);
 	go->AddComponent(transform);
 	go->AddComponent(spriteRenderer);
+	go->AddComponent(collider);
 	gameObjects.push_back(go);
 
 	std::cout << go->GetComponent("Transform")->GetName() << " has been added.\n";

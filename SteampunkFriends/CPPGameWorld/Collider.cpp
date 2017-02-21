@@ -7,6 +7,11 @@
 
 using namespace std;
 
+std::string Collider::GetName()
+{
+	return "Collider";
+}
+
 Collider::Collider(GameObject * gameObject, Transform * transform, SpriteRenderer * spriteRenderer) : Component(gameObject)
 {
 	this->spriter = spriteRenderer;

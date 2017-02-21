@@ -20,6 +20,7 @@ private:
 	Transform * transform;
 	vector<Collider*> collisions;
 public:
+	std::string GetName();
 	Collider(GameObject * g, Transform * transform, SpriteRenderer * spriteRenderer);
 	void Update();
 	void Draw();
