@@ -28,7 +28,7 @@ void Collider::CheckCollision()
 	for (it = (temp).begin(); it != (temp).end(); ++it)
 	{
 		// Add simple collisioncheck before this if needed for performance 
-		if (this->CollisionBox()->Intersects((*it)->CollisionBox()))
+		if (CollisionBox().Intersects((*it)->CollisionBox()))
 		{
 			// Check for other collider in collisions
 			if (find((tempCollisions).begin(), (collisions).end(), *it) != (tempCollisions).end()) // Added *before it here, but not sure if thats bad 
@@ -47,7 +47,7 @@ void Collider::CheckCollision()
 
 	for (it = (tempCollisions).begin(); it != (tempCollisions).end(); ++it)
 	{
-		if (!this->CollisionBox()->Intersects((*it)->CollisionBox()))
+		if (!CollisionBox().Intersects((*it)->CollisionBox()))
 		{
 			// Collision End
 			gameObject->OnCollisionEnd((*it)->gameObject);
@@ -66,12 +66,12 @@ void Collider::Draw()
 
 }
 
-RectangleF * Collider::CollisionBox()
+RectangleF Collider::CollisionBox()
 {
 	Vector2 position = *transform->GetPosition();
 	Vector2 size = *spriter->Size;
 
-	return & RectangleF(
+	return RectangleF(
 		position.X,
 		position.Y,
 		size.X,	
@@ -81,7 +81,4 @@ RectangleF * Collider::CollisionBox()
 
 Collider::~Collider()
 {
-	spriter = nullptr;
-	transform = nullptr;
-	vector<Collider *>().swap(collisions);
 }

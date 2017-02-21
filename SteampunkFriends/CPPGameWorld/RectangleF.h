@@ -13,7 +13,7 @@ public:
 
 	RectangleF();
 	RectangleF(float x, float y, float width, float height);
-	bool Intersects(RectangleF * other);
+	bool Intersects(RectangleF other);
 	~RectangleF();
 };
 

@@ -12,12 +12,12 @@ RectangleF::RectangleF(float x, float y, float width, float height)
 	this->Bottom = y + Height;
 }
 
-bool RectangleF::Intersects(RectangleF * other)
+bool RectangleF::Intersects(RectangleF other)
 {
-	return !(other->Left > this->Right ||
-		other->Right < this->Left ||
-		other->Top > this->Bottom ||
-		other->Bottom < this->Top);
+	return !(other.Left > this->Right ||
+		other.Right < this->Left ||
+		other.Top > this->Bottom ||
+		other.Bottom < this->Top);
 }
 
 RectangleF::RectangleF()
