@@ -38,17 +38,31 @@ void DrawHandler::Reshape(int width, int height)
 	glLoadIdentity(); 
 }
 
-void DrawHandler::Keyboard(unsigned char key, int x, int y)
+void DrawHandler::KeyboardPress(unsigned char key, int x, int y)
 {
-	switch (key)
-	{
-	case 27: //ESC
+	//Esc:
+	if (key == 27)
 		exit(0);
-		break;
-	default:
-		break;
-	}
+	//Keyboard keys:
+	gameWorld->AddKey(key);
+}
 
+void DrawHandler::KeyboardRelease(unsigned char key, int x, int y)
+{
+	//Keyboard keys:
+	gameWorld->DeleteKey(key);
+}
+
+void DrawHandler::KeyPress(int key, int x, int y)
+{
+	//Arrow keys:
+	gameWorld->AddKey(key);
+}
+
+void DrawHandler::KeyRelease(int key, int x, int y)
+{
+	//Arrow keys:
+	gameWorld->DeleteKey(key);
 }
 
 void DrawHandler::GameLoop()
@@ -170,7 +184,10 @@ DrawHandler::DrawHandler(GameWorld * gameWorld, int argc, char** argv)
 	InitOpenGL();
 	glutReshapeFunc(this->Reshape);
 	glutDisplayFunc(this->GameLoop);
-	glutKeyboardFunc(this->Keyboard);
+	glutKeyboardFunc(this->KeyboardPress);
+	glutKeyboardUpFunc(this->KeyboardRelease);
+	glutSpecialFunc(this->KeyPress);
+	glutSpecialUpFunc(this->KeyRelease);
 
 	//Enable texture mapping
 	glEnable(GL_TEXTURE_2D); 
