@@ -76,7 +76,7 @@ void GameWorld::CreateWorld()
 	airShipColLeft->AddComponent(airShipColTransform);
 	airShipColLeft->AddComponent(airShipColCollider);
 	airShipColLeft->AddComponent(airShipColWall);
-	gameObjects.push_back(airShipColLeft);
+	AddGameObject.push_back(airShipColLeft);
 
 	GameObject * airShipColTop = new GameObject(this);
 	airShipColTransform = new Transform(airShipColTop, new Vector2(256, 128+256+80));
