@@ -13,6 +13,7 @@
 #include "GameWorld.h"
 #include "Collider.h"
 #include "Player.h"
+#include "GameWorld.h"
 
 class GameObject : public IUpdate, public IDraw
 {
@@ -27,6 +28,8 @@ public:
 	void OnCollisionEnd(GameObject * other);
 
 	void AddComponent(Component * component);
+	GameWorld * GetGameWorld();
+
 	Component* GetComponent(std::string aName);
 
 	GameObject(GameWorld* aGameWorld);

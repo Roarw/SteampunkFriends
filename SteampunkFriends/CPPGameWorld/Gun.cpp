@@ -1,5 +1,6 @@
 #include "Gun.h"
 #include "Transform.h"
+#include "Physics.h"
 
 void Gun::OnCollisionEnter(GameObject * other)
 {
@@ -11,7 +12,12 @@ void Gun::OnCollisionEnter(GameObject * other)
 	// Vector diving enemy and player
 	Vector2 dividingVector = *((Transform *)other->GetComponent("Transform"))->GetPosition() - *((Transform *)gameObject->GetComponent("Transform"))->GetPosition();
 
-	// NOT DONE
+	// Percentage of max range
+	float factor = dividingVector.Length() / AOE.Size.Length();
+
+	Vector2 v = MaxVelocityTransfered * factor;
+
+	((Physics *)other->GetComponent("Physics"))->Velocity += v;
 }
 
 Gun::Gun(GameObject * g, Player * player) : Component(g)

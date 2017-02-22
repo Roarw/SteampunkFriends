@@ -36,6 +36,11 @@ void GameObject::AddComponent(Component * component)
 	components[component->GetName()] = component;
 }
 
+GameWorld * GameObject::GetGameWorld()
+{
+	return gameWorld;
+}
+
 Component* GameObject::GetComponent(std::string aName)
 {
 	return components[aName];
