@@ -28,6 +28,9 @@
     <Filter Include="Source Files\Helpers">
       <UniqueIdentifier>{0c2dcccd-b540-42bd-a15f-460189fd90c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Builders">
+      <UniqueIdentifier>{97a53e52-cd4b-4831-b767-1ba8438622a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp">
@@ -121,6 +124,12 @@
     </ClInclude>
     <ClInclude Include="Physics.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBuilder.h">
+      <Filter>Header Files\Builders</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBuilder.h">
+      <Filter>Header Files\Builders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
