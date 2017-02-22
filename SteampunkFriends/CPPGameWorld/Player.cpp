@@ -3,31 +3,33 @@
 
 void Player::Update()
 {
-	delete direction;
-	direction = new Vector2(0, 0);
+	Vector2 moveDirection;
 
 	for (int key : gameObject->GetGameWorld()->GetKeys()) 
 	{
 		switch (key) {
 		case GLUT_KEY_UP:
-			direction->Y += 1;
+			moveDirection.Y += 1;
 			break;
 		case GLUT_KEY_DOWN:
-			direction->Y -= 1;
+			moveDirection.Y -= 1;
 			break;
 		case GLUT_KEY_LEFT:
-			direction->X -= 1;
+			moveDirection.X -= 1;
 			break;
 		case GLUT_KEY_RIGHT:
-			direction->X += 1;
+			moveDirection.X += 1;
 			break;
 		default:
 			break;
 		}
 	}
 
-	*direction = *direction * speed * gameObject->GetGameWorld()->GetDeltaTime();
-	transform->Translate(*direction);
+	delete direction;
+	direction = new Vector2(moveDirection.X, moveDirection.Y);
+
+	moveDirection = moveDirection * speed * gameObject->GetGameWorld()->GetDeltaTime();
+	transform->Translate(moveDirection);
 }
 
 std::string Player::GetName()
