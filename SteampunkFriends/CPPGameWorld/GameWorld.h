@@ -29,6 +29,7 @@ public:
 	void CreateWorld();
 	void DeleteObject(GameObject* aObject);
 
+	void AddGameObject(GameObject * gameObject);
 	DrawHandler GetDrawHandler();
 	float GetDeltaTime();
 	set<int> GetKeys();
