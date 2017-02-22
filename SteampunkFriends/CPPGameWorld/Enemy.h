@@ -13,6 +13,7 @@ class Enemy :
 private:
 	Transform * transform;
 	Vector2 * target;
+	float speed;
 public:
 	std::string GetName();
 	void Update();

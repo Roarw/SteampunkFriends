@@ -12,7 +12,6 @@
 //Temp:
 #include "SpriteRenderer.h"
 #include "Transform.h"
-#include "Collider.h"
 #include "Player.h"
 #include "Gun.h"
 #include "Wall.h"
@@ -124,6 +123,7 @@ void GameWorld::CreateWorld()
 	PlayerBuilder playerBuilder;
 	GameObject * player = playerBuilder.Build(this, new Vector2());
 	gameObjects.push_back(player);
+	colliders.push_back((Collider*)player->GetComponent("Collider"));
 
 	//Gun
 	GunBuilder gunbuilder;
@@ -180,6 +180,11 @@ void GameWorld::AddKey(int i)
 void GameWorld::DeleteKey(int i)
 {
 	keys.erase(i);
+}
+
+vector<Collider*> GameWorld::GetColliders()
+{
+	return colliders;
 }
 
 GameWorld::GameWorld(int argc, char** argv)

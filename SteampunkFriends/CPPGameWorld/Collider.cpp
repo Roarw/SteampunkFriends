@@ -28,11 +28,11 @@ Collider::Collider(GameObject * gameObject, Transform * transform, SpriteRendere
 
 void Collider::CheckCollision()
 {
-	vector<Collider *> temp;	// Temporary untill game has a real list of colliders
+	vector<Collider *> colliders = gameObject->GetGameWorld()->GetColliders();
 	vector<Collider *>::iterator it;
 
 	// Loop through collisionboxes 
-	for (it = (temp).begin(); it != (temp).end(); ++it)
+	for (it = (colliders).begin(); it != (colliders).end(); ++it)
 	{
 		// Add simple collisioncheck before this if needed for performance 
 		if((*it)->Enabled)

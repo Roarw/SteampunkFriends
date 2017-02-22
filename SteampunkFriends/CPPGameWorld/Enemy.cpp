@@ -10,7 +10,7 @@ void Enemy::Update()
 	Vector2 direction = *target - *transform->GetPosition();
 	direction.Normalize();
 	
-	direction = direction * gameObject->GetGameWorld()->GetDeltaTime();
+	direction = direction * speed * gameObject->GetGameWorld()->GetDeltaTime();
 
 	transform->Translate(direction);
 }
@@ -19,6 +19,8 @@ Enemy::Enemy(GameObject * gameObject, Transform * transform, Vector2 * target) :
 {
 	this->transform = transform;
 	this->target = target;
+
+	speed = 100;
 }
 
 Enemy::~Enemy()
