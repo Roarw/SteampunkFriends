@@ -12,6 +12,7 @@ private:
 	Transform * transform;
 
 public:
+	std::string GetName();
 	Vector2 Velocity;
 	Physics(GameObject * g, Transform * transform);
 	void Update();

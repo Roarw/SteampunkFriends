@@ -28,6 +28,11 @@ void GameWorld::Update()
 	{
 		go->Update();
 	}
+
+	for (Collider * go : colliders)
+	{
+		go->Update();
+	}
 }
 
 void GameWorld::Draw()

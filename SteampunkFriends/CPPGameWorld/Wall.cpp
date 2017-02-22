@@ -1,5 +1,10 @@
 #include "Wall.h"
 
+std::string Wall::GetName()
+{
+	return "Wall";
+}
+
 Wall::Wall(GameObject * gameObject) : Component(gameObject)
 {
 }

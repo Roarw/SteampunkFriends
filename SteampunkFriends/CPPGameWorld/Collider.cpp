@@ -32,35 +32,38 @@ void Collider::CheckCollision()
 	vector<Collider *>::iterator it;
 
 	// Loop through collisionboxes 
-	for (it = (colliders).begin(); it != (colliders).end(); ++it)
+	for (Collider * c : colliders)
 	{
 		// Add simple collisioncheck before this if needed for performance 
-		if((*it)->Enabled)
+		if(c->Enabled)
 		{ 
-			if (CollisionBox().Intersects((*it)->CollisionBox()))
+			if (CollisionBox().Intersects(c->CollisionBox()))
 			{
 				// Check for other collider in collisions
-				if (find((this->collisions).begin(), (this->collisions).end(), *it) != (this->collisions).end()) // Added *before it here, but not sure if thats bad 
+				vector<Collider *>::iterator index = find(collisions.begin(), collisions.end(), c);
+
+
+				if (index != collisions.end())
 				{
 					// Collision Stay
-					gameObject->OnCollisionStay((*it)->gameObject);
+					gameObject->OnCollisionStay(c->GetGameObject());
 				}
 				else
 				{
 					// Collision Enter
-					gameObject->OnCollisionEnter((*it)->gameObject);
-					this->collisions.push_back(*it);
+					gameObject->OnCollisionEnter(c->GetGameObject());
+					this->collisions.push_back(c);
 				}
 			}
 		}
 	}
 
-	for (it = (this->collisions).begin(); it != (this->collisions).end(); ++it)
+	for (it = collisions.begin(); it != collisions.end(); ++it)
 	{
 		if (!CollisionBox().Intersects((*it)->CollisionBox()))
 		{
 			// Collision End
-			gameObject->OnCollisionEnd((*it)->gameObject);
+			gameObject->OnCollisionEnd((*it)->GetGameObject());
 			this->collisions.erase(it);
 		}
 	}

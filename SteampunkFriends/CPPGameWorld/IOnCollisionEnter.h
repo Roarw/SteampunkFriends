@@ -1,8 +1,9 @@
 #pragma once
-#include "GameObject.h"
+
+class GameObject;
 
 class IOnCollisionEnter
 {
 public:
-	virtual void OnCollisionEnter(GameObject * other) {};
+	virtual void OnCollisionEnter(GameObject * other) {}
 };

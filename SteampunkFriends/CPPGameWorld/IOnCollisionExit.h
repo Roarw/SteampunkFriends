@@ -1,8 +1,9 @@
 #pragma once
-#include "GameObject.h"
+
+class GameObject;
 
 class IOnCollisionExit
 {
 public:
-	virtual void OnCollisionExit(GameObject * other) {};
+	virtual void OnCollisionExit(GameObject * other) {}
 };

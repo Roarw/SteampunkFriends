@@ -1,9 +1,10 @@
 #pragma once
-#include "GameObject.h"
+
+class GameObject;
 
 class IOnCollisionStay
 {
 public:
-	virtual void OnCollisionStay(GameObject * other) {};
+	virtual void OnCollisionStay(GameObject * other) {}
 };
 

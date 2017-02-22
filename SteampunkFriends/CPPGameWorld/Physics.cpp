@@ -1,5 +1,10 @@
 #include "Physics.h"
 
+std::string Physics::GetName()
+{
+	return "Physics";
+}
+
 Physics::Physics(GameObject * g, Transform * transform) : Component(g)
 {
 	this->Velocity = Vector2();
