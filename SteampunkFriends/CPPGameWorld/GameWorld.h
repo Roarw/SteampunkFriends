@@ -30,9 +30,9 @@ public:
 	void Update();
 	void Draw();
 	void CreateWorld();
-	void DeleteObjectNext(GameObject* aObject);
 
-	void AddGameObject(GameObject * gameObject);
+	void DeleteObjectNext(GameObject* aObject);
+	void AddGameObjectNext(GameObject * gameObject);
 	DrawHandler GetDrawHandler();
 	float GetDeltaTime();
 	set<int> GetKeys();
