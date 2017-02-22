@@ -35,25 +35,28 @@ void Collider::CheckCollision()
 	// Loop through collisionboxes 
 	for (Collider * c : colliders)
 	{
-		// Add simple collisioncheck before this if needed for performance 
-		if(c->Enabled)
+		if(c != this)
 		{ 
-			if (CollisionBox().Intersects(c->CollisionBox()))
-			{
-				// Check for other collider in collisions
-				vector<Collider *>::iterator index = find(collisions.begin(), collisions.end(), c);
+			// Add simple collisioncheck before this if needed for performance 
+			if(c->Enabled)
+			{ 
+				if (CollisionBox().Intersects(c->CollisionBox()))
+				{
+					// Check for other collider in collisions
+					vector<Collider *>::iterator index = find(collisions.begin(), collisions.end(), c);
 
 
-				if (index != collisions.end())
-				{
-					// Collision Stay
-					gameObject->OnCollisionStay(c->GetGameObject());
-				}
-				else
-				{
-					// Collision Enter
-					gameObject->OnCollisionEnter(c->GetGameObject());
-					this->collisions.push_back(c);
+					if (index != collisions.end())
+					{
+						// Collision Stay
+						gameObject->OnCollisionStay(c->GetGameObject());
+					}
+					else
+					{
+						// Collision Enter
+						gameObject->OnCollisionEnter(c->GetGameObject());
+						this->collisions.push_back(c);
+					}
 				}
 			}
 		}
