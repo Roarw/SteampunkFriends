@@ -34,11 +34,19 @@ Gun::Gun(GameObject * g, Player * player) : Component(g)
 void Gun::Update()
 {
 	collider->Enabled = false;
+
+	for (int key : gameObject->GetGameWorld()->GetKeys())
+	{
+		if (key == 32)
+		{
+			Shoot();
+		}
+	}
 }
 
 void Gun::PositionCollider()
 {
-	//collider->Size = Vector2(player->Direction * AOE.X, AOE.Y);
+	collider->Size = Vector2(player->GetDirection()->X * AOE.X, AOE.Y);
 }
 
 void Gun::Shoot()
