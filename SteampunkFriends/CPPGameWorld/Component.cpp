@@ -6,9 +6,9 @@ std::string Component::GetName()
 	return "Component";
 }
 
-GameObject Component::GetGameObject()
+GameObject * Component::GetGameObject()
 {
-	return * gameObject;
+	return gameObject;
 }
 
 Component::Component(GameObject * gameObject)

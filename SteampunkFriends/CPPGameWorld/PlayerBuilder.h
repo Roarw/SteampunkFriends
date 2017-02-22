@@ -8,6 +8,7 @@
 #include "SpriteRenderer.h"
 #include "Collider.h"
 #include "Player.h"
+#include "Gun.h"
 
 class PlayerBuilder 
 {

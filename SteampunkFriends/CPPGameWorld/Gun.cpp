@@ -2,6 +2,11 @@
 #include "Transform.h"
 #include "Physics.h"
 
+std::string Gun::GetName()
+{
+	return "Gun";
+}
+
 void Gun::OnCollisionEnter(GameObject * other)
 {
 	// Check if other is enemy (not implemented)

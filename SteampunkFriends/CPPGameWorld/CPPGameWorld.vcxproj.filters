@@ -131,6 +131,9 @@
     <ClInclude Include="EnemyBuilder.h">
       <Filter>Header Files\Builders</Filter>
     </ClInclude>
+    <ClInclude Include="GunBuilder.h">
+      <Filter>Header Files\Builders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
