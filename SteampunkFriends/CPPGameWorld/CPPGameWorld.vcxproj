@@ -73,7 +73,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>C:\Users\Kenneth\Source\Repos\SteampunkFriends\SteampunkFriends\packages\freeglut.2.8.1.15\build\native\lib\v100\Win32\Debug\dynamic;$(LibraryPath)</LibraryPath>
-    <LibraryPath>C:\Users\EBSU\Source\Repos\SteampunkFriends\SteampunkFriends\packages\freeglut.2.8.1.15\build\native\lib\v100\Win32\Debug\dynamic;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\SteamyLibrary;C:\Users\EBSU\Source\Repos\SteampunkFriends\SteampunkFriends\packages\freeglut.2.8.1.15\build\native\lib\v100\Win32\Debug\dynamic;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\SteamyLibrary;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -95,7 +96,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SteamyExtension.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -156,10 +157,8 @@
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Program.cpp" />
-    <ClCompile Include="RectangleF.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,10 +179,8 @@
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBuilder.h" />
-    <ClInclude Include="RectangleF.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Transform.h" />
-    <ClInclude Include="Vector2.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,7 @@
 #include "Collider.h"
 #include "Player.h"
 #include "Gun.h"
+#include "Wall.h"
 
 void GameWorld::Update()
 {
@@ -60,6 +61,7 @@ void GameWorld::CreateWorld()
 
 	Transform * airShipColTransform;
 	Collider * airShipColCollider;
+	Wall * airShipColWall;
 
 	GameObject * airShipColLeft = new GameObject(this);
 	airShipColTransform = new Transform(airShipColLeft, new Vector2(256-32, 128));
@@ -70,8 +72,11 @@ void GameWorld::CreateWorld()
 			airShipColTransform,
 			RectangleF(airShipColTransform->GetPosition()->X, airShipColTransform->GetPosition()->Y, 32, 256)
 		);
+	airShipColWall = new Wall(airShipColLeft);
+
 	airShipColLeft->AddComponent(airShipColTransform);
 	airShipColLeft->AddComponent(airShipColCollider);
+	airShipColLeft->AddComponent(airShipColWall);
 	gameObjects.push_back(airShipColLeft);
 
 	GameObject * airShipColTop = new GameObject(this);
@@ -82,7 +87,7 @@ void GameWorld::CreateWorld()
 			airShipColTop,
 			airShipColTransform,
 			RectangleF(airShipColTransform->GetPosition()->X, airShipColTransform->GetPosition()->Y, 728, 32)
-			);
+		);
 	airShipColTop->AddComponent(airShipColTransform);
 	airShipColTop->AddComponent(airShipColCollider);
 	gameObjects.push_back(airShipColTop);
@@ -95,7 +100,7 @@ void GameWorld::CreateWorld()
 			airShipColRight,
 			airShipColTransform,
 			RectangleF(airShipColTransform->GetPosition()->X + 728, airShipColTransform->GetPosition()->Y, 32, 256)
-			);
+		);
 	airShipColRight->AddComponent(airShipColTransform);
 	airShipColRight->AddComponent(airShipColCollider);
 	gameObjects.push_back(airShipColRight);
@@ -108,7 +113,7 @@ void GameWorld::CreateWorld()
 			airShipColBottom,
 			airShipColTransform,
 			RectangleF(airShipColTransform->GetPosition()->X, airShipColTransform->GetPosition()->Y, 728, 32)
-			);
+		);
 	airShipColBottom->AddComponent(airShipColTransform);
 	airShipColBottom->AddComponent(airShipColCollider);
 	gameObjects.push_back(airShipColBottom);
