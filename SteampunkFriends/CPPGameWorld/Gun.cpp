@@ -1,6 +1,7 @@
 #include "Gun.h"
 #include "Transform.h"
 #include "Physics.h"
+#include "Enemy.h"
 
 std::string Gun::GetName()
 {
@@ -10,19 +11,21 @@ std::string Gun::GetName()
 void Gun::OnCollisionEnter(GameObject * other)
 {
 	// Check if other is enemy (not implemented)
+ 	if((Enemy *)other->GetComponent("Enemy") != NULL)
+	{ 
+		// Disable enemy collider ( so it wont get hit more than once)
+		//((Collider *)other->GetComponent("Collider"))->Enabled = false;	
 
-	// Disable enemy collider ( so it wont get hit more than once)
-	((Collider *)other->GetComponent("Collider"))->Enabled = false;	
+		// Vector diving enemy and player
+		Vector2 dividingVector = *((Transform *)other->GetComponent("Transform"))->GetPosition() - *((Transform *)gameObject->GetComponent("Transform"))->GetPosition();
 
-	// Vector diving enemy and player
-	Vector2 dividingVector = *((Transform *)other->GetComponent("Transform"))->GetPosition() - *((Transform *)gameObject->GetComponent("Transform"))->GetPosition();
+		// Percentage of max range
+		float factor = dividingVector.Length() / AOE.Size.Length();
 
-	// Percentage of max range
-	float factor = dividingVector.Length() / AOE.Size.Length();
+		Vector2 v = MaxVelocityTransfered * factor;
 
-	Vector2 v = MaxVelocityTransfered * factor;
-
-	((Physics *)other->GetComponent("Physics"))->Velocity += v;
+		((Physics *)other->GetComponent("Physics"))->Velocity += v;
+	}
 }
 
 Gun::Gun(GameObject * g, Player * player) : Component(g)

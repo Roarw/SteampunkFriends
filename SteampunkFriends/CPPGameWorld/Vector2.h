@@ -21,12 +21,10 @@ public:
 	{
 		return Vector2(this->X * f, this->Y * f);
 	}
-	Vector2 operator+=(const Vector2 v)
+	void operator+=(const Vector2 v)
 	{
-		this->X += v.X;
-		this->Y += v.Y;
-
-		return *this;
+		this->X = this->X + v.X;
+		this->Y = this->Y + v.Y;
 	}
 	~Vector2();
 };
