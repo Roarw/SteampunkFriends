@@ -51,17 +51,11 @@
     <ClCompile Include="SpriteRenderer.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2.cpp">
-      <Filter>Source Files\Helpers</Filter>
-    </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="Collider.cpp">
       <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="RectangleF.cpp">
-      <Filter>Source Files\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="Gun.cpp">
       <Filter>Source Files\Components</Filter>
@@ -76,7 +70,7 @@
       <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="Wall.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,17 +95,11 @@
     <ClInclude Include="IUpdate.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Header Files\Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="RectangleF.h">
-      <Filter>Header Files\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="IOnCollisionStay.h">
       <Filter>Header Files\Interfaces</Filter>
@@ -137,13 +125,13 @@
     <ClInclude Include="EnemyBuilder.h">
       <Filter>Header Files\Builders</Filter>
     </ClInclude>
-    <ClInclude Include="Wall.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GunBuilder.h">
       <Filter>Header Files\Builders</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

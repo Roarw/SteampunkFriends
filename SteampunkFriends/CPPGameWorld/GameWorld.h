@@ -4,6 +4,7 @@
 #include "GL\glut.h"
 #include "soil.h"
 #include "GameObject.h"
+#include "Collider.h"
 #include <vector>
 #include <set>
 #include "Vector2.h"
@@ -18,6 +19,7 @@ class GameWorld
 private:
 	DrawHandler * drawHandler;
 	vector<GameObject*> gameObjects;
+	vector<Collider *> colliders;
 	int oldTimeSinceStart;
 	float deltaTime;
 	set<int> keys;
@@ -32,6 +34,7 @@ public:
 	set<int> GetKeys();
 	void AddKey(int i);
 	void DeleteKey(int i);
+	vector<Collider*> GetColliders();
 
 	GameWorld(int argc, char** argv);
 	~GameWorld();
