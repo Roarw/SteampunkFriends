@@ -45,7 +45,7 @@ void GameWorld::CreateWorld()
 {
 	GameObject * go = new GameObject(this);
 	Transform * transform = new Transform(go, new Vector2());
-	SpriteRenderer * spriteRenderer = new SpriteRenderer(go, transform, ".\\PokeBall.png");
+	SpriteRenderer * spriteRenderer = new SpriteRenderer(go, transform, ".\\Player.png");
 	Collider * collider = new Collider(go, transform, spriteRenderer);
 	Player * player = new Player(go, this, transform);
 	go->AddComponent(transform);
