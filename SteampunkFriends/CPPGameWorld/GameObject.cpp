@@ -88,5 +88,5 @@ GameObject::~GameObject()
 		delete itr->second;
 	}
 
-	gameWorld->DeleteObject(this);
+	//gameWorld->DeleteObject(this);
 }

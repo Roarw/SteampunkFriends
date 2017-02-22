@@ -30,7 +30,8 @@ void DrawHandler::Reshape(int width, int height)
 	//Reset projection matrix stack - top matrix
 	glLoadIdentity(); 
 	//Set perspective to match current display size
-	gluPerspective(45.0f, (float)width / height, 0.0f, 100.0f); 
+	//gluPerspective(45.0f, (float)width / height, 0.0f, 100.0f); //TELL ME WHYYYYYYYYY!!
+	glOrtho(0, width, 0, height, -100, 100);
 	//Specify model view matrix
 	glMatrixMode(GL_MODELVIEW);
 	//reset model view matrix - top matrix
@@ -70,14 +71,21 @@ void DrawHandler::DrawTexture(GLuint texture, float x, float y, float z)
 
 	glColor3f(1.0f, 1.0f, 1.0f);
 
+	int w, h;
+	int miplevel = 0;
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, miplevel, GL_TEXTURE_WIDTH, &w);
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, miplevel, GL_TEXTURE_HEIGHT, &h);
+
 	glBindTexture(GL_TEXTURE_2D, texture); //Bind texture for usage
 	glBegin(GL_TRIANGLE_FAN);
 	// Front Face
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, 0.0f); //glVertex3f(-1.0f, -1.0f, 10.0f);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(w, 0.0f, 0.0f); //glVertex3f(1.0f, -1.0f, 10.0f);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(w, h, 0.0f); //glVertex3f(1.0f, 1.0f, 10.0f);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, h, 0.0f); //glVertex3f(-1.0f, 1.0f, 10.0f);
 	glEnd();
+
+	glDisable(GL_TEXTURE_2D);
 
 	glPopMatrix();
 }
@@ -87,16 +95,19 @@ void DrawHandler::DrawBox(RectangleF aRect, float R, float G, float B)
 	glPushMatrix(); //Makes sure only this objects uses the current matrix
 	glTranslatef(aRect.X, aRect.Y, 1.0f);
 
-	glDisable(GL_TEXTURE_2D);
-
 	glLineWidth(4);
 	glColor3f(R, G, B);
 	glBegin(GL_LINE_LOOP);
 
-	glVertex2f(aRect.X, aRect.Y);
-	glVertex2f(aRect.Width, aRect.Y);
+	//glVertex3f(0, 0, 0);
+	//glVertex3f(10, 0, 0);
+	//glVertex3f(10, 10, 0);
+	//glVertex3f(0, 10, 0);
+
+	glVertex2f(0, 0);
+	glVertex2f(aRect.Width, 0);
 	glVertex2f(aRect.Width, aRect.Height);
-	glVertex2f(aRect.X, aRect.Height);
+	glVertex2f(0, aRect.Height);
 
 	//for (Vector2 v : points)
 	//{

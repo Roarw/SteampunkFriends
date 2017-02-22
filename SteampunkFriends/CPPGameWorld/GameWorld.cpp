@@ -53,7 +53,7 @@ void GameWorld::CreateWorld()
 
 void GameWorld::DeleteObject(GameObject* aObject)
 {
-	//delete *(find(gameObjects.begin(), gameObjects.end(), aObject));
+	//GameObject* tmp = *(find(gameObjects.begin(), gameObjects.end(), aObject));
 
 	auto it = find(gameObjects.begin(), gameObjects.end(), aObject);
 	if (it != gameObjects.end())
@@ -62,6 +62,8 @@ void GameWorld::DeleteObject(GameObject* aObject)
 
 		std::swap(*it, gameObjects.back());
 		gameObjects.pop_back();
+
+		delete aObject;
 	}
 
 	//std::vector<GameObject*>::iterator itr = 
