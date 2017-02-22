@@ -167,10 +167,20 @@ void GameWorld::DeleteObject(GameObject* aObject)
 	{
 		Collider * aCollider = (Collider*)aObject->GetComponent("Collider");
 
-		colliders.erase(std::remove(colliders.begin(), colliders.end(), aCollider), colliders.end());
+		DeleteCollider(aCollider);
 	}
 
 	delete aObject;
+}
+
+void GameWorld::DeleteCollider(Collider * c)
+{
+	for (Collider * co : colliders)
+	{
+		co->collisions.erase(std::remove(co->collisions.begin(), co->collisions.end(), c), co->collisions.end());
+	}
+
+	colliders.erase(std::remove(colliders.begin(), colliders.end(), c), colliders.end());
 }
 
 //Doesn't work as intended yet. Make it like Delete.

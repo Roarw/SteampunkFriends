@@ -18,8 +18,8 @@ private:
 	void CheckCollision();
 	SpriteRenderer * spriter;
 	Transform * transform;
-	vector<Collider*> collisions;
 public:
+	vector<Collider*> collisions;
 	Vector2 Size;
 	bool Enabled = true;
 	std::string GetName();

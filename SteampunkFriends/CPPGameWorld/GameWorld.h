@@ -26,6 +26,7 @@ private:
 	set<int> keys;
 
 	void DeleteObject(GameObject* aObject);
+	void DeleteCollider(Collider* aCollider);
 public:
 	void Update();
 	void Draw();

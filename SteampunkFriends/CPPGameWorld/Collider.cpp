@@ -35,7 +35,7 @@ void Collider::CheckCollision()
 	// Loop through collisionboxes 
 	for (Collider * c : colliders)
 	{
-		if(c != this)
+		if(c != this && c != nullptr)
 		{ 
 			// Add simple collisioncheck before this if needed for performance 
 			if(c->Enabled)
@@ -70,7 +70,7 @@ void Collider::CheckCollision()
 		{
 			toRemove.push(it);
 		}
-		if (!CollisionBox().Intersects((*it)->CollisionBox()))
+		else if (!CollisionBox().Intersects((*it)->CollisionBox()))
 		{
 			// Collision End
 			gameObject->OnCollisionEnd((*it)->GetGameObject());
