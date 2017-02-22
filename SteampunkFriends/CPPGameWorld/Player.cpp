@@ -1,13 +1,12 @@
 #include "Player.h"
 #include "GameWorld.h"
 
-
 void Player::Update()
 {
 	delete direction;
 	direction = new Vector2(0, 0);
 
-	for (int key : gameWorld->GetKeys()) 
+	for (int key : gameObject->GetGameWorld()->GetKeys()) 
 	{
 		switch (key) {
 		case GLUT_KEY_UP:
@@ -30,14 +29,18 @@ void Player::Update()
 	transform->Translate(*direction);
 }
 
+std::string Player::GetName()
+{
+	return "Player";
+}
+
 Vector2 * Player::GetDirection()
 {
 	return direction;
 }
 
-Player::Player(GameObject * gameObject, GameWorld * gameWorld, Transform * transform) : Component(gameObject)
+Player::Player(GameObject * gameObject, Transform * transform) : Component(gameObject)
 {
-	this->gameWorld = gameWorld;
 	this->transform = transform;
 	direction = new Vector2(0, 0);
 }

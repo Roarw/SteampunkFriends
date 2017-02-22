@@ -8,6 +8,7 @@
 #include "SpriteRenderer.h"
 #include "Collider.h"
 #include "Player.h"
+#include "Gun.h"
 
 class PlayerBuilder 
 {
@@ -18,7 +19,7 @@ public:
 		Transform * transform = new Transform(go, position);
 		SpriteRenderer * spriteRenderer = new SpriteRenderer(go, transform, ".\\Player.png");
 		Collider * collider = new Collider(go, transform, spriteRenderer);
-		Player * player = new Player(go, gameWorld, transform);
+		Player * player = new Player(go, transform);
 		go->AddComponent(transform);
 		go->AddComponent(spriteRenderer);
 		go->AddComponent(collider);

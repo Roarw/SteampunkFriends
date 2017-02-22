@@ -72,6 +72,9 @@
     <ClCompile Include="Physics.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
     <ClCompile Include="Wall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -136,6 +139,12 @@
     </ClInclude>
     <ClInclude Include="Wall.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GunBuilder.h">
+      <Filter>Header Files\Builders</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

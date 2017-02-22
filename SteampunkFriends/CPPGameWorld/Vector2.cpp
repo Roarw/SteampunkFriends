@@ -19,11 +19,12 @@ float Vector2::Length()
 	return sqrt(pow(this->X, 2) + pow(this->Y, 2));
 }
 
-Vector2 Vector2::Normalize()
+void Vector2::Normalize()
 {
 	float length = this->Length();
 
-	return Vector2(this->X / length, this->Y / length);
+	this->X = this->X / length;
+	this->Y = this->Y / length;
 }
 
 
