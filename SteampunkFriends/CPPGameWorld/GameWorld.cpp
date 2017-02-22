@@ -48,18 +48,65 @@ void GameWorld::CreateWorld()
 
 	Transform * airShipTransform = new Transform(airShip, new Vector2(256, 128));
 	SpriteRenderer * airShipSpriteRenderer = new SpriteRenderer(airShip, airShipTransform, ".\\Pokeball.png");
-	Collider * airShipCollider = 
-		new Collider
-		(
-		airShip,
-		airShipTransform,
-		RectangleF(airShipTransform->GetPosition()->X, airShipTransform->GetPosition()->Y, 768, 256)
-		);
 
 	airShip->AddComponent(airShipTransform);
 	airShip->AddComponent(airShipSpriteRenderer);
-	airShip->AddComponent(airShipCollider);
 	gameObjects.push_back(airShip);
+
+	Transform * airShipColTransform;
+	Collider * airShipColCollider;
+
+	GameObject * airShipColLeft = new GameObject(this);
+	airShipColTransform = new Transform(airShipColLeft, new Vector2(256-32, 128));
+	airShipColCollider =
+		new Collider
+		(
+			airShipColLeft,
+			airShipColTransform,
+			RectangleF(airShipColTransform->GetPosition()->X, airShipColTransform->GetPosition()->Y, 32, 256)
+		);
+	airShipColLeft->AddComponent(airShipColTransform);
+	airShipColLeft->AddComponent(airShipColCollider);
+	gameObjects.push_back(airShipColLeft);
+
+	GameObject * airShipColTop = new GameObject(this);
+	airShipColTransform = new Transform(airShipColTop, new Vector2(256, 128+256+80));
+	airShipColCollider =
+		new Collider
+		(
+			airShipColTop,
+			airShipColTransform,
+			RectangleF(airShipColTransform->GetPosition()->X, airShipColTransform->GetPosition()->Y, 728, 32)
+			);
+	airShipColTop->AddComponent(airShipColTransform);
+	airShipColTop->AddComponent(airShipColCollider);
+	gameObjects.push_back(airShipColTop);
+
+	GameObject * airShipColRight = new GameObject(this);
+	airShipColTransform = new Transform(airShipColRight, new Vector2(256+728, 128));
+	airShipColCollider =
+		new Collider
+		(
+			airShipColRight,
+			airShipColTransform,
+			RectangleF(airShipColTransform->GetPosition()->X + 728, airShipColTransform->GetPosition()->Y, 32, 256)
+			);
+	airShipColRight->AddComponent(airShipColTransform);
+	airShipColRight->AddComponent(airShipColCollider);
+	gameObjects.push_back(airShipColRight);
+
+	GameObject * airShipColBottom = new GameObject(this);
+	airShipColTransform = new Transform(airShipColBottom, new Vector2(256, 128-32));
+	airShipColCollider =
+		new Collider
+		(
+			airShipColBottom,
+			airShipColTransform,
+			RectangleF(airShipColTransform->GetPosition()->X, airShipColTransform->GetPosition()->Y, 728, 32)
+			);
+	airShipColBottom->AddComponent(airShipColTransform);
+	airShipColBottom->AddComponent(airShipColCollider);
+	gameObjects.push_back(airShipColBottom);
 
 	#pragma endregion
 

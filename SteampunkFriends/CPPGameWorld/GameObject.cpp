@@ -27,8 +27,30 @@ void GameObject::Update()
 
 void GameObject::Draw(DrawHandler * drawHandler)
 {
-	((SpriteRenderer*)components["SpriteRenderer"])->Draw(drawHandler);
-	((Collider*)components["Collider"])->Draw(drawHandler);
+	map<string, Component*>::iterator it;
+
+	for (it = components.begin(); it != components.end(); it++)
+	{
+		IDraw* co = dynamic_cast<IDraw *>(it->second);
+
+		if (co != NULL)
+		{
+			co->Draw(drawHandler);
+		}
+	}
+
+	for (it = components.begin(); it != components.end(); it++)
+	{
+		Collider* co = dynamic_cast<Collider *>(it->second);
+
+		if (co != NULL)
+		{
+			co->Draw(drawHandler);
+		}
+	}
+
+	//((SpriteRenderer*)components["SpriteRenderer"])->Draw(drawHandler);
+	//((Collider*)components["Collider"])->Draw(drawHandler);
 }
 
 void GameObject::AddComponent(Component * component)
