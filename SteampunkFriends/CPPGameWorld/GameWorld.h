@@ -20,14 +20,17 @@ private:
 	DrawHandler * drawHandler;
 	vector<GameObject*> gameObjects;
 	vector<Collider *> colliders;
+	vector<GameObject*> objectsToDelete;
 	int oldTimeSinceStart;
 	float deltaTime;
 	set<int> keys;
+
+	void DeleteObject(GameObject* aObject);
 public:
 	void Update();
 	void Draw();
 	void CreateWorld();
-	void DeleteObject(GameObject* aObject);
+	void DeleteObjectNext(GameObject* aObject);
 
 	void AddGameObject(GameObject * gameObject);
 	DrawHandler GetDrawHandler();
