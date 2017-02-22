@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include "Vector2.h"
+#include "Physics.h"
 
 #include "Transform.h"
 #include "SpriteRenderer.h"
@@ -19,10 +20,12 @@ public:
 		SpriteRenderer * spriteRenderer = new SpriteRenderer(go, transform, ".\\Enemy.png");
 		Collider * collider = new Collider(go, transform, spriteRenderer);
 		Enemy * enemy = new Enemy(go, transform, target);
+		Physics * physics = new Physics(go, transform);
 		go->AddComponent(transform);
 		go->AddComponent(spriteRenderer);
 		go->AddComponent(collider);
 		go->AddComponent(enemy);
+		go->AddComponent(physics);
 
 		return go;
 	}

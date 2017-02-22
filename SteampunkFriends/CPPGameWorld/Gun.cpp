@@ -53,8 +53,11 @@ void Gun::PositionCollider()
 {
 	Vector2 aoe = Vector2();
 
-	float nSizeX = player->GetDirection()->X * AOE.Width;
-	float nSizeY = player->GetDirection()->Y * AOE.Height;
+	float a = player->GetDirection()->X;
+	float b = player->GetDirection()->Y;
+
+	float nSizeX = a * AOE.Width;
+	float nSizeY = b * AOE.Height;
 
 	aoe = nSizeX != 0 ? Vector2(nSizeX, ((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.Y) : Vector2(((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.X, nSizeY);
 
