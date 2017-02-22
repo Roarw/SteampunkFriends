@@ -58,14 +58,27 @@ void Collider::CheckCollision()
 		}
 	}
 
+	vector<vector<Collider *>::iterator> toRemove;
+
+	toRemove.clear();
+
 	for (it = collisions.begin(); it != collisions.end(); ++it)
 	{
+		if (*it == nullptr)
+		{
+			toRemove.push_back(it);
+		}
 		if (!CollisionBox().Intersects((*it)->CollisionBox()))
 		{
 			// Collision End
 			gameObject->OnCollisionEnd((*it)->GetGameObject());
-			this->collisions.erase(it);
+			toRemove.push_back(it);
 		}
+	}
+
+	for (vector<Collider *>::iterator it : toRemove)
+	{
+		collisions.erase(it);
 	}
 }
 

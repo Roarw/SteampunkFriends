@@ -74,7 +74,9 @@ void GameObject::OnCollisionEnter(GameObject * other)
 
 	for (it = components.begin(); it != components.end(); it++)
 	{
-		IOnCollisionEnter* co = dynamic_cast<IOnCollisionEnter *>(it->second);
+		Component * c = it->second;
+
+		IOnCollisionEnter* co = dynamic_cast<IOnCollisionEnter *>(c);
 
 		if (co != NULL)
 		{
@@ -89,7 +91,9 @@ void GameObject::OnCollisionStay(GameObject * other)
 
 	for (it = components.begin(); it != components.end(); it++)
 	{
-		IOnCollisionStay* co = dynamic_cast<IOnCollisionStay *>(it->second);
+		Component * c = it->second;
+
+		IOnCollisionStay* co = dynamic_cast<IOnCollisionStay *>(c);
 
 		if (co != NULL)
 		{
@@ -104,7 +108,9 @@ void GameObject::OnCollisionEnd(GameObject * other)
 
 	for (it = components.begin(); it != components.end(); it++)
 	{
-		IOnCollisionExit* co = dynamic_cast<IOnCollisionExit *>(it->second);
+		Component * c = it->second;
+
+		IOnCollisionExit* co = dynamic_cast<IOnCollisionExit *>(c);
 
 		if (co != NULL)
 		{
