@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "Vector2.h"
 #include <irrKlang.h>
+#include <algorithm>
 
 using namespace irrklang;
 
@@ -37,6 +38,12 @@ void GameWorld::Update()
 		gameObjects[i]->Update();
 	}
 
+	//Deleting objects:
+	for (int i = 0; i < objectsToDelete.size(); i++) 
+	{
+		DeleteObject(objectsToDelete[i]);
+	}
+	objectsToDelete.clear();
 }
 
 void GameWorld::Draw()
@@ -146,35 +153,23 @@ void GameWorld::CreateWorld()
 	AddGameObject(enemyBuilder.Build(this, new Vector2(600, 300), new Vector2(0, 0)));
 }
 
+void GameWorld::DeleteObjectNext(GameObject* aObject)
+{
+	objectsToDelete.push_back(aObject);
+}
+
 void GameWorld::DeleteObject(GameObject* aObject)
 {
-	//GameObject* tmp = *(find(gameObjects.begin(), gameObjects.end(), aObject));
-
-	auto it = find(gameObjects.begin(), gameObjects.end(), aObject);
-	if (it != gameObjects.end())
-	{
-		//gameObjects.erase(it);
-
-		std::swap(*it, gameObjects.back());
-		gameObjects.pop_back();
-	}
+	gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), aObject), gameObjects.end());
 
 	if ((Collider*)aObject->GetComponent("Collider") != NULL)
 	{
 		Collider * aCollider = (Collider*)aObject->GetComponent("Collider");
 
-		auto it2 = find(colliders.begin(), colliders.end(), aCollider);
-		if (it2 != colliders.end())
-		{
-			std::swap(*it2, colliders.back());
-			colliders.pop_back();
-		}
+		colliders.erase(std::remove(colliders.begin(), colliders.end(), aCollider), colliders.end());
 	}
 
 	delete aObject;
-
-	//std::vector<GameObject*>::iterator itr = 
-	//gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), aObject), gameObjects.end());
 }
 
 void GameWorld::AddGameObject(GameObject * gameObject)
