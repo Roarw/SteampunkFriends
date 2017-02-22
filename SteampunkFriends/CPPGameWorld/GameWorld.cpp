@@ -148,10 +148,10 @@ void GameWorld::CreateWorld()
 
 	//Enemies
 	EnemyBuilder enemyBuilder;
-	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(100, 100), new Vector2(0, 0)));
+	//AddGameObjectNext(enemyBuilder.Build(this, new Vector2(100, 100), new Vector2(0, 0)));
 	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(200, 200), new Vector2(0, 0)));
-	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(400, 300), new Vector2(100, 100)));
-	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(600, 300), new Vector2(100, 100)));
+	//AddGameObjectNext(enemyBuilder.Build(this, new Vector2(400, 300), new Vector2(100, 100)));
+	//AddGameObjectNext(enemyBuilder.Build(this, new Vector2(600, 300), new Vector2(100, 100)));
 }
 
 void GameWorld::DeleteObjectNext(GameObject* aObject)
