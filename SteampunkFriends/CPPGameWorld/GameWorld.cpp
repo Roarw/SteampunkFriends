@@ -5,6 +5,9 @@
 #include "GameObject.h"
 #include "Vector2.h"
 
+#include "PlayerBuilder.h"
+#include "EnemyBuilder.h"
+
 //Temp:
 #include "SpriteRenderer.h"
 #include "Transform.h"
@@ -63,21 +66,14 @@ void GameWorld::CreateWorld()
 
 	#pragma endregion
 
-	GameObject * go = new GameObject(this);
-	Transform * transform = new Transform(go, new Vector2());
-	SpriteRenderer * spriteRenderer = new SpriteRenderer(go, transform, ".\\Player.png");
-	Collider * collider = new Collider(go, transform, spriteRenderer);
-	Player * player = new Player(go, this, transform);
-	go->AddComponent(transform);
-	go->AddComponent(spriteRenderer);
-	go->AddComponent(collider);
-	go->AddComponent(player);
-	gameObjects.push_back(go);
+	PlayerBuilder playerBuilder;
+	gameObjects.push_back(playerBuilder.Build(this, new Vector2()));
 
-	std::cout << go->GetComponent("Transform")->GetName() << " has been added.\n";
-	std::cout << go->GetComponent("SpriteRenderer")->GetName() << " has been added.\n";
-
-	//delete go;
+	EnemyBuilder enemyBuilder;
+	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(100, 100)));
+	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(200, 200)));
+	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(400, 300)));
+	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(600, 300)));
 }
 
 void GameWorld::DeleteObject(GameObject* aObject)
