@@ -170,6 +170,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="Gun.h" />
+    <ClInclude Include="GunBuilder.h" />
     <ClInclude Include="IDraw.h" />
     <ClInclude Include="IOnCollisionEnter.h" />
     <ClInclude Include="IOnCollisionExit.h" />

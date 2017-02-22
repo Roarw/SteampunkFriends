@@ -7,12 +7,14 @@
 
 #include "PlayerBuilder.h"
 #include "EnemyBuilder.h"
+#include "GunBuilder.h"
 
 //Temp:
 #include "SpriteRenderer.h"
 #include "Transform.h"
 #include "Collider.h"
 #include "Player.h"
+#include "Gun.h"
 
 void GameWorld::Update()
 {
@@ -66,9 +68,17 @@ void GameWorld::CreateWorld()
 
 	#pragma endregion
 
+	//Player
 	PlayerBuilder playerBuilder;
-	gameObjects.push_back(playerBuilder.Build(this, new Vector2()));
+	GameObject * player = playerBuilder.Build(this, new Vector2());
+	gameObjects.push_back(player);
 
+	//Gun
+	GunBuilder gunbuilder;
+	GameObject * gun = gunbuilder.Build(this, (Player *)(player->GetComponent("Player")));
+	gameObjects.push_back(gun);
+
+	//Enemies
 	EnemyBuilder enemyBuilder;
 	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(100, 100), new Vector2(0, 0)));
 	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(200, 200), new Vector2(0, 0)));

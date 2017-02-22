@@ -1,7 +1,6 @@
 #include "Player.h"
 #include "GameWorld.h"
 
-
 void Player::Update()
 {
 	delete direction;
@@ -28,6 +27,11 @@ void Player::Update()
 	}
 
 	transform->Translate(*direction);
+}
+
+std::string Player::GetName()
+{
+	return "Player";
 }
 
 Vector2 * Player::GetDirection()

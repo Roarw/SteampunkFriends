@@ -11,7 +11,7 @@ protected:
 	GameObject * gameObject;
 public:
 	virtual std::string GetName();
-	GameObject GetGameObject();
+	GameObject * GetGameObject();
 
 	Component(GameObject * gameObject);
 	~Component();

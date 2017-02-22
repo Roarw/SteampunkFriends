@@ -12,6 +12,7 @@ private:
 	Transform * transform;
 public:
 	void Update();
+	std::string GetName();
 	Vector2 * GetDirection();
 	Player(GameObject * gameObject, Transform * transform);
 	~Player();

@@ -17,6 +17,7 @@ private:
 	Collider * collider;
 	Player * player;
 public:
+	std::string GetName();
 	void OnCollisionEnter(GameObject * other);
 	Gun(GameObject * g, Player * player);
 	void Update();
