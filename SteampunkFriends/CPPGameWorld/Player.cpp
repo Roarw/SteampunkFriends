@@ -25,8 +25,11 @@ void Player::Update()
 		}
 	}
 
-	delete direction;
-	direction = new Vector2(moveDirection.X, moveDirection.Y);
+	if (moveDirection.X != 0 || moveDirection.Y != 0) 
+	{
+		direction->X = moveDirection.X;
+		direction->Y = moveDirection.Y;
+	}
 
 	moveDirection = moveDirection * speed * gameObject->GetGameWorld()->GetDeltaTime();
 	transform->Translate(moveDirection);
