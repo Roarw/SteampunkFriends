@@ -5,7 +5,9 @@
 #include "soil.h"
 #include "GameObject.h"
 #include <vector>
+#include <set>
 #include "Vector2.h"
+#include <mutex> 
 
 class DrawHandler;
 
@@ -18,19 +20,20 @@ private:
 	vector<GameObject*> gameObjects;
 	int oldTimeSinceStart;
 	float deltaTime;
-
-	GameWorld();
+	set<int> keys;
 public:
 	void Update();
 	void Draw();
 	void CreateWorld();
+	void DeleteObject(GameObject* aObject);
 
 	DrawHandler GetDrawHandler();
 	float GetDeltaTime();
+	set<int> GetKeys();
+	void AddKey(int i);
+	void DeleteKey(int i);
 
-	static GameWorld& GetInstance();
-	GameWorld(GameWorld const&) = delete;
-	void operator=(GameWorld const&) = delete;
+	GameWorld(int argc, char** argv);
 	~GameWorld();
 };
 #endif // !GAMEWORLD_H

@@ -12,12 +12,23 @@ using namespace std;
 
 void GameObject::Update()
 {
-	
+	map<string, Component*>::iterator it;
+
+	for (it = components.begin(); it != components.end(); it++)
+	{
+		IUpdate* co = dynamic_cast<IUpdate *>(it->second);
+
+		if (co != NULL)
+		{
+			co->Update();
+		}
+	}
 }
 
 void GameObject::Draw(DrawHandler * drawHandler)
 {
 	((SpriteRenderer*)components["SpriteRenderer"])->Draw(drawHandler);
+	((Collider*)components["Collider"])->Draw(drawHandler);
 }
 
 void GameObject::AddComponent(Component * component)
@@ -75,15 +86,17 @@ void GameObject::OnCollisionEnd(GameObject * other)
 	}
 }
 
-GameObject::GameObject()
+GameObject::GameObject(GameWorld* aGameWorld)
 {
-	
+	gameWorld = aGameWorld;
 }
 
 GameObject::~GameObject()
 {
-	for (pair<string, Component *> c : components)
+	for (std::map<std::string, Component*>::iterator itr = components.begin(); itr != components.end(); itr++)
 	{
-		delete(c.second);
+		delete itr->second;
 	}
+
+	//gameWorld->DeleteObject(this);
 }

@@ -26,7 +26,7 @@ public:
 	Collider(GameObject * g, Transform * transform, RectangleF sizeRect);
 	Collider(GameObject * g, Transform * transform, SpriteRenderer * spriteRenderer);
 	void Update();
-	void Draw();
+	void Draw(DrawHandler* drawHandler);
 	RectangleF CollisionBox();
 	~Collider();
 };
