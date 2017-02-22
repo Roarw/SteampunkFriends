@@ -11,10 +11,10 @@ void Player::Update()
 	{
 		switch (key) {
 		case GLUT_KEY_UP:
-			direction->Y -= 1;
+			direction->Y += 1;
 			break;
 		case GLUT_KEY_DOWN:
-			direction->Y += 1;
+			direction->Y -= 1;
 			break;
 		case GLUT_KEY_LEFT:
 			direction->X -= 1;
