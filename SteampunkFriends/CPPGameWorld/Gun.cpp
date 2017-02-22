@@ -34,6 +34,14 @@ Gun::Gun(GameObject * g, Player * player) : Component(g)
 void Gun::Update()
 {
 	collider->Enabled = false;
+
+	for (int key : gameObject->GetGameWorld()->GetKeys())
+	{
+		if (key == 32)
+		{
+			Shoot();
+		}
+	}
 }
 
 void Gun::PositionCollider()
