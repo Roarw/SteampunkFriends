@@ -12,6 +12,7 @@
 #include "Component.h"
 #include "GameWorld.h"
 #include "Collider.h"
+#include "Player.h"
 
 class GameObject : public IUpdate, public IDraw
 {

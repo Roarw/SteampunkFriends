@@ -12,7 +12,17 @@ using namespace std;
 
 void GameObject::Update()
 {
-	
+	map<string, Component*>::iterator it;
+
+	for (it = components.begin(); it != components.end(); it++)
+	{
+		IUpdate* co = dynamic_cast<IUpdate *>(it->second);
+
+		if (co != NULL)
+		{
+			co->Update();
+		}
+	}
 }
 
 void GameObject::Draw(DrawHandler * drawHandler)

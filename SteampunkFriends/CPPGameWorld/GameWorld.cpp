@@ -1,14 +1,16 @@
 #include "GameWorld.h"
 #include "DrawHandler.h"
 #include <iostream>
-#include <vector>
+#include <vector> 
+#include "GameObject.h"
+#include "Vector2.h"
 
 //Temp:
 #include "SpriteRenderer.h"
 #include "Transform.h"
 #include "Collider.h"
-#include "GameObject.h"
-#include "Vector2.h"
+#include "Player.h"
+
 
 void GameWorld::Update()
 {
@@ -17,6 +19,11 @@ void GameWorld::Update()
 	float gammaTime = timeSinceStart - oldTimeSinceStart;
 	oldTimeSinceStart = timeSinceStart;
 	deltaTime = gammaTime / 1000;
+
+	for (GameObject *go : gameObjects)
+	{
+		go->Update();
+	}
 }
 
 void GameWorld::Draw()
@@ -40,9 +47,11 @@ void GameWorld::CreateWorld()
 	Transform * transform = new Transform(go, new Vector2());
 	SpriteRenderer * spriteRenderer = new SpriteRenderer(go, transform, ".\\PokeBall.png");
 	Collider * collider = new Collider(go, transform, spriteRenderer);
+	Player * player = new Player(go, this, transform);
 	go->AddComponent(transform);
 	go->AddComponent(spriteRenderer);
 	go->AddComponent(collider);
+	go->AddComponent(player);
 	gameObjects.push_back(go);
 
 	std::cout << go->GetComponent("Transform")->GetName() << " has been added.\n";
@@ -78,21 +87,29 @@ float GameWorld::GetDeltaTime()
 	return deltaTime;
 }
 
-GameWorld::GameWorld()
+set<int> GameWorld::GetKeys()
+{
+	return keys;
+}
+
+void GameWorld::AddKey(int i)
+{
+	keys.insert(i);
+}
+
+void GameWorld::DeleteKey(int i)
+{
+	keys.erase(i);
+}
+
+GameWorld::GameWorld(int argc, char** argv)
 {
 	oldTimeSinceStart = 0;
 
-	drawHandler = new DrawHandler(this, 0, {});
+	drawHandler = new DrawHandler(this, argc, argv);
 
 	CreateWorld();
 	drawHandler->StartLoop();
-}
-
-GameWorld& GameWorld::GetInstance()
-{
-	static GameWorld instance;
-
-	return instance;
 }
 
 GameWorld::~GameWorld()

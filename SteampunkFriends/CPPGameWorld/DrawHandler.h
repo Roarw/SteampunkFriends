@@ -16,7 +16,10 @@ private:
 	void InitOpenGL();
 public:
 	static void Reshape(int width, int height);
-	static void Keyboard(unsigned char key, int x, int y);
+	static void KeyboardPress(unsigned char key, int x, int y);
+	static void KeyboardRelease(unsigned char key, int x, int y);
+	static void KeyPress(int key, int x, int y);
+	static void KeyRelease(int key, int x, int y);
 	static void GameLoop();
 	
 	void StartLoop();

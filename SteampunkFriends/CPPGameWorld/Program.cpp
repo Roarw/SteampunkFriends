@@ -2,5 +2,5 @@
 
 void main(int argc, char** argv)
 {
-	GameWorld::GetInstance();
+	new GameWorld(argc, argv);
 }
