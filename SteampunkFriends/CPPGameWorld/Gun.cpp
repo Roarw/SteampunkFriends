@@ -8,7 +8,7 @@ std::string Gun::GetName()
 	return "Gun";
 }
 
-void Gun::OnCollisionEnter(GameObject * other)
+void Gun::OnCollisionStay(GameObject * other)
 {
 	// Check if other is enemy (not implemented)
  	if((Enemy *)other->GetComponent("Enemy") != NULL)
@@ -20,9 +20,9 @@ void Gun::OnCollisionEnter(GameObject * other)
 		Vector2 dividingVector = *((Transform *)other->GetComponent("Transform"))->GetPosition() - *((Transform *)gameObject->GetComponent("Transform"))->GetPosition();
 
 		// Percentage of max range
-		float factor = dividingVector.Length() / AOE.Size.Length();
+		float factor = 1 - abs(dividingVector.Length() / AOE.Size.Length());
 
-		Vector2 v = MaxVelocityTransfered * factor;
+		Vector2 v = MaxVelocityTransfered * *(player->GetDirection()) * factor;
 
 		((Physics *)other->GetComponent("Physics"))->Velocity += v;
 	}
@@ -62,7 +62,8 @@ void Gun::PositionCollider()
 	float nSizeX = a * AOE.Width;
 	float nSizeY = b * AOE.Height;
 
-	aoe = nSizeX != 0 ? Vector2(nSizeX, ((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.Y) : Vector2(((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.X, nSizeY);
+	aoe = nSizeX != 0 ? Vector2(nSizeX, ((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.Y) : 
+		Vector2(((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.X, nSizeY);
 
 	collider->Size = aoe;
 }

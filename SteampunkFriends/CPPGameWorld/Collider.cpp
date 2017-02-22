@@ -103,11 +103,14 @@ RectangleF Collider::CollisionBox()
 {
 	Vector2 position = *transform->GetPosition();
 
+	float offsetX = Size.X < 0 ? Size.X : 0;
+	float offsetY = Size.Y < 0 ? Size.Y : 0;
+
 	return RectangleF(
-		position.X,
-		position.Y,
-		Size.X,	
-		Size.Y
+		position.X + offsetX,
+		position.Y + offsetY,
+		abs(Size.X),	
+		abs(Size.Y)
 	);
 }
 

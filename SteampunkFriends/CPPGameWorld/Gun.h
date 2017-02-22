@@ -4,21 +4,21 @@
 #include "IUpdate.h"
 #include "GameObject.h"
 #include "Player.h"
-#include "IOnCollisionEnter.h"
+#include "IOnCollisionStay.h"
 
 class Gun :
-	public Component, public IUpdate, public IOnCollisionEnter
+	public Component, public IUpdate, public IOnCollisionStay
 {
 private:
 	int Cooldown;
-	Vector2 MaxVelocityTransfered = Vector2(2000, 2000);
+	Vector2 MaxVelocityTransfered = Vector2(200, 200);
 	void PositionCollider();
-	RectangleF AOE = RectangleF(0, 0, 400, 100);
+	RectangleF AOE = RectangleF(0, 0, 400, 400);
 	Collider * collider;
 	Player * player;
 public:
 	std::string GetName();
-	void OnCollisionEnter(GameObject * other);
+	void OnCollisionStay(GameObject * other);
 	Gun(GameObject * g, Player * player);
 	void Update();
 	void Shoot();

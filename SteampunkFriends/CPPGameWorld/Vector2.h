@@ -21,6 +21,10 @@ public:
 	{
 		return Vector2(this->X * f, this->Y * f);
 	}
+	Vector2 operator*(const Vector2 v)
+	{
+		return Vector2(this->X * v.X, this->Y * v.Y);
+	}
 	void operator+=(const Vector2 v)
 	{
 		this->X = this->X + v.X;
