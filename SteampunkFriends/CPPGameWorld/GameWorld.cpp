@@ -27,15 +27,16 @@ void GameWorld::Update()
 	oldTimeSinceStart = timeSinceStart;
 	deltaTime = gammaTime / 1000;
 
-	for (GameObject *go : gameObjects)
+	for (int i = 0; i < colliders.size(); i++) 
 	{
-		go->Update();
+		colliders[i]->Update();
 	}
 
-	for (Collider * go : colliders)
+	for (int i = 0; i < gameObjects.size(); i++)
 	{
-		go->Update();
+		gameObjects[i]->Update();
 	}
+
 }
 
 void GameWorld::Draw()
@@ -156,9 +157,21 @@ void GameWorld::DeleteObject(GameObject* aObject)
 
 		std::swap(*it, gameObjects.back());
 		gameObjects.pop_back();
-
-		delete aObject;
 	}
+
+	if ((Collider*)aObject->GetComponent("Collider") != NULL)
+	{
+		Collider * aCollider = (Collider*)aObject->GetComponent("Collider");
+
+		auto it2 = find(colliders.begin(), colliders.end(), aCollider);
+		if (it2 != colliders.end())
+		{
+			std::swap(*it2, colliders.back());
+			colliders.pop_back();
+		}
+	}
+
+	delete aObject;
 
 	//std::vector<GameObject*>::iterator itr = 
 	//gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), aObject), gameObjects.end());
