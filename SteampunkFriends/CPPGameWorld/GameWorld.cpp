@@ -70,10 +70,10 @@ void GameWorld::CreateWorld()
 	gameObjects.push_back(playerBuilder.Build(this, new Vector2()));
 
 	EnemyBuilder enemyBuilder;
-	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(100, 100)));
-	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(200, 200)));
-	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(400, 300)));
-	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(600, 300)));
+	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(100, 100), new Vector2(0, 0)));
+	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(200, 200), new Vector2(0, 0)));
+	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(400, 300), new Vector2(0, 0)));
+	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(600, 300), new Vector2(0, 0)));
 }
 
 void GameWorld::DeleteObject(GameObject* aObject)

@@ -4,19 +4,16 @@
 #include "IUpdate.h"
 #include "Transform.h"
 
-class GameWorld;
-
 class Player :
 	public Component, public IUpdate
 {
 private:
 	Vector2 * direction;
-	GameWorld * gameWorld;
 	Transform * transform;
 public:
 	void Update();
 	Vector2 * GetDirection();
-	Player(GameObject * gameObject, GameWorld * gameWorld, Transform * transform);
+	Player(GameObject * gameObject, Transform * transform);
 	~Player();
 };
 
