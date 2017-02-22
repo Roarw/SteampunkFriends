@@ -11,7 +11,6 @@
 #include "Collider.h"
 #include "Player.h"
 
-
 void GameWorld::Update()
 {
 	//Calculate delta time.
@@ -43,6 +42,21 @@ void GameWorld::Draw()
 ///Creating all objects.
 void GameWorld::CreateWorld()
 {
+	#pragma region HELLO IM AN AIRSHUP, DANK DANK
+
+	GameObject * airShip = new GameObject(this);
+
+	Transform * airShipTransform = new Transform(airShip, new Vector2(256, 128));
+	SpriteRenderer * airShipSpriteRenderer = new SpriteRenderer(airShip, airShipTransform, ".\\PokeBall.png");
+	Collider * airShipCollider = new Collider(airShip, airShipTransform, RectangleF(airShipTransform->GetPosition()->X, airShipTransform->GetPosition()->Y, 768, 256));
+
+	airShip->AddComponent(airShipTransform);
+	airShip->AddComponent(airShipSpriteRenderer);
+	airShip->AddComponent(airShipCollider);
+	gameObjects.push_back(airShip);
+
+	#pragma endregion
+
 	GameObject * go = new GameObject(this);
 	Transform * transform = new Transform(go, new Vector2());
 	SpriteRenderer * spriteRenderer = new SpriteRenderer(go, transform, ".\\PokeBall.png");
