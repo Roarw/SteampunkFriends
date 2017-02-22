@@ -30,6 +30,11 @@ void Player::Update()
 	transform->Translate(*direction);
 }
 
+Vector2 * Player::GetDirection()
+{
+	return direction;
+}
+
 Player::Player(GameObject * gameObject, GameWorld * gameWorld, Transform * transform) : Component(gameObject)
 {
 	this->gameWorld = gameWorld;
