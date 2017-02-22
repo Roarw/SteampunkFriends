@@ -5,6 +5,7 @@
 #include "Transform.h"
 #include "RectangleF.h"
 #include <vector>
+#include <stack>
 
 using namespace std;
 
@@ -58,27 +59,26 @@ void Collider::CheckCollision()
 		}
 	}
 
-	vector<vector<Collider *>::iterator> toRemove;
-
-	toRemove.clear();
+	stack<vector<Collider *>::iterator> toRemove;
 
 	for (it = collisions.begin(); it != collisions.end(); ++it)
 	{
 		if (*it == nullptr)
 		{
-			toRemove.push_back(it);
+			toRemove.push(it);
 		}
 		if (!CollisionBox().Intersects((*it)->CollisionBox()))
 		{
 			// Collision End
 			gameObject->OnCollisionEnd((*it)->GetGameObject());
-			toRemove.push_back(it);
+			toRemove.push(it);
 		}
 	}
 
-	for (vector<Collider *>::iterator it : toRemove)
+	while(!toRemove.empty())
 	{
-		collisions.erase(it);
+		collisions.erase(toRemove.top());
+		toRemove.pop();
 	}
 }
 
