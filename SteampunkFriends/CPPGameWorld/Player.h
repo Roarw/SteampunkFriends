@@ -10,6 +10,7 @@ class Player :
 private:
 	Vector2 * direction;
 	Transform * transform;
+	float speed;
 public:
 	void Update();
 	std::string GetName();

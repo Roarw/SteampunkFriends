@@ -26,6 +26,7 @@ void Player::Update()
 		}
 	}
 
+	*direction = *direction * speed * gameObject->GetGameWorld()->GetDeltaTime();
 	transform->Translate(*direction);
 }
 
@@ -43,6 +44,8 @@ Player::Player(GameObject * gameObject, Transform * transform) : Component(gameO
 {
 	this->transform = transform;
 	direction = new Vector2(0, 0);
+
+	speed = 100;
 }
 
 Player::~Player()
