@@ -51,7 +51,14 @@ void Gun::Update()
 
 void Gun::PositionCollider()
 {
-	collider->Size = Vector2(player->GetDirection()->X * AOE.X, AOE.Y);
+	Vector2 aoe = Vector2();
+
+	float nSizeX = player->GetDirection()->X * AOE.Width;
+	float nSizeY = player->GetDirection()->Y * AOE.Height;
+
+	aoe = nSizeX != 0 ? Vector2(nSizeX, ((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.Y) : Vector2(((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.X, nSizeY);
+
+	collider->Size = aoe;
 }
 
 void Gun::Shoot()
@@ -60,7 +67,6 @@ void Gun::Shoot()
 
 	collider->Enabled = true;
 }
-
 
 Gun::~Gun()
 {
