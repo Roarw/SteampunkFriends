@@ -1,4 +1,5 @@
 #include "Wall.h"
+#include "Enemy.h"
 
 std::string Wall::GetName()
 {
@@ -15,5 +16,8 @@ Wall::~Wall()
 
 void Wall::OnCollisionEnter(GameObject * other)
 {
-	//gameObject->GetGameWorld()->DeleteObjectNext(other);
+	if ((Enemy*)other->GetComponent("Enemy") != NULL)
+	{
+		gameObject->GetGameWorld()->DeleteObjectNext(other);
+	}
 }

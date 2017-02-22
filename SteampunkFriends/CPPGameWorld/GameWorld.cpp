@@ -28,6 +28,7 @@ void GameWorld::Update()
 	oldTimeSinceStart = timeSinceStart;
 	deltaTime = gammaTime / 1000;
 
+	//Updates:
 	for (int i = 0; i < colliders.size(); i++) 
 	{
 		colliders[i]->Update();
@@ -39,7 +40,7 @@ void GameWorld::Update()
 	}
 
 	//Deleting objects:
-	for (int i = 0; i < objectsToDelete.size(); i++) 
+	for (int i = 0; i < objectsToDelete.size(); i++)
 	{
 		DeleteObject(objectsToDelete[i]);
 	}
@@ -72,7 +73,7 @@ void GameWorld::CreateWorld()
 
 	airShip->AddComponent(airShipTransform);
 	airShip->AddComponent(airShipSpriteRenderer);
-	AddGameObject(airShip);
+	AddGameObjectNext(airShip);
 
 	Transform * airShipColTransform;
 	Collider * airShipColCollider;
@@ -92,7 +93,7 @@ void GameWorld::CreateWorld()
 	airShipColLeft->AddComponent(airShipColTransform);
 	airShipColLeft->AddComponent(airShipColCollider);
 	airShipColLeft->AddComponent(airShipColWall);
-	AddGameObject(airShipColLeft);
+	AddGameObjectNext(airShipColLeft);
 
 	GameObject * airShipColTop = new GameObject(this);
 	airShipColTransform = new Transform(airShipColTop, new Vector2(256, 128+256+80));
@@ -105,7 +106,7 @@ void GameWorld::CreateWorld()
 		);
 	airShipColTop->AddComponent(airShipColTransform);
 	airShipColTop->AddComponent(airShipColCollider);
-	AddGameObject(airShipColTop);
+	AddGameObjectNext(airShipColTop);
 
 	GameObject * airShipColRight = new GameObject(this);
 	airShipColTransform = new Transform(airShipColRight, new Vector2(256+728, 128));
@@ -118,7 +119,7 @@ void GameWorld::CreateWorld()
 		);
 	airShipColRight->AddComponent(airShipColTransform);
 	airShipColRight->AddComponent(airShipColCollider);
-	AddGameObject(airShipColRight);
+	AddGameObjectNext(airShipColRight);
 
 	GameObject * airShipColBottom = new GameObject(this);
 	airShipColTransform = new Transform(airShipColBottom, new Vector2(256, 128-32));
@@ -131,26 +132,26 @@ void GameWorld::CreateWorld()
 		);
 	airShipColBottom->AddComponent(airShipColTransform);
 	airShipColBottom->AddComponent(airShipColCollider);
-	AddGameObject(airShipColBottom);
+	AddGameObjectNext(airShipColBottom);
 
 	#pragma endregion
 
 	//Player
 	PlayerBuilder playerBuilder;
 	GameObject * player = playerBuilder.Build(this, new Vector2());
-	AddGameObject(player);
+	AddGameObjectNext(player);
 
 	//Gun
 	GunBuilder gunbuilder;
 	GameObject * gun = gunbuilder.Build(this, (Player *)(player->GetComponent("Player")));
-	AddGameObject(gun);
+	AddGameObjectNext(gun);
 
 	//Enemies
 	EnemyBuilder enemyBuilder;
-	AddGameObject(enemyBuilder.Build(this, new Vector2(100, 100), new Vector2(0, 0)));
-	AddGameObject(enemyBuilder.Build(this, new Vector2(200, 200), new Vector2(0, 0)));
-	AddGameObject(enemyBuilder.Build(this, new Vector2(400, 300), new Vector2(0, 0)));
-	AddGameObject(enemyBuilder.Build(this, new Vector2(600, 300), new Vector2(0, 0)));
+	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(100, 100), new Vector2(0, 0)));
+	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(200, 200), new Vector2(0, 0)));
+	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(400, 300), new Vector2(100, 100)));
+	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(600, 300), new Vector2(100, 100)));
 }
 
 void GameWorld::DeleteObjectNext(GameObject* aObject)
@@ -172,7 +173,8 @@ void GameWorld::DeleteObject(GameObject* aObject)
 	delete aObject;
 }
 
-void GameWorld::AddGameObject(GameObject * gameObject)
+//Doesn't work as intended yet. Make it like Delete.
+void GameWorld::AddGameObjectNext(GameObject * gameObject)
 {
 	gameObjects.push_back(gameObject);
 
