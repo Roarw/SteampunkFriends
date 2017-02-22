@@ -15,5 +15,5 @@ Wall::~Wall()
 
 void Wall::OnCollisionEnter(GameObject * other)
 {
-	gameObject->GetGameWorld()->DeleteObjectNext(other);
+	//gameObject->GetGameWorld()->DeleteObjectNext(other);
 }
