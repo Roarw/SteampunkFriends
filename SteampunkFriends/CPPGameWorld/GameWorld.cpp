@@ -56,7 +56,7 @@ void GameWorld::CreateWorld()
 
 	airShip->AddComponent(airShipTransform);
 	airShip->AddComponent(airShipSpriteRenderer);
-	gameObjects.push_back(airShip);
+	AddGameObject(airShip);
 
 	Transform * airShipColTransform;
 	Collider * airShipColCollider;
@@ -76,7 +76,7 @@ void GameWorld::CreateWorld()
 	airShipColLeft->AddComponent(airShipColTransform);
 	airShipColLeft->AddComponent(airShipColCollider);
 	airShipColLeft->AddComponent(airShipColWall);
-	gameObjects.push_back(airShipColLeft);
+	AddGameObject(airShipColLeft);
 
 	GameObject * airShipColTop = new GameObject(this);
 	airShipColTransform = new Transform(airShipColTop, new Vector2(256, 128+256+80));
@@ -89,7 +89,7 @@ void GameWorld::CreateWorld()
 		);
 	airShipColTop->AddComponent(airShipColTransform);
 	airShipColTop->AddComponent(airShipColCollider);
-	gameObjects.push_back(airShipColTop);
+	AddGameObject(airShipColTop);
 
 	GameObject * airShipColRight = new GameObject(this);
 	airShipColTransform = new Transform(airShipColRight, new Vector2(256+728, 128));
@@ -102,7 +102,7 @@ void GameWorld::CreateWorld()
 		);
 	airShipColRight->AddComponent(airShipColTransform);
 	airShipColRight->AddComponent(airShipColCollider);
-	gameObjects.push_back(airShipColRight);
+	AddGameObject(airShipColRight);
 
 	GameObject * airShipColBottom = new GameObject(this);
 	airShipColTransform = new Transform(airShipColBottom, new Vector2(256, 128-32));
@@ -115,27 +115,26 @@ void GameWorld::CreateWorld()
 		);
 	airShipColBottom->AddComponent(airShipColTransform);
 	airShipColBottom->AddComponent(airShipColCollider);
-	gameObjects.push_back(airShipColBottom);
+	AddGameObject(airShipColBottom);
 
 	#pragma endregion
 
 	//Player
 	PlayerBuilder playerBuilder;
 	GameObject * player = playerBuilder.Build(this, new Vector2());
-	gameObjects.push_back(player);
-	colliders.push_back((Collider*)player->GetComponent("Collider"));
+	AddGameObject(player);
 
 	//Gun
 	GunBuilder gunbuilder;
 	GameObject * gun = gunbuilder.Build(this, (Player *)(player->GetComponent("Player")));
-	gameObjects.push_back(gun);
+	AddGameObject(gun);
 
 	//Enemies
 	EnemyBuilder enemyBuilder;
-	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(100, 100), new Vector2(0, 0)));
-	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(200, 200), new Vector2(0, 0)));
-	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(400, 300), new Vector2(0, 0)));
-	gameObjects.push_back(enemyBuilder.Build(this, new Vector2(600, 300), new Vector2(0, 0)));
+	AddGameObject(enemyBuilder.Build(this, new Vector2(100, 100), new Vector2(0, 0)));
+	AddGameObject(enemyBuilder.Build(this, new Vector2(200, 200), new Vector2(0, 0)));
+	AddGameObject(enemyBuilder.Build(this, new Vector2(400, 300), new Vector2(0, 0)));
+	AddGameObject(enemyBuilder.Build(this, new Vector2(600, 300), new Vector2(0, 0)));
 }
 
 void GameWorld::DeleteObject(GameObject* aObject)
@@ -155,6 +154,16 @@ void GameWorld::DeleteObject(GameObject* aObject)
 
 	//std::vector<GameObject*>::iterator itr = 
 	//gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), aObject), gameObjects.end());
+}
+
+void GameWorld::AddGameObject(GameObject * gameObject)
+{
+	gameObjects.push_back(gameObject);
+
+	if ((Collider*)gameObject->GetComponent("Collider") != NULL) 
+	{
+		colliders.push_back((Collider*)gameObject->GetComponent("Collider"));
+	}
 }
 
 DrawHandler GameWorld::GetDrawHandler()
