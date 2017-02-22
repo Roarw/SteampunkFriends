@@ -4,6 +4,9 @@
 #include <vector> 
 #include "GameObject.h"
 #include "Vector2.h"
+#include <irrKlang.h>
+
+using namespace irrklang;
 
 #include "PlayerBuilder.h"
 #include "EnemyBuilder.h"
@@ -201,6 +204,9 @@ GameWorld::GameWorld(int argc, char** argv)
 	oldTimeSinceStart = 0;
 
 	drawHandler = new DrawHandler(this, argc, argv);
+
+	ISoundEngine * engine = createIrrKlangDevice(); //Creates engine
+    engine->play2D("death.mp3"); //Play sound
 
 	CreateWorld();
 	drawHandler->StartLoop();
