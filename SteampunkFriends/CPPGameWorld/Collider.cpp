@@ -35,7 +35,7 @@ void Collider::CheckCollision()
 	// Loop through collisionboxes 
 	for (Collider * c : colliders)
 	{
-		if(c != this)
+		if(c != nullptr && c != this)
 		{ 
 			// Add simple collisioncheck before this if needed for performance 
 			if(c->Enabled)

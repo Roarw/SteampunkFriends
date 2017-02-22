@@ -16,8 +16,8 @@ Wall::~Wall()
 
 void Wall::OnCollisionEnter(GameObject * other)
 {
-	if ((Enemy*)other->GetComponent("Enemy") != NULL)
+	/*if ((Enemy*)other->GetComponent("Enemy") != NULL)
 	{
 		gameObject->GetGameWorld()->DeleteObjectNext(other);
-	}
+	}*/
 }
