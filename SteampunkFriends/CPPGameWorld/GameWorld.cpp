@@ -47,8 +47,14 @@ void GameWorld::CreateWorld()
 	GameObject * airShip = new GameObject(this);
 
 	Transform * airShipTransform = new Transform(airShip, new Vector2(256, 128));
-	SpriteRenderer * airShipSpriteRenderer = new SpriteRenderer(airShip, airShipTransform, ".\\PokeBall.png");
-	Collider * airShipCollider = new Collider(airShip, airShipTransform, RectangleF(airShipTransform->GetPosition()->X, airShipTransform->GetPosition()->Y, 768, 256));
+	SpriteRenderer * airShipSpriteRenderer = new SpriteRenderer(airShip, airShipTransform, ".\\Pokeball.png");
+	Collider * airShipCollider = 
+		new Collider
+		(
+		airShip,
+		airShipTransform,
+		RectangleF(airShipTransform->GetPosition()->X, airShipTransform->GetPosition()->Y, 768, 256)
+		);
 
 	airShip->AddComponent(airShipTransform);
 	airShip->AddComponent(airShipSpriteRenderer);

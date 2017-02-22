@@ -23,8 +23,7 @@ SpriteRenderer::SpriteRenderer(GameObject * gameObject, Transform * transform, c
 	this->transform = transform;
 	//Load texture through soil
 	texture = SOIL_load_OGL_texture(texturePath, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y); 
-	//bind texture
-	glBindTexture(GL_TEXTURE_2D, texture); 
+
 	int w, h;
 	int miplevel = 0;
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, miplevel, GL_TEXTURE_WIDTH, &w);
