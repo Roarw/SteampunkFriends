@@ -28,6 +28,7 @@ void GameWorld::Update()
 	oldTimeSinceStart = timeSinceStart;
 	deltaTime = gammaTime / 1000;
 
+	//Updates:
 	for (int i = 0; i < colliders.size(); i++) 
 	{
 		colliders[i]->Update();
@@ -39,7 +40,7 @@ void GameWorld::Update()
 	}
 
 	//Deleting objects:
-	for (int i = 0; i < objectsToDelete.size(); i++) 
+	for (int i = 0; i < objectsToDelete.size(); i++)
 	{
 		DeleteObject(objectsToDelete[i]);
 	}
@@ -149,8 +150,8 @@ void GameWorld::CreateWorld()
 	EnemyBuilder enemyBuilder;
 	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(100, 100), new Vector2(0, 0)));
 	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(200, 200), new Vector2(0, 0)));
-	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(400, 300), new Vector2(0, 0)));
-	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(600, 300), new Vector2(0, 0)));
+	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(400, 300), new Vector2(100, 100)));
+	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(600, 300), new Vector2(100, 100)));
 }
 
 void GameWorld::DeleteObjectNext(GameObject* aObject)
