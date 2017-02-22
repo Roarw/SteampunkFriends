@@ -35,7 +35,7 @@ void Collider::CheckCollision()
 	// Loop through collisionboxes 
 	for (Collider * c : colliders)
 	{
-		if(c != nullptr && c != this)
+		if(c != this)
 		{ 
 			// Add simple collisioncheck before this if needed for performance 
 			if(c->Enabled)
@@ -66,7 +66,7 @@ void Collider::CheckCollision()
 
 	for (it = collisions.begin(); it != collisions.end(); ++it)
 	{
-		if (*it == nullptr)
+		if (*it == nullptr || *it == NULL)
 		{
 			toRemove.push(it);
 		}
