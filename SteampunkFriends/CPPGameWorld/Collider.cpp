@@ -35,19 +35,22 @@ void Collider::CheckCollision()
 	for (it = (temp).begin(); it != (temp).end(); ++it)
 	{
 		// Add simple collisioncheck before this if needed for performance 
-		if (CollisionBox().Intersects((*it)->CollisionBox()))
-		{
-			// Check for other collider in collisions
-			if (find((this->collisions).begin(), (this->collisions).end(), *it) != (this->collisions).end()) // Added *before it here, but not sure if thats bad 
+		if((*it)->Enabled)
+		{ 
+			if (CollisionBox().Intersects((*it)->CollisionBox()))
 			{
-				// Collision Stay
-				gameObject->OnCollisionStay((*it)->gameObject);
-			}
-			else
-			{
-				// Collision Enter
-				gameObject->OnCollisionEnter((*it)->gameObject);
-				this->collisions.push_back(*it);
+				// Check for other collider in collisions
+				if (find((this->collisions).begin(), (this->collisions).end(), *it) != (this->collisions).end()) // Added *before it here, but not sure if thats bad 
+				{
+					// Collision Stay
+					gameObject->OnCollisionStay((*it)->gameObject);
+				}
+				else
+				{
+					// Collision Enter
+					gameObject->OnCollisionEnter((*it)->gameObject);
+					this->collisions.push_back(*it);
+				}
 			}
 		}
 	}
