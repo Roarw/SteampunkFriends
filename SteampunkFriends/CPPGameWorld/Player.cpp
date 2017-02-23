@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "GameWorld.h"
 
+#pragma region METHODS:
 void Player::Update()
 {
 	Vector2 moveDirection;
@@ -34,7 +35,9 @@ void Player::Update()
 	moveDirection = moveDirection * speed * gameObject->GetGameWorld()->GetDeltaTime();
 	transform->Translate(moveDirection);
 }
+#pragma endregion
 
+#pragma region GET/SET:
 std::string Player::GetName()
 {
 	return "Player";
@@ -44,7 +47,9 @@ Vector2 * Player::GetDirection()
 {
 	return direction;
 }
+#pragma endregion
 
+#pragma region CONSTRUCTORS:
 Player::Player(GameObject * gameObject, Transform * transform) : Component(gameObject)
 {
 	this->transform = transform;
@@ -57,3 +62,4 @@ Player::~Player()
 {
 	delete direction;
 }
+#pragma endregion

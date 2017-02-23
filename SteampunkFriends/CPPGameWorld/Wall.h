@@ -7,9 +7,11 @@ class Wall :
 	public Component, public IOnCollisionEnter
 {
 public:
+	void OnCollisionEnter(GameObject* other);
+
 	std::string GetName();
+
 	Wall(GameObject * gameObject);
 	~Wall();
-	void OnCollisionEnter(GameObject* other);
 };
 

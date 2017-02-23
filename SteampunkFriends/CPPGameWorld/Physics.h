@@ -10,12 +10,14 @@ class Physics :
 {
 private:
 	Transform * transform;
-
 public:
-	std::string GetName();
 	Vector2 Velocity;
-	Physics(GameObject * g, Transform * transform);
+
 	void Update();
+
+	std::string GetName();
+
+	Physics(GameObject * g, Transform * transform);
 	~Physics();
 };
 

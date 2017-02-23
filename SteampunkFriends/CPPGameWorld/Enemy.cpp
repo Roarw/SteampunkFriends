@@ -1,9 +1,11 @@
 #include "Enemy.h"
 #include "SpriteRenderer.h"
 
-std::string Enemy::GetName()
+#pragma region METHODS:
+void Enemy::PlayDead()
 {
-	return "Enemy";
+	((Collider*)gameObject->GetComponent("Collider"))->Enabled = false;
+	dying = true;
 }
 
 void Enemy::Update()
@@ -35,13 +37,16 @@ void Enemy::Update()
 		}
 	}
 }
+#pragma endregion
 
-void Enemy::PlayDead()
+#pragma region GET/SET:
+std::string Enemy::GetName()
 {
-	((Collider*)gameObject->GetComponent("Collider"))->Enabled = false;
-	dying = true;
+	return "Enemy";
 }
+#pragma endregion
 
+#pragma region CONSTRUCTORS:
 Enemy::Enemy(GameObject * gameObject, Transform * transform, SpriteRenderer * spriter, Vector2 * target) : Component(gameObject)
 {
 	this->transform = transform;
@@ -56,3 +61,4 @@ Enemy::~Enemy()
 {
 	delete target;
 }
+#pragma endregion

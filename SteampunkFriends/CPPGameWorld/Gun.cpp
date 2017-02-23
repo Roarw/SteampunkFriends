@@ -3,9 +3,46 @@
 #include "Physics.h"
 #include "Enemy.h"
 
-std::string Gun::GetName()
+#pragma region METHODS:
+void Gun::PositionCollider()
 {
-	return "Gun";
+	Vector2 aoe = Vector2();
+
+	float a = player->GetDirection()->X;
+	float b = player->GetDirection()->Y;
+
+	float nSizeX = a * AOE.Width;
+	float nSizeY = b * AOE.Height;
+
+	aoe = nSizeX != 0 ? Vector2(nSizeX, ((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.Y) :
+		Vector2(((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.X, nSizeY);
+
+		Vector2 v = MaxVelocityTransfered * dividingVector.Normalize() * factor;
+
+		((Physics *)other->GetComponent("Physics"))->Velocity += v;
+	}
+}
+	collider->Size = aoe;
+}
+
+void Gun::Shoot()
+{
+	PositionCollider();
+
+	collider->Enabled = true;
+}
+
+void Gun::Update()
+{
+	collider->Enabled = false;
+
+	for (int key : gameObject->GetGameWorld()->GetKeys())
+	{
+		if (key == 32)
+		{
+			Shoot();
+		}
+	}
 }
 
 void Gun::OnCollisionStay(GameObject * other)
@@ -22,12 +59,21 @@ void Gun::OnCollisionStay(GameObject * other)
 		// Percentage of max range
 		float factor = 1 - abs(dividingVector.Length() / AOE.Size.Length());
 
-		Vector2 v = MaxVelocityTransfered * dividingVector.Normalize() * factor;
+		Vector2 v = MaxVelocityTransfered * *(player->GetDirection()) * factor;
 
 		((Physics *)other->GetComponent("Physics"))->Velocity += v;
 	}
 }
+#pragma endregion
 
+#pragma region GET/SET:
+std::string Gun::GetName()
+{
+	return "Gun";
+}
+#pragma endregion
+
+#pragma region CONSTRUCTORS:
 Gun::Gun(GameObject * g, Player * player) : Component(g)
 {
 	this->player = player;
@@ -39,42 +85,7 @@ Gun::Gun(GameObject * g, Player * player) : Component(g)
 	this->gameObject->AddComponent(collider);
 }
 
-void Gun::Update()
-{
-	collider->Enabled = false;
-
-	for (int key : gameObject->GetGameWorld()->GetKeys())
-	{
-		if (key == 32)
-		{
-			Shoot();
-		}
-	}
-}
-
-void Gun::PositionCollider()
-{
-	Vector2 aoe = Vector2();
-
-	float a = player->GetDirection()->X;
-	float b = player->GetDirection()->Y;
-
-	float nSizeX = a * AOE.Width;
-	float nSizeY = b * AOE.Height;
-
-	aoe = nSizeX != 0 ? Vector2(nSizeX, ((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.Y) : 
-		Vector2(((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.X, nSizeY);
-
-	collider->Size = aoe;
-}
-
-void Gun::Shoot()
-{
-	PositionCollider();
-
-	collider->Enabled = true;
-}
-
 Gun::~Gun()
 {
 }
+#pragma endregion

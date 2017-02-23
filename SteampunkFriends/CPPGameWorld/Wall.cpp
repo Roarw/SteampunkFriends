@@ -1,19 +1,7 @@
 #include "Wall.h"
 #include "Enemy.h"
 
-std::string Wall::GetName()
-{
-	return "Wall";
-}
-
-Wall::Wall(GameObject * gameObject) : Component(gameObject)
-{
-}
-
-Wall::~Wall()
-{
-}
-
+#pragma region METHODS:
 void Wall::OnCollisionEnter(GameObject * other)
 {
 	if ((Enemy*)other->GetComponent("Enemy") != NULL)
@@ -21,3 +9,21 @@ void Wall::OnCollisionEnter(GameObject * other)
 		((Enemy*)other->GetComponent("Enemy"))->PlayDead();
 	}
 }
+#pragma endregion
+
+#pragma region GET/SET:
+std::string Wall::GetName()
+{
+	return "Wall";
+}
+#pragma endregion
+
+#pragma region CONSTRUCTORS:
+Wall::Wall(GameObject * gameObject) : Component(gameObject)
+{
+}
+
+Wall::~Wall()
+{
+}
+#pragma endregion
