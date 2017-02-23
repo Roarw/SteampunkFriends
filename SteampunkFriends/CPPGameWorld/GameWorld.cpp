@@ -20,6 +20,13 @@
 #include "Wall.h"
 #include "Enemy.h"
 
+bool sortByY(GameObject * go, GameObject * other) 
+{ 
+	int goY = ((Transform*)go->GetComponent("Transform"))->GetPosition()->Y;
+	int otherY = ((Transform*)other->GetComponent("Transform"))->GetPosition()->Y;
+	return goY > otherY;	
+}
+
 void GameWorld::Update()
 {
 	//Calculate delta time.
@@ -36,6 +43,7 @@ void GameWorld::Update()
 		colliders[i]->Update();
 	}
 
+	sort(gameObjects.begin(), gameObjects.end(), sortByY);
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
 		gameObjects[i]->Update();
@@ -54,6 +62,9 @@ void GameWorld::Draw()
 	//Starting draw.
 	drawHandler->BeginDraw();
 
+	sky->Draw(drawHandler);
+	airship->Draw(drawHandler);
+
 	for (GameObject *go : gameObjects)
 	{
 		go->Draw(drawHandler);
@@ -67,19 +78,16 @@ void GameWorld::Draw()
 void GameWorld::CreateWorld()
 {
 	//Sky
-	GameObject * sky = new GameObject(this);
+	sky = new GameObject(this);
 	Transform * skyTransform = new Transform(sky, new Vector2(0, 0));
 	SpriteRenderer * skySpriteRenderer = new SpriteRenderer(sky, skyTransform, ".\\sky.png");
 	sky->AddComponent(skyTransform);
 	sky->AddComponent(skySpriteRenderer);
-	AddGameObjectNext(sky);
 
 	//Airship
 	AirShipBuilder airShipBuilder;
-
 	Vector2 * airShipPos = new Vector2(100, -50);
-	GameObject * airShip = airShipBuilder.Build(this, airShipPos);
-	AddGameObjectNext(airShip);
+	airship = airShipBuilder.Build(this, airShipPos);
 
 	//Airship Colliders
 	AirShipColBuilder airShipColBuilder;
@@ -106,13 +114,6 @@ void GameWorld::CreateWorld()
 	GunBuilder gunbuilder;
 	GameObject * gun = gunbuilder.Build(this, (Player *)(player->GetComponent("Player")));
 	AddGameObjectNext(gun);
-
-	//Enemies
-	EnemyBuilder enemyBuilder;
-	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(120, 100), new Vector2(0, 0)));
-	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(500, 300), new Vector2(500, 299)));
-	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(400, 200), new Vector2(0, 0)));
-	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(600, 200), new Vector2(0, 0)));
 
 	//Spawner
 	spawner = new Spawner(this);
@@ -227,6 +228,9 @@ GameWorld::GameWorld(int argc, char** argv)
 GameWorld::~GameWorld()
 {
 	delete drawHandler;
+
+	delete sky;
+	delete airship;
 
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
