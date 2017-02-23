@@ -102,7 +102,7 @@ void GameWorld::CreateWorld()
 
 	//Enemies
 	EnemyBuilder enemyBuilder;
-	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(250, 200), new Vector2(0, 0)));
+	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(120, 100), new Vector2(0, 0)));
 	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(300, 200), new Vector2(0, 0)));
 	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(400, 200), new Vector2(0, 0)));
 	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(600, 200), new Vector2(0, 0)));
