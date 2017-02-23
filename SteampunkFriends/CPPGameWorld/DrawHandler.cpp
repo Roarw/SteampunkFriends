@@ -4,6 +4,7 @@
 
 GameWorld * DrawHandler::gameWorld;
 
+float * DrawHandler::discoTime;
 float * DrawHandler::red;
 float * DrawHandler::green;
 float * DrawHandler::blue;
@@ -29,41 +30,55 @@ void DrawHandler::InitOpenGL()
 
 void DrawHandler::Disco()
 {
-	//Disco speed:
-	float multiplier = 200.0f;
-	//Min value:
-	float minValue = 155.0f;
-	//More:
-	float valueChange = gameWorld->GetDeltaTime() * multiplier;
+	if (*discoTime < 0.0f)
+	{
+		//Disco speed:
+		float multiplier = 200.0f;
+		//Min value:
+		float minValue = 155.0f;
+		//More:
+		float valueChange = gameWorld->GetDeltaTime() * multiplier;
 
-	if (*redUp)
-		*red += valueChange;
-	else
-		*red -= valueChange;
+		if (*redUp)
+			*red += valueChange;
+		else
+			*red -= valueChange;
 
-	if (*greenUp)
-		*green += valueChange;
-	else
-		*green -= valueChange;
+		if (*greenUp)
+			*green += valueChange;
+		else
+			*green -= valueChange;
 
-	if (*blueUp)
-		*blue += valueChange;
-	else
-		*blue -= valueChange;
+		if (*blueUp)
+			*blue += valueChange;
+		else
+			*blue -= valueChange;
 
-	if (*red > 255.0f)
-		*redUp = false;
-	if (*green > 255.0f)
-		*greenUp = false;
-	if (*blue > 255.0f)
-		*blueUp = false;
+		if (*red > 255.0f)
+			*redUp = false;
+		if (*green > 255.0f)
+			*greenUp = false;
+		if (*blue > 255.0f)
+			*blueUp = false;
 
-	if (*red < minValue)
-		*redUp = true;
-	if (*green < minValue)
-		*greenUp = true;
-	if (*blue < minValue)
-		*blueUp = true;
+		if (*red < minValue)
+			*redUp = true;
+		if (*green < minValue)
+			*greenUp = true;
+		if (*blue < minValue)
+			*blueUp = true;
+	}
+	else if (*discoTime < 1000.0f) 
+	{
+		*discoTime += gameWorld->GetDeltaTime();
+	}
+	else if (*discoTime >= 1000.0f)
+	{
+		red = new float(255.0f);
+		green = new float(155.0f);
+		blue = new float(205.0f);
+		*discoTime = -1.0f;
+	}
 }
 
 void DrawHandler::Reshape(int width, int height)
@@ -238,9 +253,10 @@ DrawHandler::DrawHandler(GameWorld * gameWorld, int argc, char** argv)
 	//Going fullscreen!
 	//glutFullScreen();
 
-	red = new float(255.0f);
-	green = new float(155.0f);
-	blue = new float(205.0f);
+	discoTime = new float(1.0f);
+	red = new float(256.0f);
+	green = new float(256.0f);
+	blue = new float(256.0f);
 	redUp = new bool(true);
 	greenUp = new bool(true);
 	blueUp = new bool(true);
@@ -266,6 +282,7 @@ DrawHandler::DrawHandler(GameWorld * gameWorld, int argc, char** argv)
 
 DrawHandler::~DrawHandler()
 {
+	delete discoTime;
 	delete red;
 	delete green;
 	delete blue;

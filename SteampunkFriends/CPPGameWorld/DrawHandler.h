@@ -15,6 +15,7 @@ private:
 	static GameWorld * gameWorld;
 	void InitOpenGL();
 
+	static float * discoTime;
 	static float * red;
 	static float * green;
 	static float * blue;
