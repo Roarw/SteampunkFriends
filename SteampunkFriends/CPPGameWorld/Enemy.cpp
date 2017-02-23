@@ -7,12 +7,24 @@ std::string Enemy::GetName()
 
 void Enemy::Update()
 {
-	Vector2 direction = *target - *transform->GetPosition();
-	direction.Normalize();
-	
-	direction = direction * speed * gameObject->GetGameWorld()->GetDeltaTime();
+	if (!dying) 
+	{
+		Vector2 direction = *target - *transform->GetPosition();
+		direction.Normalize();
 
-	transform->Translate(direction);
+		direction = direction * speed * gameObject->GetGameWorld()->GetDeltaTime();
+
+		transform->Translate(direction);
+	}
+	else 
+	{
+
+	}
+}
+
+void Enemy::PlayDead()
+{
+	dying = true;
 }
 
 Enemy::Enemy(GameObject * gameObject, Transform * transform, Vector2 * target) : Component(gameObject)
@@ -20,6 +32,7 @@ Enemy::Enemy(GameObject * gameObject, Transform * transform, Vector2 * target) :
 	this->transform = transform;
 	this->target = target;
 
+	dying = false;
 	speed = 100;
 }
 

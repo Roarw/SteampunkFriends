@@ -13,10 +13,13 @@ class Enemy :
 private:
 	Transform * transform;
 	Vector2 * target;
+	bool dying;
 	float speed;
 public:
-	std::string GetName();
 	void Update();
+	void PlayDead();
+
+	std::string GetName();
 
 	Enemy(GameObject * gameObject, Transform * transform, Vector2 * target);
 	~Enemy();

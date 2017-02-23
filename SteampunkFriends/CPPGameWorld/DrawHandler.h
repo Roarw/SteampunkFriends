@@ -24,6 +24,7 @@ public:
 	
 	void StartLoop();
 	void DrawTexture(GLuint texture, float x, float y, float z);
+	void DrawTexture(GLuint texture, float x, float y, float z, float sizeW, float sizeH);
 	void DrawBox(RectangleF aRect, float R, float G, float B);
 	void BeginDraw();
 	void EndDraw();
