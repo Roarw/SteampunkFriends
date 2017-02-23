@@ -17,11 +17,6 @@ void Gun::PositionCollider()
 	aoe = nSizeX != 0 ? Vector2(nSizeX, ((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.Y) :
 		Vector2(((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.X, nSizeY);
 
-		Vector2 v = MaxVelocityTransfered * dividingVector.Normalize() * factor;
-
-		((Physics *)other->GetComponent("Physics"))->Velocity += v;
-	}
-}
 	collider->Size = aoe;
 }
 
@@ -48,8 +43,8 @@ void Gun::Update()
 void Gun::OnCollisionStay(GameObject * other)
 {
 	// Check if other is enemy (not implemented)
- 	if((Enemy *)other->GetComponent("Enemy") != NULL)
-	{ 
+	if ((Enemy *)other->GetComponent("Enemy") != NULL)
+	{
 		// Disable enemy collider ( so it wont get hit more than once)
 		//((Collider *)other->GetComponent("Collider"))->Enabled = false;	
 
