@@ -65,7 +65,10 @@ GameWorld * GameObject::GetGameWorld()
 
 Component* GameObject::GetComponent(std::string aName)
 {
-	return components[aName];
+	if (components[aName] != 0)
+		return components[aName];
+	else
+		return 0;
 }
 
 void GameObject::OnCollisionEnter(GameObject * other)
