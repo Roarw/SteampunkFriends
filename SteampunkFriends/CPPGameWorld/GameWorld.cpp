@@ -220,8 +220,8 @@ GameWorld::GameWorld(int argc, char** argv)
 	musicEngine = createIrrKlangDevice();
 
 	CreateWorld();
-	PlayMusic("fuckme.mp3", 0.25f);
-
+	PlayMusic("yeemee.mp3", 0.35f);
+	
 	drawHandler->StartLoop();
 }
 
