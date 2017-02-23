@@ -78,16 +78,16 @@ void GameWorld::CreateWorld()
 	AirShipColBuilder airShipColBuilder;
 
 	GameObject * airShipCol;
-	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X, airShipPos->Y + 200), new Vector2(50, 350));
+	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X - 25, airShipPos->Y + 225), new Vector2(50, 300));
 	AddGameObjectNext(airShipCol);
 
-	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 50, airShipPos->Y + 550), new Vector2(800, 50));
+	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 25, airShipPos->Y + 525), new Vector2(825, 50));
 	AddGameObjectNext(airShipCol);
 
-	GameObject * rightAirShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 850, airShipPos->Y + 200), new Vector2(50, 350));
+	GameObject * rightAirShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 850, airShipPos->Y + 225), new Vector2(50, 300));
 	AddGameObjectNext(rightAirShipCol);
 
-	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 50, airShipPos->Y + 150), new Vector2(800, 50));
+	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 25, airShipPos->Y + 175), new Vector2(825, 50));
 	AddGameObjectNext(airShipCol);
 
 	//Player
