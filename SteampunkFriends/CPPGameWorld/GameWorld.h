@@ -50,6 +50,7 @@ public:
 	void DeleteKey(int i);
 	vector<Collider*> GetColliders();
 	GameObject * GetRightAirShipCol();
+	vector<GameObject*> GetGameObjects();
 
 	GameWorld(int argc, char** argv);
 	~GameWorld();

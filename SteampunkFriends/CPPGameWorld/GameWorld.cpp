@@ -203,6 +203,11 @@ GameObject * GameWorld::GetRightAirShipCol()
 	return rightAirShipCol;
 }
 
+vector<GameObject*> GameWorld::GetGameObjects()
+{
+	return gameObjects;
+}
+
 GameWorld::GameWorld(int argc, char** argv)
 {
 	oldTimeSinceStart = 0;
