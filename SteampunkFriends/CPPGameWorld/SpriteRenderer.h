@@ -21,6 +21,8 @@ public:
 	bool FlipX = false;
 	bool FlipY = false;
 	bool Enabled = true;
+	float Angle = 0;
+	Vector2 offset = Vector2();
 
 	void Draw(DrawHandler * drawHandler);
 

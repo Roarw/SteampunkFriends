@@ -23,7 +23,7 @@ public:
 	static void GameLoop();
 	
 	void StartLoop();
-	void DrawTexture(GLuint texture, float x, float y, float z, float sizeW, float sizeH, bool mirrorX = false, bool flipX = false, bool flipY = false, float angle = 0, float rX = 1, float rY = 0, float rZ = 0);
+	void DrawTexture(GLuint texture, float x, float y, float z, float sizeW, float sizeH, bool mirrorX = false, bool flipX = false, bool flipY = false, float angle = 0, float rX = 0, float rY = 0, float rZ = 1);
 	void DrawBox(RectangleF aRect, float R, float G, float B);
 	void BeginDraw();
 	void EndDraw();

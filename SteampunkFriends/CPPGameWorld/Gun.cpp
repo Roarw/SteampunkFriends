@@ -32,6 +32,8 @@ void Gun::PositionCollider()
 
 	transform->X = playerTransform->X;
 	transform->Y = playerTransform->Y;
+	spriter->Angle = 0;
+	spriter->offset = Vector2();
 
 	if (aoe.X < 0)
 	{
@@ -46,11 +48,13 @@ void Gun::PositionCollider()
 	if (aoe.Y < 0)
 	{
 		transform->Y = playerTransform->Y;
-		spriter->FlipY = true;
+		spriter->Angle = -90;
 	}
 	else if(aoe.Y > playerSize.Y)
 	{
 		transform->Y = playerTransform->Y + playerSize.Y/2;
+		spriter->offset = Vector2(playerSize.X, 0);
+		spriter->Angle = 90;
 	}
 
 	collider->Size = aoe;
@@ -87,13 +91,18 @@ void Gun::OnCollisionStay(GameObject * other)
 		// Disable enemy collider ( so it wont get hit more than once)
 		//((Collider *)other->GetComponent("Collider"))->Enabled = false;	
 
+		Vector2 otherPosition = *((Transform *)other->GetComponent("Transform"))->GetPosition() + ((SpriteRenderer *)other->GetComponent("SpriteRenderer"))->Size / 2;
+		Vector2 playerPosition = *((Transform *)player->GetGameObject()->GetComponent("Transform"))->GetPosition() + ((SpriteRenderer *)player->GetGameObject()->GetComponent("SpriteRenderer"))->Size / 2;
+
 		// Vector diving enemy and player
-		Vector2 dividingVector = *((Transform *)other->GetComponent("Transform"))->GetPosition() - *((Transform *)gameObject->GetComponent("Transform"))->GetPosition();
+		Vector2 dividingVector = otherPosition - playerPosition;
 
 		// Percentage of max range
 		float factor = 1 - abs(dividingVector.Length() / AOE.Size.Length());
 
-		Vector2 v = dividingVector.Normalize() * MaxVelocityTransfered * factor;
+		Vector2 v1 = dividingVector.Normalize();
+
+		Vector2 v = v1 * MaxVelocityTransfered * factor;
 
 		((Physics *)other->GetComponent("Physics"))->Velocity += v;
 	}
