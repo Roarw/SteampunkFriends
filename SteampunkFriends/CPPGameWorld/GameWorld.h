@@ -3,16 +3,19 @@
 
 #include "GL\glut.h"
 #include "soil.h"
-#include "GameObject.h"
-#include "Collider.h"
-#include <vector>
+
+#include <iostream>
+#include <vector> 
 #include <set>
-#include "Vector2.h"
-#include <mutex> 
 #include <irrKlang.h>
+#include <algorithm>
+
+#include "Vector2.h"
 #include "Spawner.h"
 
 class DrawHandler;
+class GameObject;
+class Collider;
 
 using namespace std;
 using namespace irrklang;

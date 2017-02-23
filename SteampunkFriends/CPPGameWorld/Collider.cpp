@@ -1,5 +1,6 @@
 #include "Collider.h"
 #include "GameObject.h"
+#include "DrawHandler.h"
 #include "SpriteRenderer.h"
 #include "Transform.h"
 #include "PlayerCollision.h"
@@ -83,8 +84,8 @@ void Collider::Update()
 
 void Collider::Draw(DrawHandler* drawHandler)
 {
- 	if(Enabled)
-		drawHandler->DrawBox(CollisionBox(), 1.0f, 0.0f, 0.0f);
+ 	/*if(Enabled)
+		drawHandler->DrawBox(CollisionBox(), 1.0f, 0.0f, 0.0f);*/
 }
 #pragma endregion
 

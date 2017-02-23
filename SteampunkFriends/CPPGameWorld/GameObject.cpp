@@ -1,15 +1,11 @@
-#include <iostream>
-#include <string>
-#include <map>
-
 #include "GameObject.h"
-#include "IOnCollisionEnter.h"
-#include "IOnCollisionExit.h"
-#include "IOnCollisionStay.h"
-#include "SpriteRenderer.h"
+#include "DrawHandler.h"
+#include "Component.h"
+#include "Collider.h"
 
 using namespace std;
 
+#pragma region METHODS:
 void GameObject::Update()
 {
 	map<string, Component*>::iterator it;
@@ -47,31 +43,6 @@ void GameObject::Draw(DrawHandler * drawHandler)
 		{
 			co->Draw(drawHandler);
 		}
-	}
-
-	//((SpriteRenderer*)components["SpriteRenderer"])->Draw(drawHandler);
-	//((Collider*)components["Collider"])->Draw(drawHandler);
-}
-
-void GameObject::AddComponent(Component * component)
-{
-	components[component->GetName()] = component;
-}
-
-GameWorld * GameObject::GetGameWorld()
-{
-	return gameWorld;
-}
-
-Component* GameObject::GetComponent(std::string aName)
-{
-	if (components.find(aName) == components.end()) 
-	{
-		return 0;
-	}
-	else 
-	{
-		return components[aName];
 	}
 }
 
@@ -125,7 +96,33 @@ void GameObject::OnCollisionEnd(GameObject * other)
 		}
 	}
 }
+#pragma endregion
 
+#pragma region GET/SET:
+void GameObject::AddComponent(Component * component)
+{
+	components[component->GetName()] = component;
+}
+
+GameWorld * GameObject::GetGameWorld()
+{
+	return gameWorld;
+}
+
+Component* GameObject::GetComponent(std::string aName)
+{
+	if (components.find(aName) == components.end()) 
+	{
+		return 0;
+	}
+	else 
+	{
+		return components[aName];
+	}
+}
+#pragma endregion
+
+#pragma region CONSTRUCTORS:
 GameObject::GameObject(GameWorld* aGameWorld)
 {
 	gameWorld = aGameWorld;
@@ -137,6 +134,5 @@ GameObject::~GameObject()
 	{
 		delete itr->second;
 	}
-
-	//gameWorld->DeleteObject(this);
 }
+#pragma endregion

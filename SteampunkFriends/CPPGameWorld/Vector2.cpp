@@ -1,7 +1,6 @@
 #include "Vector2.h"
 #include <math.h>
 
-
 Vector2::Vector2()
 {
 	X = 0;
@@ -26,7 +25,6 @@ void Vector2::Normalize()
 	this->X = this->X / length;
 	this->Y = this->Y / length;
 }
-
 
 Vector2::~Vector2()
 {
