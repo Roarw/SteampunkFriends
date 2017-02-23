@@ -4,10 +4,7 @@
 #include <vector> 
 #include "GameObject.h"
 #include "Vector2.h"
-#include <irrKlang.h>
 #include <algorithm>
-
-using namespace irrklang;
 
 #include "AirShipBuilder.h"
 #include "AirShipColBuilder.h"
@@ -30,6 +27,8 @@ void GameWorld::Update()
 	float gammaTime = timeSinceStart - oldTimeSinceStart;
 	oldTimeSinceStart = timeSinceStart;
 	deltaTime = gammaTime / 1000;
+
+	spawner->Update();
 
 	//Updates:
 	for (int i = 0; i < colliders.size(); i++) 
@@ -67,6 +66,14 @@ void GameWorld::Draw()
 ///Creating all objects.
 void GameWorld::CreateWorld()
 {
+	//Sky
+	GameObject * sky = new GameObject(this);
+	Transform * skyTransform = new Transform(sky, new Vector2(0, 0));
+	SpriteRenderer * skySpriteRenderer = new SpriteRenderer(sky, skyTransform, ".\\sky.png");
+	sky->AddComponent(skyTransform);
+	sky->AddComponent(skySpriteRenderer);
+	AddGameObjectNext(sky);
+
 	//Airship
 	AirShipBuilder airShipBuilder;
 
@@ -78,16 +85,16 @@ void GameWorld::CreateWorld()
 	AirShipColBuilder airShipColBuilder;
 
 	GameObject * airShipCol;
-	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X, airShipPos->Y + 200), new Vector2(50, 350));
+	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X - 25, airShipPos->Y + 225), new Vector2(50, 300), LEFT_WALL);
 	AddGameObjectNext(airShipCol);
 
-	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 50, airShipPos->Y + 550), new Vector2(800, 50));
+	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 25, airShipPos->Y + 545), new Vector2(825, 50), TOP_WALL);
 	AddGameObjectNext(airShipCol);
 
-	GameObject * rightAirShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 850, airShipPos->Y + 200), new Vector2(50, 350));
+	/*GameObject * */rightAirShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 850, airShipPos->Y + 225), new Vector2(50, 300), RIGHT_WALL);
 	AddGameObjectNext(rightAirShipCol);
 
-	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 50, airShipPos->Y + 150), new Vector2(800, 50));
+	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 25, airShipPos->Y + 175), new Vector2(825, 50), BOTTOM_WALL);
 	AddGameObjectNext(airShipCol);
 
 	//Player
@@ -103,9 +110,12 @@ void GameWorld::CreateWorld()
 	//Enemies
 	EnemyBuilder enemyBuilder;
 	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(120, 100), new Vector2(0, 0)));
-	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(300, 200), new Vector2(0, 0)));
+	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(500, 300), new Vector2(500, 299)));
 	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(400, 200), new Vector2(0, 0)));
 	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(600, 200), new Vector2(0, 0)));
+
+	//Spawner
+	spawner = new Spawner(this);
 }
 
 void GameWorld::DeleteObjectNext(GameObject* aObject)
@@ -135,6 +145,17 @@ void GameWorld::DeleteCollider(Collider * c)
 	}
 
 	colliders.erase(std::remove(colliders.begin(), colliders.end(), c), colliders.end());
+}
+
+void GameWorld::PlaySound(char* soundPath)
+{
+	sfxEngine->stopAllSounds();
+	sfxEngine->play2D(soundPath, false);
+}
+
+void GameWorld::PlayMusic(char* musicPath)
+{
+	musicEngine->play2D(musicPath, true);
 }
 
 //Doesn't work as intended yet. Make it like Delete.
@@ -178,14 +199,24 @@ vector<Collider*> GameWorld::GetColliders()
 	return colliders;
 }
 
+GameObject * GameWorld::GetRightAirShipCol()
+{
+	return rightAirShipCol;
+}
+
+vector<GameObject*> GameWorld::GetGameObjects()
+{
+	return gameObjects;
+}
+
 GameWorld::GameWorld(int argc, char** argv)
 {
 	oldTimeSinceStart = 0;
 
 	drawHandler = new DrawHandler(this, argc, argv);
 
-	ISoundEngine * engine = createIrrKlangDevice(); //Creates engine
-    //engine->play2D("death.mp3"); //Play sound
+	sfxEngine = createIrrKlangDevice(); //Creates engine
+	musicEngine = createIrrKlangDevice();
 
 	CreateWorld();
 	drawHandler->StartLoop();

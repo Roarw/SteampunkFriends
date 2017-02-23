@@ -2,34 +2,47 @@
 #include "SpriteRenderer.h"
 
 #pragma region METHODS:
-void Enemy::PlayDead()
+void Enemy::PlayDead(Vector2 direction)
 {
 	((Collider*)gameObject->GetComponent("Collider"))->Enabled = false;
 	dying = true;
+
+	deathDirection = direction;
+
+	gameObject->GetGameWorld()->PlaySound("Yee.wav");
 }
 
 void Enemy::Update()
 {
 	if (!dying) 
 	{
-		Vector2 direction = *target - *transform->GetPosition();
-		direction.Normalize();
+		Vector2 moveDirection = *target - *transform->GetPosition();
+		moveDirection.Normalize();
 
-		direction = direction * speed * gameObject->GetGameWorld()->GetDeltaTime();
+		moveDirection = moveDirection * speed * gameObject->GetGameWorld()->GetDeltaTime();
 
-		transform->Translate(direction);
+		transform->Translate(moveDirection);
 	}
 	else 
 	{
 		if (spriter->Size.X > 5 && spriter->Size.Y > 5) 
 		{
-			float factorX = (spriter->Size.X / 5) * gameObject->GetGameWorld()->GetDeltaTime();
-			float factorY = (spriter->Size.Y / 5) * gameObject->GetGameWorld()->GetDeltaTime();
+			//Shrinking:
+			float factorX = (spriter->Size.X / 4) * gameObject->GetGameWorld()->GetDeltaTime();
+			float factorY = (spriter->Size.Y / 4) * gameObject->GetGameWorld()->GetDeltaTime();
 
 			spriter->Size.X -= factorX;
 			spriter->Size.Y -= factorY;
 
 			transform->Translate(Vector2(factorX / 2, factorY / 2));
+
+			//Falling:
+			if (deathDirection.Y < 0)
+				transform->Translate(Vector2(-30 * gameObject->GetGameWorld()->GetDeltaTime(), -60 * gameObject->GetGameWorld()->GetDeltaTime()));
+			else if (deathDirection.X < 0) 
+				transform->Translate(Vector2(-45 * gameObject->GetGameWorld()->GetDeltaTime(), -15 * gameObject->GetGameWorld()->GetDeltaTime()));
+			else
+				transform->Translate(Vector2(-30 * gameObject->GetGameWorld()->GetDeltaTime(), 5 * gameObject->GetGameWorld()->GetDeltaTime()));
 		}
 		else 
 		{
@@ -54,7 +67,7 @@ Enemy::Enemy(GameObject * gameObject, Transform * transform, SpriteRenderer * sp
 	this->target = target;
 
 	dying = false;
-	speed = 100;
+	speed = 50;
 }
 
 Enemy::~Enemy()

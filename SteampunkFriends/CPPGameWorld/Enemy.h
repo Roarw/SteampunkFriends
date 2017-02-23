@@ -14,10 +14,11 @@ private:
 	Transform * transform;
 	SpriteRenderer * spriter;
 	Vector2 * target;
+	Vector2 deathDirection;
 	bool dying;
 	float speed;
 public:
-	void PlayDead();
+	void PlayDead(Vector2 direction);
 	void Update();
 
 	std::string GetName();
