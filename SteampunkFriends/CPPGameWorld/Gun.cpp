@@ -9,6 +9,9 @@
 void Gun::PositionCollider()
 {
 	// Sizing
+	Vector2 * transform = ((Transform*)gameObject->GetComponent("Transform"))->GetPosition();
+	Vector2 * playerTransform = ((Transform*)player->GetGameObject()->GetComponent("Transform"))->GetPosition();
+	Vector2 playerSize = ((SpriteRenderer*)player->GetGameObject()->GetComponent("SpriteRenderer"))->Size;
 	Vector2 aoe = Vector2();
 
 	float a = player->GetDirection()->X;
@@ -26,10 +29,6 @@ void Gun::PositionCollider()
 		Vector2(((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.X, nSizeY);
 
 	// Gun Positioning
-	Vector2 * transform = ((Transform*)gameObject->GetComponent("Transform"))->GetPosition();
-	Vector2 * playerTransform = ((Transform*)player->GetGameObject()->GetComponent("Transform"))->GetPosition();
-	Vector2 playerSize = ((SpriteRenderer*)player->GetGameObject()->GetComponent("SpriteRenderer"))->Size;
-
 	transform->X = playerTransform->X;
 	transform->Y = playerTransform->Y;
 	spriter->Angle = 0;
