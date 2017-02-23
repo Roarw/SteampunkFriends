@@ -21,6 +21,7 @@ using namespace irrklang;
 #include "Player.h"
 #include "Gun.h"
 #include "Wall.h"
+#include "Enemy.h"
 
 void GameWorld::Update()
 {
@@ -66,78 +67,6 @@ void GameWorld::Draw()
 ///Creating all objects.
 void GameWorld::CreateWorld()
 {
-	//#pragma region HELLO IM AN AIRSHUP, DANK DANK
-
-	//GameObject * airShip = new GameObject(this);
-
-	//Transform * airShipTransform = new Transform(airShip, new Vector2(256, 128));
-	//SpriteRenderer * airShipSpriteRenderer = new SpriteRenderer(airShip, airShipTransform, ".\\Pokeball.png");
-
-	//airShip->AddComponent(airShipTransform);
-	//airShip->AddComponent(airShipSpriteRenderer);
-	//AddGameObjectNext(airShip);
-
-	//Transform * airShipColTransform;
-	//Collider * airShipColCollider;
-	//Wall * airShipColWall;
-
-	//GameObject * airShipColLeft = new GameObject(this);
-	//airShipColTransform = new Transform(airShipColLeft, new Vector2(256-32, 128));
-	//airShipColCollider =
-	//	new Collider
-	//	(
-	//		airShipColLeft,
-	//		airShipColTransform,
-	//		RectangleF(airShipColTransform->GetPosition()->X, airShipColTransform->GetPosition()->Y, 32, 256)
-	//	);
-	//airShipColWall = new Wall(airShipColLeft);
-
-	//airShipColLeft->AddComponent(airShipColTransform);
-	//airShipColLeft->AddComponent(airShipColCollider);
-	//airShipColLeft->AddComponent(airShipColWall);
-	//AddGameObjectNext(airShipColLeft);
-
-	//GameObject * airShipColTop = new GameObject(this);
-	//airShipColTransform = new Transform(airShipColTop, new Vector2(256, 128+256+80));
-	//airShipColCollider =
-	//	new Collider
-	//	(
-	//		airShipColTop,
-	//		airShipColTransform,
-	//		RectangleF(airShipColTransform->GetPosition()->X, airShipColTransform->GetPosition()->Y, 728, 32)
-	//	);
-	//airShipColTop->AddComponent(airShipColTransform);
-	//airShipColTop->AddComponent(airShipColCollider);
-	//AddGameObjectNext(airShipColTop);
-
-	//GameObject * airShipColRight = new GameObject(this);
-	//airShipColTransform = new Transform(airShipColRight, new Vector2(256+728, 128));
-	//airShipColCollider =
-	//	new Collider
-	//	(
-	//		airShipColRight,
-	//		airShipColTransform,
-	//		RectangleF(airShipColTransform->GetPosition()->X + 728, airShipColTransform->GetPosition()->Y, 32, 256)
-	//	);
-	//airShipColRight->AddComponent(airShipColTransform);
-	//airShipColRight->AddComponent(airShipColCollider);
-	//AddGameObjectNext(airShipColRight);
-
-	//GameObject * airShipColBottom = new GameObject(this);
-	//airShipColTransform = new Transform(airShipColBottom, new Vector2(256, 128-32));
-	//airShipColCollider =
-	//	new Collider
-	//	(
-	//		airShipColBottom,
-	//		airShipColTransform,
-	//		RectangleF(airShipColTransform->GetPosition()->X, airShipColTransform->GetPosition()->Y, 728, 32)
-	//	);
-	//airShipColBottom->AddComponent(airShipColTransform);
-	//airShipColBottom->AddComponent(airShipColCollider);
-	//AddGameObjectNext(airShipColBottom);
-
-	//#pragma endregion
-
 	//Airship
 	AirShipBuilder airShipBuilder;
 
