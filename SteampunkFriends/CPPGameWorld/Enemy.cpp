@@ -2,10 +2,12 @@
 #include "SpriteRenderer.h"
 
 #pragma region METHODS:
-void Enemy::PlayDead()
+void Enemy::PlayDead(Vector2 direction)
 {
 	((Collider*)gameObject->GetComponent("Collider"))->Enabled = false;
 	dying = true;
+
+	deathDirection = direction;
 }
 
 void Enemy::Update()
@@ -23,6 +25,7 @@ void Enemy::Update()
 	{
 		if (spriter->Size.X > 5 && spriter->Size.Y > 5) 
 		{
+			//Shrinking:
 			float factorX = (spriter->Size.X / 5) * gameObject->GetGameWorld()->GetDeltaTime();
 			float factorY = (spriter->Size.Y / 5) * gameObject->GetGameWorld()->GetDeltaTime();
 
@@ -30,6 +33,14 @@ void Enemy::Update()
 			spriter->Size.Y -= factorY;
 
 			transform->Translate(Vector2(factorX / 2, factorY / 2));
+
+			//Falling:
+			if (deathDirection.Y < 0)
+				transform->Translate(Vector2(-30 * gameObject->GetGameWorld()->GetDeltaTime(), -60 * gameObject->GetGameWorld()->GetDeltaTime()));
+			else if (deathDirection.X < 0) 
+				transform->Translate(Vector2(-60 * gameObject->GetGameWorld()->GetDeltaTime(), -30 * gameObject->GetGameWorld()->GetDeltaTime()));
+			else
+				transform->Translate(Vector2(-30 * gameObject->GetGameWorld()->GetDeltaTime(), 5 * gameObject->GetGameWorld()->GetDeltaTime()));
 		}
 		else 
 		{
