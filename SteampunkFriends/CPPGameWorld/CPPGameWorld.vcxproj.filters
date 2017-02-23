@@ -155,6 +155,9 @@
     <ClInclude Include="EnemyCollision.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

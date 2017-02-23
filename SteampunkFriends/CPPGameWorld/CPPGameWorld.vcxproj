@@ -173,6 +173,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBuilder.h" />
     <ClInclude Include="EnemyCollision.h" />
+    <ClInclude Include="Enums.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="Gun.h" />
