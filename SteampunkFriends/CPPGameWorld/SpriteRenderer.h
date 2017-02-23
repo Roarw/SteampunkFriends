@@ -17,8 +17,10 @@ private:
 	Transform * transform;
 public:
 	Vector2 Size;
-	std::string GetName();
+
 	void Draw(DrawHandler * drawHandler);
+
+	std::string GetName();
 
 	SpriteRenderer(GameObject * gameObject, Transform * transform, char * texturePath);
 	~SpriteRenderer();

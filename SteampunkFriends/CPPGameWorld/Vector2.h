@@ -8,7 +8,13 @@ public:
 	Vector2();
 	Vector2(float x, float y);
 	float Length();
-	void Normalize();
+	Vector2 Normalize()
+	{
+		this->X = this->X / Length();
+		this->Y = this->Y / Length();
+
+		return *this;
+	}
 	Vector2 operator-(const Vector2 v)
 	{
 		return Vector2(this->X - v.X, this->Y - v.Y);

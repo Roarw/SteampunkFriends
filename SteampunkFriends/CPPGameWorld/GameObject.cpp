@@ -65,15 +65,12 @@ GameWorld * GameObject::GetGameWorld()
 
 Component* GameObject::GetComponent(std::string aName)
 {
-	//if (components[aName] != 0)
-	//	return components[aName];
-	//else
-	//	return 0;
-
-	if (components.find(aName) == components.end()) {
+	if (components.find(aName) == components.end()) 
+	{
 		return 0;
 	}
-	else {
+	else 
+	{
 		return components[aName];
 	}
 }

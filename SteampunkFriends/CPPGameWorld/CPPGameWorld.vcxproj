@@ -152,11 +152,13 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DrawHandler.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyCollision.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerCollision.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Transform.cpp" />
@@ -170,6 +172,7 @@
     <ClInclude Include="DrawHandler.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBuilder.h" />
+    <ClInclude Include="EnemyCollision.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="Gun.h" />
@@ -179,9 +182,11 @@
     <ClInclude Include="IOnCollisionExit.h" />
     <ClInclude Include="IOnCollisionStay.h" />
     <ClInclude Include="IUpdate.h" />
+    <ClInclude Include="MyMath.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBuilder.h" />
+    <ClInclude Include="PlayerCollision.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Wall.h" />

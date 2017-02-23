@@ -3,40 +3,28 @@
 #include "Physics.h"
 #include "Enemy.h"
 
-std::string Gun::GetName()
+#pragma region METHODS:
+void Gun::PositionCollider()
 {
-	return "Gun";
+	Vector2 aoe = Vector2();
+
+	float a = player->GetDirection()->X;
+	float b = player->GetDirection()->Y;
+
+	float nSizeX = a * AOE.Width;
+	float nSizeY = b * AOE.Height;
+
+	aoe = nSizeX != 0 ? Vector2(nSizeX, ((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.Y) :
+		Vector2(((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.X, nSizeY);
+
+	collider->Size = aoe;
 }
 
-void Gun::OnCollisionStay(GameObject * other)
+void Gun::Shoot()
 {
-	// Check if other is enemy (not implemented)
- 	if((Enemy *)other->GetComponent("Enemy") != NULL)
-	{ 
-		// Disable enemy collider ( so it wont get hit more than once)
-		//((Collider *)other->GetComponent("Collider"))->Enabled = false;	
+	PositionCollider();
 
-		// Vector diving enemy and player
-		Vector2 dividingVector = *((Transform *)other->GetComponent("Transform"))->GetPosition() - *((Transform *)gameObject->GetComponent("Transform"))->GetPosition();
-
-		// Percentage of max range
-		float factor = 1 - abs(dividingVector.Length() / AOE.Size.Length());
-
-		Vector2 v = MaxVelocityTransfered * *(player->GetDirection()) * factor;
-
-		((Physics *)other->GetComponent("Physics"))->Velocity += v;
-	}
-}
-
-Gun::Gun(GameObject * g, Player * player) : Component(g)
-{
-	this->player = player;
-
-	collider = new Collider(this->gameObject, (Transform*)this->gameObject->GetComponent("Transform"), AOE);
-
-	collider->Enabled = false;
-
-	this->gameObject->AddComponent(collider);
+	collider->Enabled = true;
 }
 
 void Gun::Update()
@@ -52,29 +40,49 @@ void Gun::Update()
 	}
 }
 
-void Gun::PositionCollider()
+void Gun::OnCollisionStay(GameObject * other)
 {
-	Vector2 aoe = Vector2();
+	// Check if other is enemy (not implemented)
+	if ((Enemy *)other->GetComponent("Enemy") != NULL)
+	{
+		// Disable enemy collider ( so it wont get hit more than once)
+		//((Collider *)other->GetComponent("Collider"))->Enabled = false;	
 
-	float a = player->GetDirection()->X;
-	float b = player->GetDirection()->Y;
+		// Vector diving enemy and player
+		Vector2 dividingVector = *((Transform *)other->GetComponent("Transform"))->GetPosition() - *((Transform *)gameObject->GetComponent("Transform"))->GetPosition();
 
-	float nSizeX = a * AOE.Width;
-	float nSizeY = b * AOE.Height;
+		// Percentage of max range
+		float factor = 1 - abs(dividingVector.Length() / AOE.Size.Length());
 
-	aoe = nSizeX != 0 ? Vector2(nSizeX, ((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.Y) : 
-		Vector2(((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.X, nSizeY);
+		Vector2 v = MaxVelocityTransfered * dividingVector.Normalize() * factor;
 
-	collider->Size = aoe;
+		((Physics *)other->GetComponent("Physics"))->Velocity += v;
+	}
 }
+#pragma endregion
 
-void Gun::Shoot()
+#pragma region GET/SET:
+std::string Gun::GetName()
 {
-	PositionCollider();
+	return "Gun";
+}
+#pragma endregion
 
-	collider->Enabled = true;
+#pragma region CONSTRUCTORS:
+Gun::Gun(GameObject * g, Player * player) : Component(g)
+{
+	this->player = player;
+
+	MaxVelocityTransfered = Vector2(10, 10);
+
+	collider = new Collider(this->gameObject, (Transform*)this->gameObject->GetComponent("Transform"), AOE);
+
+	collider->Enabled = false;
+
+	this->gameObject->AddComponent(collider);
 }
 
 Gun::~Gun()
 {
 }
+#pragma endregion

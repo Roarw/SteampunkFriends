@@ -5,11 +5,7 @@
 #include "Transform.h"
 #include "Vector2.h"
 
-std::string SpriteRenderer::GetName()
-{
-	return "SpriteRenderer";
-}
-
+#pragma region METHODS:
 void SpriteRenderer::Draw(DrawHandler * drawHandler)
 {
 	drawHandler->DrawTexture(texture, 
@@ -19,7 +15,16 @@ void SpriteRenderer::Draw(DrawHandler * drawHandler)
 		Size.X, 
 		Size.Y);
 }
+#pragma endregion
 
+#pragma GET/SET:
+std::string SpriteRenderer::GetName()
+{
+	return "SpriteRenderer";
+}
+#pragma endregion
+
+#pragma CONSTRUCTORS:
 SpriteRenderer::SpriteRenderer(GameObject * gameObject, Transform * transform, char * texturePath) : Component(gameObject)
 {
 	this->transform = transform;
@@ -36,3 +41,4 @@ SpriteRenderer::SpriteRenderer(GameObject * gameObject, Transform * transform, c
 SpriteRenderer::~SpriteRenderer()
 {
 }
+#pragma endregion

@@ -1,6 +1,8 @@
 #include "Player.h"
 #include "GameWorld.h"
+#include "Physics.h"
 
+#pragma region METHODS:
 void Player::Update()
 {
 	Vector2 moveDirection;
@@ -31,10 +33,12 @@ void Player::Update()
 		direction->Y = moveDirection.Y;
 	}
 
-	moveDirection = moveDirection * speed * gameObject->GetGameWorld()->GetDeltaTime();
-	transform->Translate(moveDirection);
+	moveDirection = moveDirection * speed;
+	physics->Velocity = moveDirection;
 }
+#pragma endregion
 
+#pragma region GET/SET:
 std::string Player::GetName()
 {
 	return "Player";
@@ -44,10 +48,13 @@ Vector2 * Player::GetDirection()
 {
 	return direction;
 }
+#pragma endregion
 
-Player::Player(GameObject * gameObject, Transform * transform) : Component(gameObject)
+#pragma region CONSTRUCTORS:
+Player::Player(GameObject * gameObject, Transform * transform, Physics * physics) : Component(gameObject)
 {
 	this->transform = transform;
+	this->physics = physics;
 	direction = new Vector2(0, 0);
 
 	speed = 100;
@@ -57,3 +64,4 @@ Player::~Player()
 {
 	delete direction;
 }
+#pragma endregion

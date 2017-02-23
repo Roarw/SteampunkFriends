@@ -12,16 +12,17 @@ class Enemy :
 {
 private:
 	Transform * transform;
+	SpriteRenderer * spriter;
 	Vector2 * target;
 	bool dying;
 	float speed;
 public:
-	void Update();
 	void PlayDead();
+	void Update();
 
 	std::string GetName();
 
-	Enemy(GameObject * gameObject, Transform * transform, Vector2 * target);
+	Enemy(GameObject * gameObject, Transform * transform, SpriteRenderer * spriter, Vector2 * target);
 	~Enemy();
 };
 #endif // !ENEMY_H
