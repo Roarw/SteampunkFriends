@@ -4,7 +4,7 @@
 #pragma region METHODS:
 void Wall::OnCollisionEnter(GameObject * other)
 {
-	if ((Enemy*)other->GetComponent("Enemy") != NULL)
+	if ((Enemy*)other->GetComponent("Enemy") != NULL && wallSide != RIGHT_WALL)
 	{
 		Vector2 deathDirection;
 
