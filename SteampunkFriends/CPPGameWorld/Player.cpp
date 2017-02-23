@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "GameWorld.h"
+#include "Physics.h"
 
 #pragma region METHODS:
 void Player::Update()
@@ -32,8 +33,8 @@ void Player::Update()
 		direction->Y = moveDirection.Y;
 	}
 
-	moveDirection = moveDirection * speed * gameObject->GetGameWorld()->GetDeltaTime();
-	transform->Translate(moveDirection);
+	moveDirection = moveDirection * speed;
+	physics->Velocity = moveDirection;
 }
 #pragma endregion
 
@@ -50,9 +51,10 @@ Vector2 * Player::GetDirection()
 #pragma endregion
 
 #pragma region CONSTRUCTORS:
-Player::Player(GameObject * gameObject, Transform * transform) : Component(gameObject)
+Player::Player(GameObject * gameObject, Transform * transform, Physics * physics) : Component(gameObject)
 {
 	this->transform = transform;
+	this->physics = physics;
 	direction = new Vector2(0, 0);
 
 	speed = 100;
