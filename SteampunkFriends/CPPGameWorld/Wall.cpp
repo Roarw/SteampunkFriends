@@ -6,7 +6,7 @@ void Wall::OnCollisionEnter(GameObject * other)
 {
 	if ((Enemy*)other->GetComponent("Enemy") != NULL)
 	{
-		((Enemy*)other->GetComponent("Enemy"))->PlayDead();
+		((Enemy*)other->GetComponent("Enemy"))->PlayDead(Vector2(0, 0));
 	}
 }
 #pragma endregion
