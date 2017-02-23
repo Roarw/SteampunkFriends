@@ -12,12 +12,12 @@ void Enemy::Update()
 {
 	if (!dying) 
 	{
-		Vector2 direction = *target - *transform->GetPosition();
-		direction.Normalize();
+		Vector2 moveDirection = *target - *transform->GetPosition();
+		moveDirection.Normalize();
 
-		direction = direction * speed * gameObject->GetGameWorld()->GetDeltaTime();
+		moveDirection = moveDirection * speed * gameObject->GetGameWorld()->GetDeltaTime();
 
-		transform->Translate(direction);
+		transform->Translate(moveDirection);
 	}
 	else 
 	{
@@ -54,7 +54,7 @@ Enemy::Enemy(GameObject * gameObject, Transform * transform, SpriteRenderer * sp
 	this->target = target;
 
 	dying = false;
-	speed = 100;
+	speed = 50;
 }
 
 Enemy::~Enemy()
