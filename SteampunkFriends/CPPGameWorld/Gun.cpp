@@ -54,7 +54,7 @@ void Gun::OnCollisionStay(GameObject * other)
 		// Percentage of max range
 		float factor = 1 - abs(dividingVector.Length() / AOE.Size.Length());
 
-		Vector2 v = MaxVelocityTransfered * *(player->GetDirection()) * factor;
+		Vector2 v = MaxVelocityTransfered * dividingVector.Normalize() * factor;
 
 		((Physics *)other->GetComponent("Physics"))->Velocity += v;
 	}
