@@ -4,10 +4,7 @@
 #include <vector> 
 #include "GameObject.h"
 #include "Vector2.h"
-#include <irrKlang.h>
 #include <algorithm>
-
-using namespace irrklang;
 
 #include "AirShipBuilder.h"
 #include "AirShipColBuilder.h"
@@ -150,6 +147,16 @@ void GameWorld::DeleteCollider(Collider * c)
 	colliders.erase(std::remove(colliders.begin(), colliders.end(), c), colliders.end());
 }
 
+void GameWorld::PlaySound(string soundPath)
+{
+	sfxEngine->play2D("death.mp3", false);
+}
+
+void GameWorld::PlayMusic(string musicPath)
+{
+	musicEngine->play2D("death.mp3", true);
+}
+
 //Doesn't work as intended yet. Make it like Delete.
 void GameWorld::AddGameObjectNext(GameObject * gameObject)
 {
@@ -202,8 +209,10 @@ GameWorld::GameWorld(int argc, char** argv)
 
 	drawHandler = new DrawHandler(this, argc, argv);
 
-	ISoundEngine * engine = createIrrKlangDevice(); //Creates engine
-    //engine->play2D("death.mp3"); //Play sound
+	sfxEngine = createIrrKlangDevice(); //Creates engine
+	musicEngine = createIrrKlangDevice();
+
+	PlayMusic("death.mp3"); //Play sound
 
 	CreateWorld();
 	drawHandler->StartLoop();

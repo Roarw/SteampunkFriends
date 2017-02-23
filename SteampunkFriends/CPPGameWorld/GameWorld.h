@@ -9,11 +9,13 @@
 #include <set>
 #include "Vector2.h"
 #include <mutex> 
+#include <irrKlang.h>
 #include "Spawner.h"
 
 class DrawHandler;
 
 using namespace std;
+using namespace irrklang;
 
 class GameWorld
 {
@@ -27,10 +29,14 @@ private:
 	int oldTimeSinceStart;
 	float deltaTime;
 	set<int> keys;
+	ISoundEngine * sfxEngine;
+	ISoundEngine * musicEngine;
 
 	void DeleteObject(GameObject* aObject);
 	void DeleteCollider(Collider* aCollider);
 public:
+	void PlaySound(string soundPath);
+	void PlayMusic(string musicPath);
 	void Update();
 	void Draw();
 	void CreateWorld();
@@ -43,7 +49,6 @@ public:
 	void AddKey(int i);
 	void DeleteKey(int i);
 	vector<Collider*> GetColliders();
-
 	GameObject * GetRightAirShipCol();
 
 	GameWorld(int argc, char** argv);
