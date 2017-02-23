@@ -73,6 +73,8 @@ Gun::Gun(GameObject * g, Player * player) : Component(g)
 {
 	this->player = player;
 
+	MaxVelocityTransfered = Vector2(10, 10);
+
 	collider = new Collider(this->gameObject, (Transform*)this->gameObject->GetComponent("Transform"), AOE);
 
 	collider->Enabled = false;

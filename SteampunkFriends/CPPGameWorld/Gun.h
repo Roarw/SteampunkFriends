@@ -11,7 +11,7 @@ class Gun :
 {
 private:
 	int Cooldown;
-	Vector2 MaxVelocityTransfered = Vector2(200, 200);
+	Vector2 MaxVelocityTransfered;
 	RectangleF AOE = RectangleF(0, 0, 400, 400);
 	Collider * collider;
 	Player * player;

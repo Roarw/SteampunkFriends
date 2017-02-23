@@ -17,7 +17,7 @@ void Enemy::Update()
 
 		direction = direction * speed * gameObject->GetGameWorld()->GetDeltaTime();
 
-		transform->Translate(direction);
+		//transform->Translate(direction);
 	}
 	else 
 	{
