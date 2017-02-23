@@ -158,6 +158,9 @@
     <ClInclude Include="EnemyCollision.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
     <ClInclude Include="Spawner.h">
       <Filter>Header Files</Filter>
     </ClInclude>

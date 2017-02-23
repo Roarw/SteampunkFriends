@@ -11,7 +11,7 @@
 class AirShipColBuilder
 {
 public:
-	GameObject * Build(GameWorld * aGameWorld, Vector2 * aPosition, Vector2 * aSize)
+	GameObject * Build(GameWorld * aGameWorld, Vector2 * aPosition, Vector2 * aSize, SIDEWALL wallSide)
 	{
 #pragma region HELLO IM AN AIRSHUP, DANK DANK
 
@@ -24,7 +24,7 @@ public:
 				airShipColTransform,
 				RectangleF(aPosition->X, aPosition->Y, aSize->X, aSize->Y)
 			);
-		Wall * airShipColWall = new Wall(airShipCol);
+		Wall * airShipColWall = new Wall(airShipCol, wallSide);
 
 		airShipCol->AddComponent(airShipColTransform);
 		airShipCol->AddComponent(airShipColCollider);

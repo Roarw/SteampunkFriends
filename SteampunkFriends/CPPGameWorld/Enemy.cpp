@@ -26,8 +26,8 @@ void Enemy::Update()
 		if (spriter->Size.X > 5 && spriter->Size.Y > 5) 
 		{
 			//Shrinking:
-			float factorX = (spriter->Size.X / 5) * gameObject->GetGameWorld()->GetDeltaTime();
-			float factorY = (spriter->Size.Y / 5) * gameObject->GetGameWorld()->GetDeltaTime();
+			float factorX = (spriter->Size.X / 4) * gameObject->GetGameWorld()->GetDeltaTime();
+			float factorY = (spriter->Size.Y / 4) * gameObject->GetGameWorld()->GetDeltaTime();
 
 			spriter->Size.X -= factorX;
 			spriter->Size.Y -= factorY;
@@ -38,7 +38,7 @@ void Enemy::Update()
 			if (deathDirection.Y < 0)
 				transform->Translate(Vector2(-30 * gameObject->GetGameWorld()->GetDeltaTime(), -60 * gameObject->GetGameWorld()->GetDeltaTime()));
 			else if (deathDirection.X < 0) 
-				transform->Translate(Vector2(-60 * gameObject->GetGameWorld()->GetDeltaTime(), -30 * gameObject->GetGameWorld()->GetDeltaTime()));
+				transform->Translate(Vector2(-45 * gameObject->GetGameWorld()->GetDeltaTime(), -15 * gameObject->GetGameWorld()->GetDeltaTime()));
 			else
 				transform->Translate(Vector2(-30 * gameObject->GetGameWorld()->GetDeltaTime(), 5 * gameObject->GetGameWorld()->GetDeltaTime()));
 		}
