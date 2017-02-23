@@ -18,8 +18,11 @@ private:
 	static float * red;
 	static float * green;
 	static float * blue;
-	static float * counter;
+	static bool * redUp;
+	static bool * greenUp;
+	static bool * blueUp;
 public:
+	static void Disco();
 	static void Reshape(int width, int height);
 	static void KeyboardPress(unsigned char key, int x, int y);
 	static void KeyboardRelease(unsigned char key, int x, int y);

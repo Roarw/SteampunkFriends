@@ -1,12 +1,15 @@
 #include "DrawHandler.h"
 #include "GameWorld.h"
+#include "MyMath.h"
 
 GameWorld * DrawHandler::gameWorld;
 
 float * DrawHandler::red;
 float * DrawHandler::green;
 float * DrawHandler::blue;
-float * DrawHandler::counter;
+bool * DrawHandler::redUp;
+bool * DrawHandler::greenUp;
+bool * DrawHandler::blueUp;
 
 void DrawHandler::InitOpenGL()
 {
@@ -22,6 +25,45 @@ void DrawHandler::InitOpenGL()
 	glDepthFunc(GL_LEQUAL); 
 	//Specifies how colors/textures are interpolized on surfaces
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); 
+}
+
+void DrawHandler::Disco()
+{
+	//Disco speed:
+	float multiplier = 200.0f;
+	//Min value:
+	float minValue = 155.0f;
+	//More:
+	float valueChange = gameWorld->GetDeltaTime() * multiplier;
+
+	if (*redUp)
+		*red += valueChange;
+	else
+		*red -= valueChange;
+
+	if (*greenUp)
+		*green += valueChange;
+	else
+		*green -= valueChange;
+
+	if (*blueUp)
+		*blue += valueChange;
+	else
+		*blue -= valueChange;
+
+	if (*red > 255.0f)
+		*redUp = false;
+	if (*green > 255.0f)
+		*greenUp = false;
+	if (*blue > 255.0f)
+		*blueUp = false;
+
+	if (*red < minValue)
+		*redUp = true;
+	if (*green < minValue)
+		*greenUp = true;
+	if (*blue < minValue)
+		*blueUp = true;
 }
 
 void DrawHandler::Reshape(int width, int height)
@@ -75,16 +117,7 @@ void DrawHandler::GameLoop()
 	gameWorld->Update();
 	gameWorld->Draw();
 
-	if (*counter >= numeric_limits<float>::max() - 1) 
-	{
-		counter = new float(0.0f);
-	}
-	else 
-	{
-		*counter += gameWorld->GetDeltaTime();
-	}
-
-
+	Disco();
 }
 
 void DrawHandler::StartLoop()
@@ -100,7 +133,7 @@ void DrawHandler::DrawTexture(GLuint texture, float x, float y, float z, float s
 
 	glEnable(GL_TEXTURE_2D);
 
-	glColor3f(*red, *green, *blue);
+	glColor3f(*red / 256.0f, *green / 256.0f, *blue / 256.0f);
 
 	glBindTexture(GL_TEXTURE_2D, texture); //Bind texture for usage
 
@@ -205,10 +238,12 @@ DrawHandler::DrawHandler(GameWorld * gameWorld, int argc, char** argv)
 	//Going fullscreen!
 	//glutFullScreen();
 
-	red = new float(1.0f);
-	green = new float(1.0f);
-	blue = new float(1.0f);
-	counter = new float(numeric_limits<float>::max() - 1);
+	red = new float(255.0f);
+	green = new float(155.0f);
+	blue = new float(205.0f);
+	redUp = new bool(true);
+	greenUp = new bool(true);
+	blueUp = new bool(true);
 
 	InitOpenGL();
 	glutReshapeFunc(this->Reshape);
@@ -231,4 +266,10 @@ DrawHandler::DrawHandler(GameWorld * gameWorld, int argc, char** argv)
 
 DrawHandler::~DrawHandler()
 {
+	delete red;
+	delete green;
+	delete blue;
+	delete redUp;
+	delete greenUp;
+	delete blueUp;
 }
