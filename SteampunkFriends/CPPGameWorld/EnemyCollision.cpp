@@ -12,10 +12,10 @@ void EnemyCollision::Update()
 
 	Vector2 thisSize = ((SpriteRenderer*)gameObject->GetComponent("SpriteRenderer"))->Size;
 
-	if (thisPosition->X + thisSize.X >
+	if (thisPosition->X + thisSize.X >=
 		rightWallPosition->X - 1) 
 	{
-		thisPosition->X = rightWallPosition->X - thisSize.X - 1;
+		thisPosition->X = rightWallPosition->X - thisSize.X - 2;
 		((Physics*)gameObject->GetComponent("Physics"))->Velocity.X = 0;
 	}
 }
