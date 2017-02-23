@@ -20,6 +20,14 @@ void Enemy::Update()
 	if (!dying) 
 	{
 		Vector2 moveDirection = *target - *transform->GetPosition();
+
+		if (moveDirection.Length() < 5)
+		{
+			delete target;
+			target = new Vector2(200 + std::rand() % 600, 200 + std::rand() % 200);
+			moveDirection = *target - *transform->GetPosition();
+		}
+
 		moveDirection.Normalize();
 
 		moveDirection = moveDirection * speed * gameObject->GetGameWorld()->GetDeltaTime();
