@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "SpriteRenderer.h"
+#include "Physics.h"
 
 #pragma region METHODS:
 void EnemyCollision::Update()
@@ -15,6 +16,7 @@ void EnemyCollision::Update()
 		rightWallPosition->X - 1) 
 	{
 		thisPosition->X = rightWallPosition->X - thisSize.X - 1;
+		((Physics*)gameObject->GetComponent("Physics"))->Velocity.X = 0;
 	}
 }
 #pragma endregion
