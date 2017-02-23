@@ -67,7 +67,7 @@ Enemy::Enemy(GameObject * gameObject, Transform * transform, SpriteRenderer * sp
 	this->target = target;
 
 	dying = false;
-	speed = 50;
+	speed = 55 + (rand() % 40);
 }
 
 Enemy::~Enemy()

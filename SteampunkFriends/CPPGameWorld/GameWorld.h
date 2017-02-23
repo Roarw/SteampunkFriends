@@ -31,6 +31,8 @@ private:
 	set<int> keys;
 	ISoundEngine * sfxEngine;
 	ISoundEngine * musicEngine;
+	GameObject * sky;
+	GameObject * airship;
 
 	void DeleteObject(GameObject* aObject);
 	void DeleteCollider(Collider* aCollider);
