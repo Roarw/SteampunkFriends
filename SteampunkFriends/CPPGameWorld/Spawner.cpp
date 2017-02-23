@@ -5,7 +5,7 @@
 void Spawner::Spawn()
 {
 	EnemyBuilder enemyBuilder;
-	gameWorld->AddGameObjectNext(enemyBuilder.Build(gameWorld, gameWorld->GetRightAirShipCol(), new Vector2(900, 250), new Vector2(200, 200)));
+	gameWorld->AddGameObjectNext(enemyBuilder.Build(gameWorld, gameWorld->GetRightAirShipCol(), new Vector2(900, 250), new Vector2(200 + std::rand() % 600, 200 + std::rand() % 200)));
 }
 
 Spawner::Spawner(GameWorld * aGameWorld)
@@ -27,7 +27,10 @@ void Spawner::Update()
 	}
 	else
 	{
-		Spawn();
-		timer = 2;
+		if (gameWorld->GetGameObjects().size() < 20)
+		{
+			Spawn();
+			timer = 2;
+		}
 	}
 }
