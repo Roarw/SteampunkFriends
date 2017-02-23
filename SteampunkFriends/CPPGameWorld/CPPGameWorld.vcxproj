@@ -163,6 +163,8 @@
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AirShipBuilder.h" />
+    <ClInclude Include="AirShipColBuilder.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="DrawHandler.h" />
