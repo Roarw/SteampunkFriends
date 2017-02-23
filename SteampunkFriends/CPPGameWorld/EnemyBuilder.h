@@ -19,7 +19,7 @@ public:
 		Transform * transform = new Transform(go, position);
 		SpriteRenderer * spriteRenderer = new SpriteRenderer(go, transform, ".\\Enemy.png");
 		Collider * collider = new Collider(go, transform, spriteRenderer);
-		Enemy * enemy = new Enemy(go, transform, target);
+		Enemy * enemy = new Enemy(go, transform, spriteRenderer, target);
 		Physics * physics = new Physics(go, transform);
 		go->AddComponent(transform);
 		go->AddComponent(spriteRenderer);

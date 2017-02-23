@@ -18,6 +18,6 @@ void Wall::OnCollisionEnter(GameObject * other)
 {
 	if ((Enemy*)other->GetComponent("Enemy") != NULL)
 	{
-		gameObject->GetGameWorld()->DeleteObjectNext(other);
+		((Enemy*)other->GetComponent("Enemy"))->PlayDead();
 	}
 }
