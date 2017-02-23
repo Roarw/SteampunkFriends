@@ -1,10 +1,7 @@
 #include "GameWorld.h"
 #include "DrawHandler.h"
-#include <iostream>
-#include <vector> 
 #include "GameObject.h"
-#include "Vector2.h"
-#include <algorithm>
+#include "Collider.h"
 
 #include "AirShipBuilder.h"
 #include "AirShipColBuilder.h"
@@ -12,19 +9,30 @@
 #include "EnemyBuilder.h"
 #include "GunBuilder.h"
 
-//Temp:
 #include "SpriteRenderer.h"
 #include "Transform.h"
 #include "Player.h"
-#include "Gun.h"
-#include "Wall.h"
-#include "Enemy.h"
 
+//Method for sorting GameObjects:
 bool sortByY(GameObject * go, GameObject * other) 
 { 
 	int goY = ((Transform*)go->GetComponent("Transform"))->GetPosition()->Y;
 	int otherY = ((Transform*)other->GetComponent("Transform"))->GetPosition()->Y;
 	return goY > otherY;	
+}
+
+#pragma region METHODS:
+void GameWorld::PlaySound(char* soundPath, float volume)
+{
+	sfxEngine->setSoundVolume(volume);
+	sfxEngine->play2D(soundPath, false);
+}
+
+void GameWorld::PlayMusic(char* musicPath, float volume)
+{
+	sfxEngine->stopAllSounds();
+	sfxEngine->setSoundVolume(volume);
+	musicEngine->play2D(musicPath, true);
 }
 
 void GameWorld::Update()
@@ -118,12 +126,9 @@ void GameWorld::CreateWorld()
 	//Spawner
 	spawner = new Spawner(this);
 }
+#pragma endregion
 
-void GameWorld::DeleteObjectNext(GameObject* aObject)
-{
-	objectsToDelete.push_back(aObject);
-}
-
+#pragma region GET/SET:
 void GameWorld::DeleteObject(GameObject* aObject)
 {
 	gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), aObject), gameObjects.end());
@@ -148,20 +153,11 @@ void GameWorld::DeleteCollider(Collider * c)
 	colliders.erase(std::remove(colliders.begin(), colliders.end(), c), colliders.end());
 }
 
-void GameWorld::PlaySound(char* soundPath, float volume)
+void GameWorld::DeleteObjectNext(GameObject* aObject)
 {
-	sfxEngine->setSoundVolume(volume);
-	sfxEngine->play2D(soundPath, false);
+	objectsToDelete.push_back(aObject);
 }
 
-void GameWorld::PlayMusic(char* musicPath, float volume)
-{
-	sfxEngine->stopAllSounds();
-	sfxEngine->setSoundVolume(volume);
-	musicEngine->play2D(musicPath, true);
-}
-
-//Doesn't work as intended yet. Make it like Delete.
 void GameWorld::AddGameObjectNext(GameObject * gameObject)
 {
 	gameObjects.push_back(gameObject);
@@ -211,7 +207,9 @@ vector<GameObject*> GameWorld::GetGameObjects()
 {
 	return gameObjects;
 }
+#pragma endregion
 
+#pragma region CONSTRUCTORS:
 GameWorld::GameWorld(int argc, char** argv)
 {
 	oldTimeSinceStart = 0;
@@ -237,3 +235,4 @@ GameWorld::~GameWorld()
 		delete gameObjects[i];
 	}
 }
+#pragma endregion

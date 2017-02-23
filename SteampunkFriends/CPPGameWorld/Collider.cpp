@@ -1,5 +1,6 @@
 #include "Collider.h"
 #include "GameObject.h"
+#include "DrawHandler.h"
 #include "SpriteRenderer.h"
 #include "Transform.h"
 #include "PlayerCollision.h"

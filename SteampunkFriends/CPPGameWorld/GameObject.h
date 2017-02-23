@@ -14,8 +14,9 @@
 #include "IOnCollisionStay.h"
 
 #include "GameWorld.h"
-#include "DrawHandler.h"
-#include "Component.h"
+
+class Component;
+class Collider;
 
 class GameObject : public IUpdate, public IDraw
 {

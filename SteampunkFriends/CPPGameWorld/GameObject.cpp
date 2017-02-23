@@ -1,5 +1,7 @@
 #include "GameObject.h"
 #include "DrawHandler.h"
+#include "Component.h"
+#include "Collider.h"
 
 using namespace std;
 
