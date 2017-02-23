@@ -76,7 +76,7 @@
       <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="EnemyCollision.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +153,7 @@
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="EnemyCollision.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
