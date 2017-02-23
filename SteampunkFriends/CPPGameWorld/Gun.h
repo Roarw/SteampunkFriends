@@ -18,7 +18,7 @@ class Gun :
 private:
 	int Cooldown;
 	float MaxVelocityTransfered;
-	RectangleF AOE = RectangleF(0, 0, 400, 400);
+	RectangleF AOE = RectangleF(0, 0, 170, 170);
 	Collider * collider;
 	Player * player;
 	SpriteRenderer * spriter;

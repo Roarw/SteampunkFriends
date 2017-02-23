@@ -30,7 +30,7 @@ void Spawner::Update()
 		if (gameWorld->GetGameObjects().size() < 30)
 		{
 			Spawn();
-			timer = 2;
+			timer = 2.5f;
 		}
 	}
 }
