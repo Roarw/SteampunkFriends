@@ -17,6 +17,11 @@ void Gun::PositionCollider()
 	aoe = nSizeX != 0 ? Vector2(nSizeX, ((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.Y) :
 		Vector2(((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.X, nSizeY);
 
+		Vector2 v = MaxVelocityTransfered * dividingVector.Normalize() * factor;
+
+		((Physics *)other->GetComponent("Physics"))->Velocity += v;
+	}
+}
 	collider->Size = aoe;
 }
 
