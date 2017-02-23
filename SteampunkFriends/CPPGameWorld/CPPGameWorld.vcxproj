@@ -160,6 +160,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerCollision.cpp" />
     <ClCompile Include="Program.cpp" />
+    <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Wall.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBuilder.h" />
     <ClInclude Include="PlayerCollision.h" />
+    <ClInclude Include="Spawner.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Wall.h" />

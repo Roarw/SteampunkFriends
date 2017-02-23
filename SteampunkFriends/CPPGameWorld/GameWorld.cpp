@@ -31,6 +31,8 @@ void GameWorld::Update()
 	oldTimeSinceStart = timeSinceStart;
 	deltaTime = gammaTime / 1000;
 
+	spawner->Update();
+
 	//Updates:
 	for (int i = 0; i < colliders.size(); i++) 
 	{
@@ -92,7 +94,7 @@ void GameWorld::CreateWorld()
 	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 25, airShipPos->Y + 525), new Vector2(825, 50));
 	AddGameObjectNext(airShipCol);
 
-	GameObject * rightAirShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 850, airShipPos->Y + 225), new Vector2(50, 300));
+	/*GameObject * */rightAirShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 850, airShipPos->Y + 225), new Vector2(50, 300));
 	AddGameObjectNext(rightAirShipCol);
 
 	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 25, airShipPos->Y + 175), new Vector2(825, 50));
@@ -114,6 +116,9 @@ void GameWorld::CreateWorld()
 	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(500, 300), new Vector2(500, 299)));
 	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(400, 200), new Vector2(0, 0)));
 	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(600, 200), new Vector2(0, 0)));
+
+	//Spawner
+	spawner = new Spawner(this);
 }
 
 void GameWorld::DeleteObjectNext(GameObject* aObject)
@@ -184,6 +189,11 @@ void GameWorld::DeleteKey(int i)
 vector<Collider*> GameWorld::GetColliders()
 {
 	return colliders;
+}
+
+GameObject * GameWorld::GetRightAirShipCol()
+{
+	return rightAirShipCol;
 }
 
 GameWorld::GameWorld(int argc, char** argv)

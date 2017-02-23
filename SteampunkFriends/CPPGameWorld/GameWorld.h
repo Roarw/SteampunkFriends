@@ -9,6 +9,7 @@
 #include <set>
 #include "Vector2.h"
 #include <mutex> 
+#include "Spawner.h"
 
 class DrawHandler;
 
@@ -18,6 +19,8 @@ class GameWorld
 {
 private:
 	DrawHandler * drawHandler;
+	Spawner * spawner;
+	GameObject * rightAirShipCol;
 	vector<GameObject*> gameObjects;
 	vector<Collider *> colliders;
 	vector<GameObject*> objectsToDelete;
@@ -40,6 +43,8 @@ public:
 	void AddKey(int i);
 	void DeleteKey(int i);
 	vector<Collider*> GetColliders();
+
+	GameObject * GetRightAirShipCol();
 
 	GameWorld(int argc, char** argv);
 	~GameWorld();
