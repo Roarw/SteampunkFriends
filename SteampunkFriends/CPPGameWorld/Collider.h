@@ -15,19 +15,23 @@ class Collider :
 	public Component, public IDraw
 {
 private:
-	void CheckCollision();
 	SpriteRenderer * spriter;
 	Transform * transform;
+
+	void CheckCollision();
 public:
 	vector<Collider*> collisions;
 	Vector2 Size;
 	bool Enabled = true;
-	std::string GetName();
-	Collider(GameObject * g, Transform * transform, RectangleF sizeRect);
-	Collider(GameObject * g, Transform * transform, SpriteRenderer * spriteRenderer);
+
 	void Update();
 	void Draw(DrawHandler* drawHandler);
+
+	std::string GetName();
 	RectangleF CollisionBox();
+
+	Collider(GameObject * g, Transform * transform, RectangleF sizeRect);
+	Collider(GameObject * g, Transform * transform, SpriteRenderer * spriteRenderer);
 	~Collider();
 };
 #endif // !COLLIDER_H

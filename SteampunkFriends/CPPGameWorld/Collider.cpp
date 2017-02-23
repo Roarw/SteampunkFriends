@@ -9,29 +9,15 @@
 
 using namespace std;
 
-std::string Collider::GetName()
-{
-	return "Collider";
-}
-
-Collider::Collider(GameObject * gameObject, Transform * transform, RectangleF sizeRect) : Component(gameObject)
-{
-	this->Size = sizeRect.Size;
-	this->transform = transform;
-}
-
-Collider::Collider(GameObject * gameObject, Transform * transform, SpriteRenderer * spriteRenderer) : Component(gameObject)
-{
-	this->spriter = spriteRenderer;
-	this->Size = spriter->Size;
-	this->transform = transform;
-}
-
 void Collider::CheckCollision()
 {
+
+#pragma region VARIABLES:
 	vector<Collider *> colliders = gameObject->GetGameWorld()->GetColliders();
 	vector<Collider *>::iterator it;
+#pragma endregion
 
+#pragma region METHODS:
 	// Loop through collisionboxes 
 	for (Collider * c : colliders)
 	{
@@ -98,6 +84,13 @@ void Collider::Draw(DrawHandler* drawHandler)
  	if(Enabled)
 		drawHandler->DrawBox(CollisionBox(), 1.0f, 0.0f, 0.0f);
 }
+#pragma endregion
+
+#pragma region GET/SET:
+std::string Collider::GetName()
+{
+	return "Collider";
+}
 
 RectangleF Collider::CollisionBox()
 {
@@ -113,7 +106,23 @@ RectangleF Collider::CollisionBox()
 		abs(Size.Y)
 	);
 }
+#pragma endregion
+
+#pragma region CONSTRUCTORS:
+Collider::Collider(GameObject * gameObject, Transform * transform, RectangleF sizeRect) : Component(gameObject)
+{
+	this->Size = sizeRect.Size;
+	this->transform = transform;
+}
+
+Collider::Collider(GameObject * gameObject, Transform * transform, SpriteRenderer * spriteRenderer) : Component(gameObject)
+{
+	this->spriter = spriteRenderer;
+	this->Size = spriter->Size;
+	this->transform = transform;
+}
 
 Collider::~Collider()
 {
 }
+#pragma endregion

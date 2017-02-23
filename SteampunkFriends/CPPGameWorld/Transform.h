@@ -10,10 +10,10 @@ class Transform :
 private:
 	Vector2 * position;
 public:
-	std::string GetName();
 	void Translate(Vector2 translation);
 
 	Vector2 * GetPosition();
+	std::string GetName();
 
 	Transform(GameObject * gameObject, Vector2 * position);
 	~Transform();

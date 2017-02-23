@@ -17,8 +17,8 @@ private:
 	bool dying;
 	float speed;
 public:
-	void Update();
 	void PlayDead();
+	void Update();
 
 	std::string GetName();
 
