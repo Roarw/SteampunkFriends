@@ -152,6 +152,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DrawHandler.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyCollision.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameWorld.cpp" />
     <ClCompile Include="Gun.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="DrawHandler.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBuilder.h" />
+    <ClInclude Include="EnemyCollision.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="Gun.h" />

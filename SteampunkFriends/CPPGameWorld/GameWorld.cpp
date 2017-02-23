@@ -84,15 +84,15 @@ void GameWorld::CreateWorld()
 	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X, airShipPos->Y + 256 + 80), new Vector2(728, 32));
 	AddGameObjectNext(airShipCol);
 
-	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 728, airShipPos->Y), new Vector2(32, 256));
-	AddGameObjectNext(airShipCol);
+	GameObject * rightAirShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 728, airShipPos->Y), new Vector2(32, 256));
+	AddGameObjectNext(rightAirShipCol);
 
 	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X, airShipPos->Y - 32), new Vector2(728, 32));
 	AddGameObjectNext(airShipCol);
 
 	//Player
 	PlayerBuilder playerBuilder;
-	GameObject * player = playerBuilder.Build(this, new Vector2());
+	GameObject * player = playerBuilder.Build(this, new Vector2(300, 200));
 	AddGameObjectNext(player);
 
 	//Gun
@@ -102,10 +102,10 @@ void GameWorld::CreateWorld()
 
 	//Enemies
 	EnemyBuilder enemyBuilder;
-	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(100, 100), new Vector2(0, 0)));
-	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(200, 200), new Vector2(0, 0)));
-	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(400, 300), new Vector2(100, 100)));
-	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(600, 300), new Vector2(100, 100)));
+	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(100, 100), new Vector2(0, 0)));
+	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(200, 200), new Vector2(0, 0)));
+	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(400, 300), new Vector2(100, 100)));
+	AddGameObjectNext(enemyBuilder.Build(this, rightAirShipCol, new Vector2(600, 300), new Vector2(100, 100)));
 }
 
 void GameWorld::DeleteObjectNext(GameObject* aObject)
