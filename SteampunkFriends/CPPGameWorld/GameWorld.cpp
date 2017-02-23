@@ -70,7 +70,7 @@ void GameWorld::CreateWorld()
 	//Airship
 	AirShipBuilder airShipBuilder;
 
-	Vector2 * airShipPos = new Vector2(256, 128);
+	Vector2 * airShipPos = new Vector2(100, -50);
 	GameObject * airShip = airShipBuilder.Build(this, airShipPos);
 	AddGameObjectNext(airShip);
 
@@ -78,16 +78,16 @@ void GameWorld::CreateWorld()
 	AirShipColBuilder airShipColBuilder;
 
 	GameObject * airShipCol;
-	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X - 32, airShipPos->Y), new Vector2(32, 256));
+	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X, airShipPos->Y + 200), new Vector2(50, 350));
 	AddGameObjectNext(airShipCol);
 
-	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X, airShipPos->Y + 256 + 80), new Vector2(728, 32));
+	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 50, airShipPos->Y + 550), new Vector2(800, 50));
 	AddGameObjectNext(airShipCol);
 
-	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 728, airShipPos->Y), new Vector2(32, 256));
+	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 850, airShipPos->Y + 200), new Vector2(50, 350));
 	AddGameObjectNext(airShipCol);
 
-	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X, airShipPos->Y - 32), new Vector2(728, 32));
+	airShipCol = airShipColBuilder.Build(this, new Vector2(airShipPos->X + 50, airShipPos->Y + 150), new Vector2(800, 50));
 	AddGameObjectNext(airShipCol);
 
 	//Player
@@ -102,10 +102,10 @@ void GameWorld::CreateWorld()
 
 	//Enemies
 	EnemyBuilder enemyBuilder;
-	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(100, 100), new Vector2(0, 0)));
-	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(200, 200), new Vector2(0, 0)));
-	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(400, 300), new Vector2(100, 100)));
-	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(600, 300), new Vector2(100, 100)));
+	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(250, 200), new Vector2(0, 0)));
+	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(300, 200), new Vector2(0, 0)));
+	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(400, 200), new Vector2(0, 0)));
+	AddGameObjectNext(enemyBuilder.Build(this, new Vector2(600, 200), new Vector2(0, 0)));
 }
 
 void GameWorld::DeleteObjectNext(GameObject* aObject)

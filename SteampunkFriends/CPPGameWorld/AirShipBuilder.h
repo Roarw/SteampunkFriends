@@ -17,7 +17,7 @@ public:
 		GameObject * airShip = new GameObject(gameWorld);
 
 		Transform * airShipTransform = new Transform(airShip, position);
-		SpriteRenderer * airShipSpriteRenderer = new SpriteRenderer(airShip, airShipTransform, ".\\Pokeball.png");
+		SpriteRenderer * airShipSpriteRenderer = new SpriteRenderer(airShip, airShipTransform, ".\\airship.png");
 
 		airShip->AddComponent(airShipTransform);
 		airShip->AddComponent(airShipSpriteRenderer);

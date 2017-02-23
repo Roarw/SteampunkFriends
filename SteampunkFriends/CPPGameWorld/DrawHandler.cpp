@@ -169,7 +169,7 @@ DrawHandler::DrawHandler(GameWorld * gameWorld, int argc, char** argv)
 	//Initialize glut display mode with rgb and alpha colors and Depth
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
 	//Set window size
-	glutInitWindowSize(1200, 600); 
+	glutInitWindowSize(1280, 900); 
 	//Set window position
 	glutInitWindowPosition(0, 0); 
 	//Create GLUT OpenGL Window
@@ -184,6 +184,10 @@ DrawHandler::DrawHandler(GameWorld * gameWorld, int argc, char** argv)
 	glutKeyboardUpFunc(this->KeyboardRelease);
 	glutSpecialFunc(this->KeyPress);
 	glutSpecialUpFunc(this->KeyRelease);
+
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	glClearColor(0.0, 0.0, 0.0, 0.0);
 
 	//Enable texture mapping
 	glEnable(GL_TEXTURE_2D); 
