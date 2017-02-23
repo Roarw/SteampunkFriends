@@ -6,6 +6,7 @@
 #include "RectangleF.h"
 #include <vector>
 #include <stack>
+#include "PlayerCollision.h"
 
 using namespace std;
 
@@ -26,11 +27,16 @@ void Collider::CheckCollision()
 			// Add simple collisioncheck before this if needed for performance 
 			if(c->Enabled)
 			{ 
+				//Making sure players can't go through walls.
+				if((PlayerCollision*)gameObject->GetComponent("PlayerCollision") != NULL)
+				{
+					((PlayerCollision*)gameObject->GetComponent("PlayerCollision"))->CheckCollision(c);
+				}
+
 				if (CollisionBox().Intersects(c->CollisionBox()))
 				{
 					// Check for other collider in collisions
 					vector<Collider *>::iterator index = find(collisions.begin(), collisions.end(), c);
-
 
 					if (index != collisions.end())
 					{

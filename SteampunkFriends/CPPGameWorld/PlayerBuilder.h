@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "Gun.h"
 #include "Physics.h"
+#include "PlayerCollision.h"
 
 class PlayerBuilder 
 {
@@ -22,11 +23,13 @@ public:
 		Collider * collider = new Collider(go, transform, spriteRenderer);
 		Physics * physics = new Physics(go, transform);
 		Player * player = new Player(go, transform, physics);
+		PlayerCollision * playerCollision = new PlayerCollision(go, transform, collider, physics);
 		go->AddComponent(transform);
 		go->AddComponent(spriteRenderer);
 		go->AddComponent(collider);
 		go->AddComponent(physics);
 		go->AddComponent(player);
+		go->AddComponent(playerCollision);
 
 		return go;
 	}

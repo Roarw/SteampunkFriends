@@ -1,6 +1,7 @@
 #ifndef PLAYERCOLLISION_H
 #define PLAYERCOLLISION_H
 
+#include "Transform.h"
 #include "Component.h"
 #include "Collider.h"
 #include "Physics.h"
@@ -9,14 +10,17 @@ class PlayerCollision :
 	public Component
 {
 private:
+	Transform * transform;
 	Collider * collider;
 	Physics * physics;
 
-	bool CollidingAt(Collider * other);
+	bool CollidingAt(Collider * other, Vector2 velocity);
 public:
 	void CheckCollision(Collider * other);
 
-	PlayerCollision(GameObject * gameObject, Collider * collider, Physics * physics);
+	std::string GetName();
+
+	PlayerCollision(GameObject * gameObject, Transform * transform, Collider * collider, Physics * physics);
 	~PlayerCollision();
 };
 #endif // !PLAYERCOLLISION_H

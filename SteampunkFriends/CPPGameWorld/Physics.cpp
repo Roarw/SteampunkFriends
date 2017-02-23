@@ -13,6 +13,10 @@ std::string Physics::GetName()
 {
 	return "Physics";
 }
+Vector2 Physics::GetVelocity()
+{
+	return Velocity * gameObject->GetGameWorld()->GetDeltaTime();
+}
 #pragma endregion
 
 #pragma region CONSTRUCTORS:

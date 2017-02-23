@@ -146,6 +146,9 @@
     <ClInclude Include="PlayerCollision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyMath.h">
+      <Filter>Source Files\Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

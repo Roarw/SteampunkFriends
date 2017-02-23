@@ -16,6 +16,7 @@ public:
 	void Update();
 
 	std::string GetName();
+	Vector2 GetVelocity();
 
 	Physics(GameObject * g, Transform * transform);
 	~Physics();
