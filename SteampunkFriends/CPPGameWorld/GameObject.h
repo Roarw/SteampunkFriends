@@ -6,14 +6,16 @@
 
 #include "GL\glut.h"
 #include "soil.h"
+
 #include "IUpdate.h"
 #include "IDraw.h"
+#include "IOnCollisionEnter.h"
+#include "IOnCollisionExit.h"
+#include "IOnCollisionStay.h"
+
+#include "GameWorld.h"
 #include "DrawHandler.h"
 #include "Component.h"
-#include "GameWorld.h"
-#include "Collider.h"
-#include "Player.h"
-#include "GameWorld.h"
 
 class GameObject : public IUpdate, public IDraw
 {
@@ -29,7 +31,6 @@ public:
 
 	void AddComponent(Component * component);
 	GameWorld * GetGameWorld();
-
 	Component* GetComponent(std::string aName);
 
 	GameObject(GameWorld* aGameWorld);
