@@ -9,7 +9,7 @@ void Enemy::PlayDead(Vector2 direction)
 
 	deathDirection = direction;
 
-	gameObject->GetGameWorld()->PlaySound("Yee.wav", 0.75f);
+	gameObject->GetGameWorld()->PlaySound("Yee.wav", 0.25f);
 }
 
 void Enemy::Update()
