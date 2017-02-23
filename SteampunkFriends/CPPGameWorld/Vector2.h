@@ -10,10 +10,17 @@ public:
 	float Length();
 	Vector2 Normalize()
 	{
-		this->X = this->X / Length();
-		this->Y = this->Y / Length();
+		if(Length() != 0)
+		{ 
+			this->X = this->X / Length();
+			this->Y = this->Y / Length();
 
-		return *this;
+			return *this;
+		}
+		else
+		{
+			return Vector2();
+		}
 	}
 	Vector2 operator-(const Vector2 v)
 	{
