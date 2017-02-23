@@ -76,10 +76,11 @@ void DrawHandler::StartLoop()
 	glutMainLoop();
 }
 
-void DrawHandler::DrawTexture(GLuint texture, float x, float y, float z, float sizeW, float sizeH)
+void DrawHandler::DrawTexture(GLuint texture, float x, float y, float z, float sizeW, float sizeH, bool mirrorX, bool flipX, bool flipY, float angle, float rX, float rY, float rZ)
 {
 	glPushMatrix(); //Makes sure only this objects uses the current matrix
 	glTranslatef(x, y, z);
+	glRotatef(angle, rX, rY, rZ);
 
 	glEnable(GL_TEXTURE_2D);
 
@@ -88,14 +89,47 @@ void DrawHandler::DrawTexture(GLuint texture, float x, float y, float z, float s
 	glBindTexture(GL_TEXTURE_2D, texture); //Bind texture for usage
 
 	glBegin(GL_TRIANGLE_FAN);
-	// Front Face
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, 0.0f); //glVertex3f(-1.0f, -1.0f, 10.0f);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(sizeW, 0.0f, 0.0f); //glVertex3f(1.0f, -1.0f, 10.0f);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(sizeW, sizeH, 0.0f); //glVertex3f(1.0f, 1.0f, 10.0f);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, sizeH, 0.0f); //glVertex3f(-1.0f, 1.0f, 10.0f);
+
+	if (mirrorX)
+	{
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, 0.0f); 
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(-sizeW, 0.0f, 0.0f); 
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(-sizeW, sizeH, 0.0f); 
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, sizeH, 0.0f);
+	}
+	else if (flipX && flipY)
+	{
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(sizeW, sizeH, 0.0f);
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(0.0f, sizeH, 0.0f);
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(0.0f, sizeH, 0.0f);
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(sizeW, 0.0f, 0.0f);
+	}
+	else if (flipX)
+	{
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(sizeW, 0.0f, 0.0f);
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(0.0f, 0.0f, 0.0f);
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(0.0f, sizeH, 0.0f); 
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(sizeW, sizeH, 0.0f);
+	}
+	else if (flipY)
+	{
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, sizeH, 0.0f);
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(sizeW, sizeH, 0.0f);
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(sizeW, 0.0f, 0.0f); 
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, 0.0f, 0.0f); 
+	}
+	else
+	{
+		// Front Face
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, 0.0f); //glVertex3f(-1.0f, -1.0f, 10.0f);
+		glTexCoord2f(1.0f, 0.0f); glVertex3f(sizeW, 0.0f, 0.0f); //glVertex3f(1.0f, -1.0f, 10.0f);
+		glTexCoord2f(1.0f, 1.0f); glVertex3f(sizeW, sizeH, 0.0f); //glVertex3f(1.0f, 1.0f, 10.0f);
+		glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, sizeH, 0.0f); //glVertex3f(-1.0f, 1.0f, 10.0f);		
+	}
+
 	glEnd();
 
-	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_TEXTURE_2D);	
 
 	glPopMatrix();
 }

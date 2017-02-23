@@ -8,12 +8,32 @@
 #pragma region METHODS:
 void SpriteRenderer::Draw(DrawHandler * drawHandler)
 {
-	drawHandler->DrawTexture(texture, 
-		transform->GetPosition()->X,
-		transform->GetPosition()->Y,
-		0, 
-		Size.X, 
-		Size.Y);
+	if (Enabled)
+	{
+		if (FlipX || FlipY ||MirrorX)
+		{
+			drawHandler->DrawTexture(texture,
+				transform->GetPosition()->X,
+				transform->GetPosition()->Y,
+				0.0f,
+				Size.X,
+				Size.Y,
+				MirrorX,
+				FlipX,
+				FlipY
+			);
+		}
+		else
+		{
+			drawHandler->DrawTexture(texture,
+				transform->GetPosition()->X,
+				transform->GetPosition()->Y,
+				0.0f,
+				Size.X,
+				Size.Y
+			);
+		}
+	}
 }
 #pragma endregion
 

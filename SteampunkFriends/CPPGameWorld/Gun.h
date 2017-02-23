@@ -6,6 +6,8 @@
 #include "Player.h"
 #include "IOnCollisionStay.h"
 
+class SpriteRenderer;
+
 class Gun :
 	public Component, public IUpdate, public IOnCollisionStay
 {
@@ -15,7 +17,7 @@ private:
 	RectangleF AOE = RectangleF(0, 0, 400, 400);
 	Collider * collider;
 	Player * player;
-
+	SpriteRenderer * spriter;
 	void PositionCollider();
 public:
 	void Shoot();
@@ -24,7 +26,7 @@ public:
 
 	std::string GetName();
 
-	Gun(GameObject * g, Player * player);
+	Gun(GameObject * g, Player * player, SpriteRenderer * spriter);
 	~Gun();
 };
 

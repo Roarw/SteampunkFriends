@@ -79,6 +79,8 @@ void Collider::CheckCollision()
 
 void Collider::Update()
 {
+
+
 	if(Enabled)
 	{
 		CheckCollision();

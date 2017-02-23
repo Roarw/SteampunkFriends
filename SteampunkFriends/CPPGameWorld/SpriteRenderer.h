@@ -17,6 +17,10 @@ private:
 	Transform * transform;
 public:
 	Vector2 Size;
+	bool MirrorX = false;
+	bool FlipX = false;
+	bool FlipY = false;
+	bool Enabled = true;
 
 	void Draw(DrawHandler * drawHandler);
 

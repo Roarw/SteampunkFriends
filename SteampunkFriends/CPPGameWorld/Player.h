@@ -14,8 +14,10 @@ private:
 	Transform * transform;
 	Physics * physics;
 	float speed;
+	bool facingLeft = true;
 public:
 	void Update();
+	void MirrorX(bool mirror);
 
 	std::string GetName();
 	Vector2 * GetDirection();
