@@ -15,9 +15,10 @@ private:
 	static GameWorld * gameWorld;
 	void InitOpenGL();
 
-	float * red;
-	float * green;
-	float * blue;
+	static float * red;
+	static float * green;
+	static float * blue;
+	static float * counter;
 public:
 	static void Reshape(int width, int height);
 	static void KeyboardPress(unsigned char key, int x, int y);

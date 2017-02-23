@@ -3,6 +3,11 @@
 
 GameWorld * DrawHandler::gameWorld;
 
+float * DrawHandler::red;
+float * DrawHandler::green;
+float * DrawHandler::blue;
+float * DrawHandler::counter;
+
 void DrawHandler::InitOpenGL()
 {
 	//Enable smooth shading
@@ -69,6 +74,17 @@ void DrawHandler::GameLoop()
 {
 	gameWorld->Update();
 	gameWorld->Draw();
+
+	if (*counter >= numeric_limits<float>::max() - 1) 
+	{
+		counter = new float(0.0f);
+	}
+	else 
+	{
+		*counter += gameWorld->GetDeltaTime();
+	}
+
+
 }
 
 void DrawHandler::StartLoop()
@@ -192,6 +208,7 @@ DrawHandler::DrawHandler(GameWorld * gameWorld, int argc, char** argv)
 	red = new float(1.0f);
 	green = new float(1.0f);
 	blue = new float(1.0f);
+	counter = new float(numeric_limits<float>::max() - 1);
 
 	InitOpenGL();
 	glutReshapeFunc(this->Reshape);
