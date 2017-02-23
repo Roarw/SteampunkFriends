@@ -149,9 +149,6 @@
     <ClInclude Include="AirShipColBuilder.h">
       <Filter>Header Files\Builders</Filter>
     </ClInclude>
-    <ClInclude Include="MyMath.h">
-      <Filter>Source Files\Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerCollision.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -163,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="Spawner.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMath.h">
+      <Filter>Header Files\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -17,6 +17,10 @@ public:
 
 		return i;
 	}
+	static float SineCurve(float f)
+	{
+		return abs(sin(f));
+	}
 };
 
 #endif // !MYMATH_H
