@@ -217,8 +217,6 @@ GameWorld::GameWorld(int argc, char** argv)
 	sfxEngine = createIrrKlangDevice(); //Creates engine
 	musicEngine = createIrrKlangDevice();
 
-	PlayMusic("Mamama.wav"); //Play sound
-
 	CreateWorld();
 	drawHandler->StartLoop();
 }
