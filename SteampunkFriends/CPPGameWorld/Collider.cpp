@@ -1,15 +1,4 @@
 #pragma once
-#include "Collider.h"
-#include "GameObject.h"
-#include "SpriteRenderer.h"
-#include "Transform.h"
-#include "RectangleF.h"
-#include <vector>
-#include <stack>
-#include "PlayerCollision.h"
-
-using namespace std;
-
 void Collider::CheckCollision()
 {
 

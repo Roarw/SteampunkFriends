@@ -1,8 +1,3 @@
-#include "PlayerCollision.h"
-#include "RectangleF.h"
-#include "Wall.h"
-#include "MyMath.h"
-
 #pragma region METHODS:
 bool PlayerCollision::CollidingAt(Collider * other, Vector2 velocity)
 {

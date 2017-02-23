@@ -1,10 +1,3 @@
-#pragma once
-
-#include "SpriteRenderer.h"
-#include "GameObject.h"
-#include "Transform.h"
-#include "Vector2.h"
-
 #pragma region METHODS:
 void SpriteRenderer::Draw(DrawHandler * drawHandler)
 {

@@ -1,10 +1,3 @@
-#include "Gun.h"
-#include "Transform.h"
-#include "Physics.h"
-#include "Enemy.h"
-#include "SpriteRenderer.h"
-#include "Vector2.h"
-
 #pragma region METHODS:
 void Gun::PositionCollider()
 {

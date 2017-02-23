@@ -1,6 +1,3 @@
-#include "Transform.h"
-#include "GameObject.h"
-
 #pragma region METHODS:
 void Transform::Translate(Vector2 translation)
 {

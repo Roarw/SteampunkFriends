@@ -1,6 +1,3 @@
-#include "Wall.h"
-#include "Enemy.h"
-
 #pragma region METHODS:
 void Wall::OnCollisionEnter(GameObject * other)
 {
