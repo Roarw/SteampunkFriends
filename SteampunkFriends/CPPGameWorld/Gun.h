@@ -18,6 +18,8 @@ private:
 	Collider * collider;
 	Player * player;
 	SpriteRenderer * spriter;
+	float * getTheMessageThrough;
+
 	void PositionCollider();
 public:
 	void Shoot();

@@ -67,6 +67,16 @@ void Gun::Shoot()
 	spriter->Enabled = true;
 
 	collider->Enabled = true;
+
+	if (*getTheMessageThrough > 10.0f) 
+	{
+		gameObject->GetGameWorld()->PlaySound("onlyyou.mp3", 0.25f);
+		*getTheMessageThrough -= 10.0f;
+	}
+	else 
+	{
+		*getTheMessageThrough += 1.0f * gameObject->GetGameWorld()->GetDeltaTime();
+	}
 }
 
 void Gun::Update()
@@ -129,9 +139,12 @@ Gun::Gun(GameObject * g, Player * player, SpriteRenderer * spriter) : Component(
 	collider->Enabled = false;
 
 	this->gameObject->AddComponent(collider);
+
+	getTheMessageThrough = new float(0);
 }
 
 Gun::~Gun()
 {
+	delete getTheMessageThrough;
 }
 #pragma endregion

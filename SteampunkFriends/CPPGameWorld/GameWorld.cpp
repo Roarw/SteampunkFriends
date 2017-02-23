@@ -147,14 +147,16 @@ void GameWorld::DeleteCollider(Collider * c)
 	colliders.erase(std::remove(colliders.begin(), colliders.end(), c), colliders.end());
 }
 
-void GameWorld::PlaySound(char* soundPath)
+void GameWorld::PlaySound(char* soundPath, float volume)
 {
-	sfxEngine->stopAllSounds();
+	sfxEngine->setSoundVolume(volume);
 	sfxEngine->play2D(soundPath, false);
 }
 
-void GameWorld::PlayMusic(char* musicPath)
+void GameWorld::PlayMusic(char* musicPath, float volume)
 {
+	sfxEngine->stopAllSounds();
+	sfxEngine->setSoundVolume(volume);
 	musicEngine->play2D(musicPath, true);
 }
 
