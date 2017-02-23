@@ -3,12 +3,9 @@
 
 #include "GameObject.h"
 #include "Vector2.h"
-#include "Physics.h"
 
 #include "Transform.h"
-#include "SpriteRenderer.h"
 #include "Collider.h"
-#include "Enemy.h"
 #include "Wall.h"
 
 class AirShipColBuilder
