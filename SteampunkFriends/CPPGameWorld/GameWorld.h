@@ -35,8 +35,8 @@ private:
 	void DeleteObject(GameObject* aObject);
 	void DeleteCollider(Collider* aCollider);
 public:
-	void PlaySound(string soundPath);
-	void PlayMusic(string musicPath);
+	void PlaySound(char* soundPath);
+	void PlayMusic(char* musicPath);
 	void Update();
 	void Draw();
 	void CreateWorld();

@@ -147,14 +147,14 @@ void GameWorld::DeleteCollider(Collider * c)
 	colliders.erase(std::remove(colliders.begin(), colliders.end(), c), colliders.end());
 }
 
-void GameWorld::PlaySound(string soundPath)
+void GameWorld::PlaySound(char* soundPath)
 {
-	sfxEngine->play2D("death.mp3", false);
+	sfxEngine->play2D(soundPath, false);
 }
 
-void GameWorld::PlayMusic(string musicPath)
+void GameWorld::PlayMusic(char* musicPath)
 {
-	musicEngine->play2D("death.mp3", true);
+	musicEngine->play2D(musicPath, true);
 }
 
 //Doesn't work as intended yet. Make it like Delete.
@@ -212,7 +212,7 @@ GameWorld::GameWorld(int argc, char** argv)
 	sfxEngine = createIrrKlangDevice(); //Creates engine
 	musicEngine = createIrrKlangDevice();
 
-	PlayMusic("death.mp3"); //Play sound
+	PlayMusic("Mamama.wav"); //Play sound
 
 	CreateWorld();
 	drawHandler->StartLoop();
