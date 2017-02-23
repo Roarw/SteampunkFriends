@@ -149,6 +149,7 @@ void GameWorld::DeleteCollider(Collider * c)
 
 void GameWorld::PlaySound(char* soundPath)
 {
+	sfxEngine->stopAllSounds();
 	sfxEngine->play2D(soundPath, false);
 }
 
