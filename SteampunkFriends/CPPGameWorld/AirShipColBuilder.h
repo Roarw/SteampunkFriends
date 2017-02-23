@@ -30,6 +30,8 @@ public:
 		airShipCol->AddComponent(airShipColCollider);
 		airShipCol->AddComponent(airShipColWall);
 
+		delete aSize;
+
 #pragma endregion
 
 		return airShipCol;
