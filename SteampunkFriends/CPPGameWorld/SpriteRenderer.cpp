@@ -15,7 +15,9 @@ void SpriteRenderer::Draw(DrawHandler * drawHandler)
 	drawHandler->DrawTexture(texture, 
 		transform->GetPosition()->X,
 		transform->GetPosition()->Y,
-		0);
+		0, 
+		Size.X, 
+		Size.Y);
 }
 
 SpriteRenderer::SpriteRenderer(GameObject * gameObject, Transform * transform, char * texturePath) : Component(gameObject)

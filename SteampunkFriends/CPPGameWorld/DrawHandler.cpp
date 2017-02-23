@@ -76,7 +76,7 @@ void DrawHandler::StartLoop()
 	glutMainLoop();
 }
 
-void DrawHandler::DrawTexture(GLuint texture, float x, float y, float z)
+void DrawHandler::DrawTexture(GLuint texture, float x, float y, float z, float sizeW, float sizeH)
 {
 	glPushMatrix(); //Makes sure only this objects uses the current matrix
 	glTranslatef(x, y, z);
@@ -87,17 +87,12 @@ void DrawHandler::DrawTexture(GLuint texture, float x, float y, float z)
 
 	glBindTexture(GL_TEXTURE_2D, texture); //Bind texture for usage
 
-	int w, h;
-	int miplevel = 0;
-	glGetTexLevelParameteriv(GL_TEXTURE_2D, miplevel, GL_TEXTURE_WIDTH, &w);
-	glGetTexLevelParameteriv(GL_TEXTURE_2D, miplevel, GL_TEXTURE_HEIGHT, &h);
-
 	glBegin(GL_TRIANGLE_FAN);
 	// Front Face
 	glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, 0.0f); //glVertex3f(-1.0f, -1.0f, 10.0f);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(w, 0.0f, 0.0f); //glVertex3f(1.0f, -1.0f, 10.0f);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(w, h, 0.0f); //glVertex3f(1.0f, 1.0f, 10.0f);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, h, 0.0f); //glVertex3f(-1.0f, 1.0f, 10.0f);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(sizeW, 0.0f, 0.0f); //glVertex3f(1.0f, -1.0f, 10.0f);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(sizeW, sizeH, 0.0f); //glVertex3f(1.0f, 1.0f, 10.0f);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(0.0f, sizeH, 0.0f); //glVertex3f(-1.0f, 1.0f, 10.0f);
 	glEnd();
 
 	glDisable(GL_TEXTURE_2D);
