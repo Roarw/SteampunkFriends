@@ -67,6 +67,14 @@ void GameWorld::Draw()
 ///Creating all objects.
 void GameWorld::CreateWorld()
 {
+	//Sky
+	GameObject * sky = new GameObject(this);
+	Transform * skyTransform = new Transform(sky, new Vector2(0, 0));
+	SpriteRenderer * skySpriteRenderer = new SpriteRenderer(sky, skyTransform, ".\\sky.png");
+	sky->AddComponent(skyTransform);
+	sky->AddComponent(skySpriteRenderer);
+	AddGameObjectNext(sky);
+
 	//Airship
 	AirShipBuilder airShipBuilder;
 
