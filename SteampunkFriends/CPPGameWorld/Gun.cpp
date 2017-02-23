@@ -2,10 +2,13 @@
 #include "Transform.h"
 #include "Physics.h"
 #include "Enemy.h"
+#include "SpriteRenderer.h"
+#include "Vector2.h"
 
 #pragma region METHODS:
 void Gun::PositionCollider()
 {
+	// Sizing
 	Vector2 aoe = Vector2();
 
 	float a = player->GetDirection()->X;
@@ -14,8 +17,41 @@ void Gun::PositionCollider()
 	float nSizeX = a * AOE.Width;
 	float nSizeY = b * AOE.Height;
 
-	aoe = nSizeX != 0 ? Vector2(nSizeX, ((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.Y) :
+	spriter->MirrorX = false;
+	spriter->FlipY = false;
+
+	// Set collidersize based on player width/height and length of 'beam'
+	aoe = nSizeX != 0 ? 
+		Vector2(nSizeX, ((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.Y) :
 		Vector2(((Collider *)player->GetGameObject()->GetComponent("Collider"))->Size.X, nSizeY);
+
+	// Gun Positioning
+	Vector2 * transform = ((Transform*)gameObject->GetComponent("Transform"))->GetPosition();
+	Vector2 * playerTransform = ((Transform*)player->GetGameObject()->GetComponent("Transform"))->GetPosition();
+	Vector2 playerSize = ((SpriteRenderer*)player->GetGameObject()->GetComponent("SpriteRenderer"))->Size;
+
+	transform->X = playerTransform->X;
+	transform->Y = playerTransform->Y;
+
+	if (aoe.X < 0)
+	{
+		transform->X = playerTransform->X;
+		spriter->MirrorX = true;
+	}
+	else if(aoe.X > playerSize.X)
+	{
+		transform->X = playerTransform->X + playerSize.X;
+	}
+
+	if (aoe.Y < 0)
+	{
+		transform->Y = playerTransform->Y;
+		spriter->FlipY = true;
+	}
+	else if(aoe.Y > playerSize.Y)
+	{
+		transform->Y = playerTransform->Y + playerSize.Y/2;
+	}
 
 	collider->Size = aoe;
 }
@@ -24,11 +60,14 @@ void Gun::Shoot()
 {
 	PositionCollider();
 
+	spriter->Enabled = true;
+
 	collider->Enabled = true;
 }
 
 void Gun::Update()
 {
+	spriter->Enabled = false;
 	collider->Enabled = false;
 
 	for (int key : gameObject->GetGameWorld()->GetKeys())
@@ -54,7 +93,7 @@ void Gun::OnCollisionStay(GameObject * other)
 		// Percentage of max range
 		float factor = 1 - abs(dividingVector.Length() / AOE.Size.Length());
 
-		Vector2 v = dividingVector.Normalize();// *MaxVelocityTransfered * factor;
+		Vector2 v = dividingVector.Normalize() * MaxVelocityTransfered * factor;
 
 		((Physics *)other->GetComponent("Physics"))->Velocity += v;
 	}
@@ -69,9 +108,10 @@ std::string Gun::GetName()
 #pragma endregion
 
 #pragma region CONSTRUCTORS:
-Gun::Gun(GameObject * g, Player * player) : Component(g)
+Gun::Gun(GameObject * g, Player * player, SpriteRenderer * spriter) : Component(g)
 {
 	this->player = player;
+	this->spriter = spriter;
 
 	MaxVelocityTransfered = 1;
 

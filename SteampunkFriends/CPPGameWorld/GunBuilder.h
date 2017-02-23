@@ -9,9 +9,13 @@ public:
 	GameObject * Build(GameWorld * gw, Player * player)
 	{
 		GameObject * go = new GameObject(gw);
-		Transform * t = (Transform *)player->GetGameObject()->GetComponent("Transform");
+		Vector2 * playerPosition = new Vector2();
+		*playerPosition = *((Transform *)player->GetGameObject()->GetComponent("Transform"))->GetPosition();
+		Transform * t = new Transform(go, playerPosition);
+		SpriteRenderer * spriteRenderer = new SpriteRenderer(go, t, ".\\Steam.png");
 		go->AddComponent(t);
-		Gun * g = new Gun(go, player);
+		go->AddComponent(spriteRenderer);
+		Gun * g = new Gun(go, player, spriteRenderer);
 		go->AddComponent(g);
 
 		return go;

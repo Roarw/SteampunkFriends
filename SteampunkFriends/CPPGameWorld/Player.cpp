@@ -1,8 +1,15 @@
 #include "Player.h"
 #include "GameWorld.h"
 #include "Physics.h"
+#include "SpriteRenderer.h"
 
 #pragma region METHODS:
+void Player::MirrorX(bool mirror)
+{
+	SpriteRenderer * spriter = ((SpriteRenderer *)gameObject->GetComponent("SpriteRenderer"));
+	spriter->FlipX = mirror;
+}
+
 void Player::Update()
 {
 	Vector2 moveDirection;
@@ -18,9 +25,11 @@ void Player::Update()
 			break;
 		case GLUT_KEY_LEFT:
 			moveDirection.X -= 1;
+			MirrorX(false);
 			break;
 		case GLUT_KEY_RIGHT:
 			moveDirection.X += 1;
+			MirrorX(true);
 			break;
 		default:
 			break;
