@@ -14,6 +14,10 @@ class DrawHandler
 private:
 	static GameWorld * gameWorld;
 	void InitOpenGL();
+
+	float * red;
+	float * green;
+	float * blue;
 public:
 	static void Reshape(int width, int height);
 	static void KeyboardPress(unsigned char key, int x, int y);

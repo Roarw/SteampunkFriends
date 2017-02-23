@@ -84,7 +84,7 @@ void DrawHandler::DrawTexture(GLuint texture, float x, float y, float z, float s
 
 	glEnable(GL_TEXTURE_2D);
 
-	glColor3f(1.0f, 1.0f, 1.0f);
+	glColor3f(*red, *green, *blue);
 
 	glBindTexture(GL_TEXTURE_2D, texture); //Bind texture for usage
 
@@ -143,32 +143,10 @@ void DrawHandler::DrawBox(RectangleF aRect, float R, float G, float B)
 	glColor3f(R, G, B);
 	glBegin(GL_LINE_LOOP);
 
-	//glVertex3f(0, 0, 0);
-	//glVertex3f(10, 0, 0);
-	//glVertex3f(10, 10, 0);
-	//glVertex3f(0, 10, 0);
-
 	glVertex2f(0, 0);
 	glVertex2f(aRect.Width, 0);
 	glVertex2f(aRect.Width, aRect.Height);
 	glVertex2f(0, aRect.Height);
-
-	//for (Vector2 v : points)
-	//{
-	//	glVertex2f(v.X, v.Y);
-	//}
-
-	//for (std::vector<Vector2>::iterator itr = points.begin(); itr != points.end(); itr++)
-	//{
-	//	if (itr == points.end())
-	//	{
-	//		glVertex3f(points.begin()->X, points.begin()->Y, 1.0f);
-	//	}
-	//	else
-	//	{
-	//		glVertex3f(itr->X, itr->Y, 1.0f);
-	//	}
-	//}
 
 	glEnd();
 
@@ -210,6 +188,10 @@ DrawHandler::DrawHandler(GameWorld * gameWorld, int argc, char** argv)
 	glutCreateWindow("SteamPunk'd"); 
 	//Going fullscreen!
 	//glutFullScreen();
+
+	red = new float(1.0f);
+	green = new float(1.0f);
+	blue = new float(1.0f);
 
 	InitOpenGL();
 	glutReshapeFunc(this->Reshape);
