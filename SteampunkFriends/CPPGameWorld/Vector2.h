@@ -12,8 +12,10 @@ public:
 	{
 		if(Length() != 0)
 		{ 
-			this->X = this->X / Length();
-			this->Y = this->Y / Length();
+			float length = Length();
+
+			this->X = this->X / length;
+			this->Y = this->Y / length;
 
 			return *this;
 		}
@@ -37,6 +39,10 @@ public:
 	Vector2 operator*(const Vector2 v)
 	{
 		return Vector2(this->X * v.X, this->Y * v.Y);
+	}
+	Vector2 operator/(const float f)
+	{
+		return Vector2(this->X / f, this->Y / f);
 	}
 	void operator+=(const Vector2 v)
 	{

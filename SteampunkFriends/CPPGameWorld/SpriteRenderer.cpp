@@ -10,17 +10,18 @@ void SpriteRenderer::Draw(DrawHandler * drawHandler)
 {
 	if (Enabled)
 	{
-		if (FlipX || FlipY ||MirrorX)
+		if (FlipX || FlipY || MirrorX || Angle != 0)
 		{
 			drawHandler->DrawTexture(texture,
-				transform->GetPosition()->X,
-				transform->GetPosition()->Y,
+				transform->GetPosition()->X + offset.X,
+				transform->GetPosition()->Y + offset.Y,
 				0.0f,
 				Size.X,
 				Size.Y,
 				MirrorX,
 				FlipX,
-				FlipY
+				FlipY,
+				Angle
 			);
 		}
 		else
