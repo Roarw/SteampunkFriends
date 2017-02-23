@@ -30,7 +30,6 @@ void GameWorld::PlaySound(char* soundPath, float volume)
 
 void GameWorld::PlayMusic(char* musicPath, float volume)
 {
-	musicEngine->stopAllSounds();
 	musicEngine->setSoundVolume(volume);
 	musicEngine->play2D(musicPath, true);
 }
@@ -220,7 +219,8 @@ GameWorld::GameWorld(int argc, char** argv)
 	musicEngine = createIrrKlangDevice();
 
 	CreateWorld();
-	PlayMusic("yeemee.mp3", 0.35f);
+	PlayMusic("yeemee.mp3", 0.25f);
+	PlayMusic("fuckme.mp3", 0.25f);
 	
 	drawHandler->StartLoop();
 }
