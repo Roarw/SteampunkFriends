@@ -1,11 +1,13 @@
 #ifndef SPRITERENDERER_H
 #define SPRITERENDERER_H
 
-#include "GL\glut.h"
-#include "soil.h"
 #include "Component.h"
+
+#include <GL\glut.h>
+#include "soil.h"
+
 #include "IDraw.h"
-#include "DrawHandler.h"
+#include "Vector2.h"
 
 class Transform;
 

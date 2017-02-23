@@ -1,3 +1,12 @@
+#include "Gun.h"
+#include "GameObject.h"
+#include "Transform.h"
+#include "Collider.h"
+#include "Player.h"
+#include "SpriteRenderer.h"
+#include "Enemy.h"
+#include "Physics.h"
+
 #pragma region METHODS:
 void Gun::PositionCollider()
 {

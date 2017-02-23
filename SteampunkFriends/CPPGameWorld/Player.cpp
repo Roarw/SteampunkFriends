@@ -1,3 +1,9 @@
+#include "Player.h"
+#include "GameObject.h"
+#include "Transform.h"
+#include "Physics.h"
+#include "SpriteRenderer.h"
+
 #pragma region METHODS:
 void Player::MirrorX(bool mirror)
 {

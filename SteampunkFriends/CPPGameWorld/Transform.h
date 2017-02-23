@@ -2,6 +2,7 @@
 #define TRANSFORM_H
 
 #include "Component.h"
+
 #include "Vector2.h"
 
 class Transform :

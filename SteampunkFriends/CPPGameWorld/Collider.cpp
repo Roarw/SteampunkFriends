@@ -1,4 +1,9 @@
-#pragma once
+#include "Collider.h"
+#include "GameObject.h"
+#include "SpriteRenderer.h"
+#include "Transform.h"
+#include "PlayerCollision.h"
+
 void Collider::CheckCollision()
 {
 

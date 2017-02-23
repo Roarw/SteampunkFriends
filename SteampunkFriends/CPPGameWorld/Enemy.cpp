@@ -1,3 +1,8 @@
+#include "Enemy.h"
+#include "GameObject.h"
+#include "Transform.h"
+#include "SpriteRenderer.h"
+
 #pragma region METHODS:
 void Enemy::PlayDead(Vector2 direction)
 {

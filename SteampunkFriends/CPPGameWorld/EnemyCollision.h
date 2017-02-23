@@ -2,7 +2,9 @@
 #define ENEMYCOLLISION_H
 
 #include "Component.h"
+
 #include "IUpdate.h"
+#include "Vector2.h"
 
 class EnemyCollision :
 	public Component, public IUpdate

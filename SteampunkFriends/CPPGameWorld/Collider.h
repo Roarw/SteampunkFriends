@@ -2,14 +2,16 @@
 #define COLLIDER_H
 
 #include "Component.h"
-#include "IDraw.h"
-#include "RectangleF.h"
+
+#include <stack>
 #include <vector>
+
+#include "IDraw.h"
+#include "Vector2.h"
+#include "RectangleF.h"
 
 class SpriteRenderer;
 class Transform;
-
-using namespace std;
 
 class Collider :
 	public Component, public IDraw

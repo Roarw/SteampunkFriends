@@ -1,3 +1,11 @@
+#include "PlayerCollision.h"
+#include "GameObject.h"
+#include "Transform.h"
+#include "Physics.h"
+#include "Collider.h"
+#include "Wall.h"
+#include "MyMath.h"
+
 #pragma region METHODS:
 bool PlayerCollision::CollidingAt(Collider * other, Vector2 velocity)
 {

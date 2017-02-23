@@ -1,11 +1,13 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include "GameObject.h"
 #include "Component.h"
+
 #include "IUpdate.h"
 #include "Vector2.h"
-#include "Transform.h"
+
+class Transform;
+class SpriteRenderer;
 
 class Enemy :
 	public Component, public IUpdate

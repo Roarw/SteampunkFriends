@@ -1,3 +1,9 @@
+#include "EnemyCollision.h"
+#include "GameObject.h"
+#include "Transform.h"
+#include "SpriteRenderer.h"
+#include "Physics.h"
+
 #pragma region METHODS:
 void EnemyCollision::Update()
 {

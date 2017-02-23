@@ -1,10 +1,14 @@
 #ifndef PLAYERCOLLISION_H
 #define PLAYERCOLLISION_H
 
-#include "Transform.h"
 #include "Component.h"
-#include "Collider.h"
-#include "Physics.h"
+
+#include "Vector2.h"
+#include "RectangleF.h"
+
+class Transform;
+class Collider;
+class Physics;
 
 class PlayerCollision :
 	public Component

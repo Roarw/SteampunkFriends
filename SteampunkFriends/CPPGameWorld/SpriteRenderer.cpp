@@ -1,3 +1,8 @@
+#include "SpriteRenderer.h"
+#include "GameObject.h"
+#include "DrawHandler.h"
+#include "Transform.h"
+
 #pragma region METHODS:
 void SpriteRenderer::Draw(DrawHandler * drawHandler)
 {

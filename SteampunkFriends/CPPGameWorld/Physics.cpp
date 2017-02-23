@@ -1,3 +1,7 @@
+#include "Physics.h"
+#include "GameObject.h"
+#include "Transform.h"
+
 #pragma region METHODS:
 void Physics::Update()
 {

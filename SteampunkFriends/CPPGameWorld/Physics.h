@@ -1,9 +1,12 @@
-#pragma once
+#ifndef PHYSICS_H
+#define PHYSICS_H
+
 #include "Component.h"
+
 #include "IUpdate.h"
-#include "GameObject.h"
 #include "Vector2.h"
-#include "Transform.h"
+
+class Transform;
 
 class Physics :
 	public Component, public IUpdate
@@ -21,4 +24,4 @@ public:
 	Physics(GameObject * g, Transform * transform);
 	~Physics();
 };
-
+#endif // !PHYSICS_H

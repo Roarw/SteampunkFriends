@@ -1,11 +1,15 @@
-#pragma once
-#include "Component.h"
-#include "Collider.h"
-#include "IUpdate.h"
-#include "GameObject.h"
-#include "Player.h"
-#include "IOnCollisionStay.h"
+#ifndef GUN_H
+#define GUN_H
 
+#include "Component.h"
+
+#include "IUpdate.h"
+#include "IOnCollisionStay.h"
+#include "Vector2.h"
+#include "RectangleF.h"
+
+class Collider;
+class Player;
 class SpriteRenderer;
 
 class Gun :
@@ -31,4 +35,4 @@ public:
 	Gun(GameObject * g, Player * player, SpriteRenderer * spriter);
 	~Gun();
 };
-
+#endif // !GUN_H

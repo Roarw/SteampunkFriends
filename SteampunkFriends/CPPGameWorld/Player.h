@@ -1,9 +1,12 @@
-#pragma once
-#include "Component.h"
-#include "Vector2.h"
-#include "IUpdate.h"
-#include "Transform.h"
+#ifndef PLAYER_H
+#define PLAYER_H
 
+#include "Component.h"
+
+#include "IUpdate.h"
+#include "Vector2.h"
+
+class Transform;
 class Physics;
 
 class Player :
@@ -25,4 +28,4 @@ public:
 	Player(GameObject * gameObject, Transform * transform, Physics * physics);
 	~Player();
 };
-
+#endif // !PLAYER_H

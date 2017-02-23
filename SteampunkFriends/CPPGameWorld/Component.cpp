@@ -1,3 +1,6 @@
+#include "Component.h"
+#include "GameObject.h"
+
 #pragma region GET/SET:
 std::string Component::GetName()
 {
