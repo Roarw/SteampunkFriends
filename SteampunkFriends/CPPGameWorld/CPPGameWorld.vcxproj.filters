@@ -134,6 +134,12 @@
     <ClInclude Include="Wall.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="AirShipBuilder.h">
+      <Filter>Header Files\Builders</Filter>
+    </ClInclude>
+    <ClInclude Include="AirShipColBuilder.h">
+      <Filter>Header Files\Builders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
