@@ -73,7 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>C:\Users\Kenneth\Source\Repos\SteampunkFriends\SteampunkFriends\packages\freeglut.2.8.1.15\build\native\lib\v100\Win32\Debug\dynamic;$(LibraryPath)</LibraryPath>
-    <LibraryPath>..\SteamyLibrary;..\packages\freeglut.2.8.1.15\build\native\lib\v100\Win32\Debug\dynamic;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\packages\soil.1.16.0\build\native\lib\Win32\Debug;..\SteamyLibrary;..\packages\freeglut.2.8.1.15\build\native\lib\v100\Win32\Debug\dynamic;$(LibraryPath)</LibraryPath>
     <IncludePath>..\SteamyLibrary;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -82,7 +82,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\SteamyLibrary;$(IncludePath)</IncludePath>
-    <LibraryPath>..\SteamyLibrary;..\packages\freeglut.2.8.1.15\build\native\lib\v100\Win32\Release\dynamic;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\packages\soil.1.16.0\build\native\lib\Win32\Debug;..\SteamyLibrary;..\packages\freeglut.2.8.1.15\build\native\lib\v100\Win32\Release\dynamic;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
